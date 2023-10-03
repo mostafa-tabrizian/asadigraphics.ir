@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 const Footer = () => {
    return (
@@ -9,7 +9,7 @@ const Footer = () => {
                <div className='text-center'>
                   <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
                      <Image
-                        className='aspect-auto mix-blend-multiply'
+                        className='mix-blend-multiply'
                         src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
                         alt='لوگو اسدی گرافیکس'
                         width={150}

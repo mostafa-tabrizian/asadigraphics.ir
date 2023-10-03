@@ -9,9 +9,11 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
 
 const ImageDelete = ({
+   type,
    image,
    design,
 }: {
+   type: string
    image: string
    design: string
 }) => {
@@ -49,6 +51,7 @@ const ImageDelete = ({
 
    const removeFromDb = async () => {
       const payload = {
+         type,
          key: image,
          _id: design,
       }

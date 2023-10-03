@@ -157,7 +157,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                         </div>
                      </Link>
 
-                     <ImageDelete design={design._id} image={design.front} />
+                     <ImageDelete type='front' design={design._id} image={design.front} />
                   </div>
                </div>
             ) : (
@@ -234,7 +234,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                         </div>
                      </Link>
 
-                     <ImageDelete design={design._id} image={design.back} />
+                     <ImageDelete type='back' design={design._id} image={design.back} />
                   </div>
                </div>
             ) : (
