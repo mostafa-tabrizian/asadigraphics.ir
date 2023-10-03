@@ -1,0 +1,107 @@
+.MuiFormLabel-root,
+.MuiMenuItem-root,
+.MuiAutocomplete-option {
+   font-family: YekanBakhRegular, sans-serif !important;
+}
+
+.MuiInputBase-root {
+   font-size: 0.9rem;
+   font-family: YekanBakhRegular, sans-serif !important;
+}
+
+.MuiTooltip-tooltip {
+   font-family: YekanBakhRegular, sans-serif !important;
+   background: rgb(44, 47, 79);
+}
+
+.MuiButton-contained {
+   font-family: YekanBakhRegular, sans-serif !important;
+   background: #0084ff !important;
+   font-weight: 600 !important;
+   box-shadow: 0 5px 10px #708dff9c !important;
+
+   &:hover {
+      background: #2495ff !important;
+   }
+}
+
+.MuiButton-outlined {
+   font-family: YekanBakhRegular, sans-serif !important;
+   border: 2px solid #708dff9c;
+   font-weight: 600 !important;
+
+   &:hover {
+      background: transparent !important;
+      border: 2px solid #6281ff;
+   }
+}
+
+.MuiAccordion-root {
+   margin: 1rem 0;
+   border: 1px solid rgb(100 116 139) !important;
+   border-radius: 15px !important;
+}
+
+.MuiPopover-paper {
+   border-radius: 15px !important;
+}
+
+.MuiFormControlLabel-label,
+.MuiSlider-markLabel {
+   font-family: YekanBakhRegular, sans-serif !important;
+   font-size: 14px;
+   color: rgb(100 116 139);
+}
+
+.MuiDrawer-paper {
+   border-radius: 25px;
+}
+
+.MuiStepConnector-root {
+   transform: translateX(8rem);
+   margin: 0 0.5rem;
+}
+
+.MuiSlider-thumb {
+   color: #2495ff !important;
+}
+
+.MuiSlider-valueLabel {
+   display: none;
+}
+
+.MuiSlider-track {
+   background-color: #0066ff !important;
+   border: none !important;
+}
+
+.MuiSlider-rail {
+   background-color: #71aaff !important;
+}
+
+.MuiSlider-mark {
+   background-color: #0084ff !important;
+   width: 6px !important;
+   height: 6px !important;
+   border-radius: 15px !important;
+}
+
+.MuiSlider-valueLabel {
+   background: #0084ff !important;
+
+   &Label {
+      color: white !important;
+   }
+}
+
+.MuiChip-root {
+   border-radius: 5px !important;
+}
+
+.MuiDataGrid-columnHeaderTitle,
+.MuiDataGrid-cellContent,
+.MuiDataGrid-cell--withRenderer {
+   font-family: YekanBakhRegular, sans-serif;
+   font-size: 0.8rem;
+   color: rgb(43, 45, 83);
+}

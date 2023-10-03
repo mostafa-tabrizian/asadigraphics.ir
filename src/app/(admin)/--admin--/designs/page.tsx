@@ -1,0 +1,58 @@
+import Link from 'next/link'
+
+import dbConnect from '@/lib/dbConnect'
+import Design from '@/models/design'
+
+import Breadcrumbs from '@mui/material/Breadcrumbs'
+import DesignsTable from './components/designsTable'
+
+const getDesigns = async () => {
+   dbConnect()
+   return await Design.find()
+}
+
+export const metadata = {
+   title: 'اسدی گرافیکس | پنل ادمین | طرح ها',
+}
+
+const AdminDesigns = async () => {
+   const designs = (await getDesigns()).reverse()
+
+   return (
+      <div className='md:mx-auto mx-6 max-w-screen-lg space-y-10 my-16 relative'>
+         <>
+            <Breadcrumbs aria-label='breadcrumb'>
+               <Link className='text-gray-400' href='/'>
+                  صفحه اصلی
+               </Link>
+               <Link className='text-gray-400' href='/--admin--'>
+                  ادمین
+               </Link>
+               <h5 className='font-semibold'>طرح ها</h5>
+            </Breadcrumbs>
+
+            <Link href='/--admin--/designs/new'>
+               <button className='bg-white z-10 border-2 border-orange-500 rounded-full p-3 fixed bottom-10 right-5'>
+                  <svg
+                     className='h-6 w-6 text-orange-500'
+                     fill='none'
+                     viewBox='0 0 24 24'
+                     stroke='currentColor'
+                  >
+                     <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth='2'
+                        d='M12 4v16m8-8H4'
+                     />
+                  </svg>
+               </button>
+            </Link>
+
+            <DesignsTable designs={JSON.parse(JSON.stringify(designs))} />
+         </>
+      </div>
+   )
+}
+
+export default AdminDesigns

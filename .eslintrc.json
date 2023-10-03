@@ -1,0 +1,46 @@
+{
+   "env": {
+      "browser": true,
+      "es2021": true
+   },
+   "extends": [
+      "eslint:recommended",
+      "next",
+      "next/core-web-vitals",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "prettier"
+   ],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaFeatures": {
+         "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+   },
+   "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint",
+      "prettier"
+   ],
+   "rules": {
+      "spaced-comment": "error",
+      "quotes": [
+         "error",
+         "single"
+      ],
+      "no-duplicate-imports": "error",
+      "camelcase": "warn",
+      "react/prop-types": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "react/react-in-jsx-scope": "off"
+   },
+   "settings": {
+      "import/resolver": {
+         "typescript": {}
+      }
+   }
+}

@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// :root {
+//    --foreground-rgb: #eff4ff;
+//    --background-start-rgb: 0, 0, 0;
+//    --background-end-rgb: 0, 0, 0;
+// }
+
+// @media (prefers-color-scheme: dark) {
+//    :root {
+//       --foreground-rgb: black;
+//       --background-start-rgb: 214, 219, 220;
+//       --background-end-rgb: 255, 255, 255;
+//    }
+// }
+
+@font-face {
+   font-family: 'YekanBakhRegular';
+   font-display: swap;
+   src:
+      url('/font/YekanBakhNoEn-Regular.woff2') format('woff2'),
+      url('/font/YekanBakhNoEn-Regular.woff') format('woff');
+}
+
+@font-face {
+   font-family: 'YekanBakhBold';
+   font-display: swap;
+   src:
+      url('/font/YekanBakhNoEn-Bold.woff2') format('woff2'),
+      url('/font/YekanBakhNoEn-Bold.woff') format('woff');
+}
+
+@font-face {
+   font-family: 'DoranExtraBold';
+   font-display: swap;
+   src:
+      url('/font/DoranNoEn-ExtraBold.woff2') format('woff2'),
+      url('/font/DoranNoEn-ExtraBold.woff') format('woff');
+}
+
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+
+html {
+   min-height: 100vh;
+   scroll-behavior: smooth;
+}
+
+body {
+   color: rgb(var(--foreground-rgb));
+   background: #F2F2F2;
+   user-select: none;
+}
+
+a {
+   text-decoration: none;
+   font-size: 1rem;
+   font-family: YekanBakhBold, sans-serif;
+   color: black;
+}
+
+h1 {
+   font-size: 2rem;
+   font-family: DoranExtraBold, sans-serif;
+   color: black;
+}
+
+h2 {
+   font-size: 2rem;
+   font-weight: bold;
+   font-family: DoranExtraBold, sans-serif;
+   color: black;
+}
+
+h3 {
+   font-size: 1rem;
+   font-weight: bold;
+   font-family: YekanBakhBold, sans-serif;
+   color: black;
+}
+
+h4 {
+   font-size: 1rem;
+   font-family: YekanBakhBold, sans-serif;
+   color: black;
+}
+
+h5 {
+   font-size: 1rem;
+   letter-spacing: -1px;
+   font-family: YekanBakhBold, sans-serif;
+   color: black;
+}
+
+button {
+   font-size: 1rem;
+   letter-spacing: -1px;
+   font-family: YekanBakhRegular, sans-serif;
+   padding: 0.5rem 0.1rem;
+   color: black;
+}
+
+p {
+   font-size: 1rem;
+   font-family: YekanBakhRegular, sans-serif;
+   color: black;
+}
+
+li {
+   font-size: 1rem;
+   font-family: YekanBakhRegular, sans-serif;
+   color: black;
+}
+
+input,
+textarea {
+   font-size: .85rem;
+   font-family: YekanBakhBold, sans-serif;
+   background: #F2F2F2;
+   color: black;
+
+   &::placeholder {
+      color: black;
+   }
+}
+
+span {
+   font-size: 0.85rem;
+   color: #1B1B1B;
+}
+
+label {
+   font-family: YekanBakhRegular, sans-serif;
+   font-size: 1rem;
+}
+
+hr {
+   border: solid 1px rgb(224, 224, 224);
+   margin: 1rem 0;
+}
+
+h6 {
+   font-size: 0.8rem;
+   font-family: YekanBakhRegular, sans-serif;
+   color: gray;
+}
+
+strong {
+   font-family: YekanBakhRegular, sans-serif;
+   font-weight: 600;
+}
+
+.rtl {
+   direction: rtl;
+}
+
+.ltr {
+   direction: ltr;
+}
+
+.yekan {
+   font-family: YekanBakhRegular, sans-serif;
+}
+
+.yekanBold {
+   font-family: YekanBakhBold, sans-serif;
+}
+
+.doranExtraBold {
+   font-family: DoranExtraBold, sans-serif;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.styled-scrollbars {
+   /* Foreground, Background */
+   scrollbar-color: #60a5fa transparent;
+
+   &::-webkit-scrollbar {
+      width: 3px; /* Mostly for vertical scrollbars */
+      height: 3px; /* Mostly for horizontal scrollbars */
+   }
+
+   &::-webkit-scrollbar-thumb {
+      /* Foreground */
+      background: #60a5fa;
+   }
+
+   &::-webkit-scrollbar-track {
+      /* Background */
+      background: transparent;
+   }
+}
+
+.toman {
+   &_card {
+      display: flex;
+
+      &:before {
+         content: url('/toman_card.svg');
+         display: block;
+         margin-right: 0.2rem;
+         font-family: YekanBakhRegular, sans-serif;
+      }
+   }
+
+   &_course {
+      display: flex;
+
+      &:before {
+         content: url('/toman.svg');
+         display: block;
+         margin-right: 0.2rem;
+         font-family: YekanBakhRegular, sans-serif;
+      }
+   }
+}
+
+.invalidInput {
+   border: 2px solid red;
+}
+
+.animate-spin-slower {
+   animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+   from {
+      transform: rotate(0deg);
+   }
+   to {
+      transform: rotate(360deg);
+   }
+}
+
+.Toastify__toast {
+   border-radius: 15px !important;
+
+   &-body {
+      font-size: 1rem;
+      font-family: YekanBakhRegular, sans-serif;
+   }
+}
+
+.react-photo-album--photo {
+   border-radius: 15px;
+}
