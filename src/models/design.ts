@@ -27,7 +27,7 @@ const DesignSchema = new mongoose.Schema({
    frontSrc: String,
    backSrc: String,
    width: Number,
-   height: Number
+   height: Number,
 })
 
 DesignSchema.set('timestamps', true)

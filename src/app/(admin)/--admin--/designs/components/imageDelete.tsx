@@ -8,15 +8,7 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
 
-const ImageDelete = ({
-   type,
-   image,
-   design,
-}: {
-   type: string
-   image: string
-   design: string
-}) => {
+const ImageDelete = ({ type, image, design }: { type: string; image: string; design: string }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
 

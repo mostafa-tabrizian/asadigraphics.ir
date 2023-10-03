@@ -34,7 +34,7 @@ const FAQ = () => {
 
    const collapseStatus = (questionCollapse: Dispatch<SetStateAction<boolean>>) => {
       if (previousCollapse.current === questionCollapse) {
-         questionCollapse(prev => !prev)
+         questionCollapse((prev) => !prev)
       } else {
          setFalsePrevious()
          previousCollapse.current = questionCollapse

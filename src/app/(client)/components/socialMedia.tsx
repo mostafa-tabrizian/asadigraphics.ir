@@ -3,9 +3,7 @@ const SocialMedia = () => {
       <div>
          <h2 className='text-2xl mx-5 text-center'>ما را در فضای مجازی دنبال کنید</h2>
 
-         <div
-            className="bg-[url('https://tabrizian.storage.iran.liara.space/asadi_designs/dots.jpg')] bg-repeat flex py-4 m-5 justify-center gap-x-7"
-         >
+         <div className="bg-[url('https://tabrizian.storage.iran.liara.space/asadi_designs/dots.jpg')] bg-repeat flex py-4 m-5 justify-center gap-x-7">
             <div className='bg-gradient-to-t from-black to-black/40 p-2 rounded-xl'>
                <svg
                   className='h-8 w-8 text-orange-200'

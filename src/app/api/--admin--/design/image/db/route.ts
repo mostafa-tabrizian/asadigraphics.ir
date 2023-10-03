@@ -25,7 +25,7 @@ export async function POST(req: Request) {
          {
             frontSrc: key,
             width: imageDimention[0],
-            height: imageDimention[1]
+            height: imageDimention[1],
          },
       ).exec()
    } else if (type == 'back') {
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
          {
             backSrc: key,
             width: imageDimention[0],
-            height: imageDimention[1]
+            height: imageDimention[1],
          },
       ).exec()
    }

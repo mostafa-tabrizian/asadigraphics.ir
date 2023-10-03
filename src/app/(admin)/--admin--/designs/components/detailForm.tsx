@@ -89,8 +89,6 @@ const DetailForm = memo(
                      )}
                   </div>
                   <div className='space-y-5 col-span-2'>
-                     
-
                      <div className='text-right space-y-1'>
                         <label htmlFor='name'>
                            <span className='text-slate-400'>عنوان طرح</span>
@@ -109,8 +107,6 @@ const DetailForm = memo(
                      ) : (
                         ''
                      )}
-
-                     
 
                      <Autocomplete
                         className='rtl'
@@ -137,8 +133,6 @@ const DetailForm = memo(
                         ''
                      )}
 
-                     
-
                      <div className='flex items-center gap-5 rtl'>
                         <span className='text-slate-400 yekan'>طرح نمایش داده شود</span>
 
@@ -155,8 +149,6 @@ const DetailForm = memo(
                            .طرح ها قابل حذف نمی‌باشند. تنها میتوان آنها را مخفی کرد
                         </span>
                      )}
-
-                     
 
                      <button
                         type='submit'

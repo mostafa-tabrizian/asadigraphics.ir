@@ -5,13 +5,11 @@ import Design from '@/models/design'
 
 export async function POST(request: Request) {
    const {
-
       name,
 
       category,
 
       active,
-
    }: {
       name: string
       category: object

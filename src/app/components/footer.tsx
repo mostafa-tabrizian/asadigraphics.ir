@@ -10,7 +10,9 @@ const Footer = () => {
                   <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
                      <Image
                         className='mix-blend-multiply object-contain'
-                        src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
+                        src={
+                           'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
+                        }
                         alt='لوگو اسدی گرافیکس'
                         width={150}
                         height={150}
@@ -104,21 +106,28 @@ const Footer = () => {
                   <div id='about-us' className='space-y-5'>
                      <p className='yekan rtl text-justify text-sm text-slate-600 leading-7'>
                         با سلام 👋 <br />
-                        من <span className='yekanBold text-base text-slate-700'>علی اسدی</span> هستم، یک طراح با
-                        تجربه در زمینه گرافیک و طراحی. تجربه‌ی چندین ساله‌ام در این حوزه به من این
-                        امکان را داده تا به عنوان{' '}
-                        <span className='yekanBold text-base text-slate-700'>یک هنرمند و طراح مستقل</span> در خدمت
-                        شما باشم. <br />
+                        من <span className='yekanBold text-base text-slate-700'>علی اسدی</span>{' '}
+                        هستم، یک طراح با تجربه در زمینه گرافیک و طراحی. تجربه‌ی چندین ساله‌ام در این
+                        حوزه به من این امکان را داده تا به عنوان{' '}
+                        <span className='yekanBold text-base text-slate-700'>
+                           یک هنرمند و طراح مستقل
+                        </span>{' '}
+                        در خدمت شما باشم. <br />
                         <br />
                         در کارهایم، تمام تلاشم را می‌کنم تا{' '}
                         <span className='yekanBold text-base text-slate-700'>
                            طرح‌هایی منحصر به فرد و اختصاصی
                         </span>{' '}
                         ارائه دهم که{' '}
-                        <span className='yekanBold text-base text-slate-700'>بازتابی از شخصیت و سلیقه‌ی شما</span>{' '}
-                        داشته باشند. <span className='yekanBold text-base text-slate-700'>نمونه کارهای من</span> در
-                        این وبسایت{' '}
-                        <span className='yekanBold text-base text-slate-700'>نمایانگر سبک و توانایی‌های من</span>{' '}
+                        <span className='yekanBold text-base text-slate-700'>
+                           بازتابی از شخصیت و سلیقه‌ی شما
+                        </span>{' '}
+                        داشته باشند.{' '}
+                        <span className='yekanBold text-base text-slate-700'>نمونه کارهای من</span>{' '}
+                        در این وبسایت{' '}
+                        <span className='yekanBold text-base text-slate-700'>
+                           نمایانگر سبک و توانایی‌های من
+                        </span>{' '}
                         در زمینه طراحی هستند و به عنوان نمونه‌های آماده برای اشنایی با کارهای من
                         ارائه شده‌اند. این{' '}
                         <span className='yekanBold text-base text-slate-700'>
@@ -132,12 +141,16 @@ const Footer = () => {
                            با من به شکل مستقیم از طریق تلگرام
                         </span>
                         ، نیازها و توقعات خود را مطرح می‌کنید. سپس من{' '}
-                        <span className='yekanBold text-base text-slate-700'>با دقت به تمام جزئیات</span>، طراحی
-                        اختصاصی شما را انجام می‌دهم تا به بهترین نتیجه برسید. <br />
+                        <span className='yekanBold text-base text-slate-700'>
+                           با دقت به تمام جزئیات
+                        </span>
+                        ، طراحی اختصاصی شما را انجام می‌دهم تا به بهترین نتیجه برسید. <br />
                         <br />
                         من در خدمت شما هستم تا در هر مرحله از پروژه‌هایتان، شما را راهنمایی کنم و در{' '}
-                        <span className='yekanBold text-base text-slate-700'>ایجاد برندی بی‌نظیر</span> همراه شما
-                        باشم.
+                        <span className='yekanBold text-base text-slate-700'>
+                           ایجاد برندی بی‌نظیر
+                        </span>{' '}
+                        همراه شما باشم.
                      </p>
                   </div>
                </div>
