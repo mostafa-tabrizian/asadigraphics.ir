@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useState, useEffect, memo } from 'react'
 import Collapse from '@mui/material/Collapse'
 import { usePathname } from 'next/navigation'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { ICategory } from '@/models/category'
 import hyphen from '@/lib/hyphen'
 
@@ -55,7 +55,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                            fill='none'
                            strokeWidth='0'
                            viewBox='0 0 24 24'
-                           className='w-8 h-8 text-blue-700'
+                           className='w-8 h-8 text-black'
                            height='1em'
                            width='1em'
                            xmlns='http://www.w3.org/2000/svg'
@@ -69,13 +69,14 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                         </svg>
                      </button>
                      <div>
-                        <Link aria-label='صفحه اصلی' href='/'>
+                        <Link aria-label='صفحه اصلی' href='/' className='flex'>
                            <Image
+                              className='aspect-auto mix-blend-multiply'
                               src={
-                                 'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo-sidebar.jpg'
+                                 'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
                               }
                               alt='لوگو اسدی گرافیکس'
-                              width={100}
+                              width={77}
                               height={100}
                               quality={100}
                               objectFit='contain'
@@ -90,8 +91,8 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
                            <Link href='/'>
-                              <div className='relative menu-item flex items-center text-blue-600'>
-                                 <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
+                              <div className='relative menu-item flex items-center'>
+                                 <span className='py-2 md:py-1 flex items-center gap-x-2 cursor-pointer font-bold'>
                                     <svg
                                        xmlns='http://www.w3.org/2000/svg'
                                        viewBox='0 0 22 22'
@@ -162,27 +163,25 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                            </button>
 
                            <Collapse in={categories}>
-                              {categories && (
-                                 <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
-                                    {categoriesList.map((category) => {
-                                       return (
-                                          <li key={category._id} className='flex items-center'>
-                                             <Link
-                                                id='category'
-                                                className=' flex items-center'
-                                                href={`/search/${hyphen(
-                                                   category.slug,
-                                                )}?type=category&name=${category.name}`}
-                                             >
-                                                <p className='font-semibold px-2 text-sm'>
-                                                   {category.name}
-                                                </p>
-                                             </Link>
-                                          </li>
-                                       )
-                                    })}
-                                 </ul>
-                              )}
+                              <ul className='border-b border-white border-opacity-10 opacity-90 space-y-4 p-3'>
+                                 {categoriesList.map((category) => {
+                                    return (
+                                       <li key={category._id} className='flex items-center'>
+                                          <Link
+                                             id='category'
+                                             className=' flex items-center'
+                                             href={`/search/${hyphen(
+                                                category.slug,
+                                             )}?type=category&name=${category.name}`}
+                                          >
+                                             <p className='font-semibold px-2 text-sm'>
+                                                {category.name}
+                                             </p>
+                                          </Link>
+                                       </li>
+                                    )
+                                 })}
+                              </ul>
                            </Collapse>
                         </div>
                      </li>
@@ -240,7 +239,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        href='https://eitaa.com/HanaTech2023'
                                        target='_blank'
                                     >
-                                       {/* <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'> */}
+                                       {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}
                                        <span>
                                           <svg
                                              className='h-5 w-5 text-slate-700'
@@ -267,7 +266,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        href='https://www.instagram.com/HanaTech2023'
                                        target='_blank'
                                     >
-                                       {/* <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'> */}
+                                       {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}
                                        <span>
                                           <svg
                                              className='h-5 w-5 text-slate-700'
@@ -304,7 +303,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        href='https://t.me/HanaTech2023'
                                        target='_blank'
                                     >
-                                       {/* <span className='bg-blue-500 rounded-md'> */}
+                                       {/* <span className='bg-orange-500 rounded-md'> */}
                                        <span>
                                           <svg
                                              className='h-5 w-5 text-slate-700'
@@ -327,34 +326,6 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        </p>
                                     </a>
                                  </li>
-
-                                 <li className='flex items-center rounded-lg opacity-90 mb-4 pr-2'>
-                                    <a
-                                       id='phone_call'
-                                       rel='noreferrer'
-                                       className=' flex items-center'
-                                       href='tel:+989128530920'
-                                    >
-                                       {/* <span className='bg-green-400 rounded-md p-[0.17rem]'> */}
-                                       <span>
-                                          <svg
-                                             className='h-5 w-5 text-slate-700'
-                                             viewBox='0 0 24 24'
-                                             fill='none'
-                                             stroke='currentColor'
-                                             strokeWidth='2'
-                                             strokeLinecap='round'
-                                             strokeLinejoin='round'
-                                          >
-                                             {' '}
-                                             <path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z' />
-                                          </svg>
-                                       </span>
-                                       <p className='font-semibold px-2'>
-                                          <span className='text-sm'>تماس تلفنی</span>
-                                       </p>
-                                    </a>
-                                 </li>
                               </ul>
                            </Collapse>
                         </div>
@@ -363,8 +334,8 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
                            <a id='about_us' href='#about-us' onClick={() => setSidebar(false)}>
-                              <div className='relative menu-item flex items-center text-blue-600'>
-                                 <span className='py-2 md:py-1 flex items-center gap-x-2 md:hover:text-blue-600 cursor-pointer font-bold'>
+                              <div className='relative menu-item flex items-center'>
+                                 <span className='py-2 md:py-1 flex items-center gap-x-2 cursor-pointer font-bold'>
                                     <svg
                                        className='h-5 w-5'
                                        fill='none'
