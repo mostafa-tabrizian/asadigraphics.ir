@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import Category from '@/models/category'
 import Design, { IDesign } from '@/models/design'
@@ -16,40 +16,28 @@ import limiter from '@/lib/limiter'
 const getDesigns = async ({ query }: { query: string }) => {
    query = dehyphen(query)
 
-   const queryRegex = { $regex: new RegExp('^' + query + '$', 'i') }
-
    dbConnect()
 
-   const categoryId: string | null = await Category.findOne({
-      $or: [{ slug: queryRegex }, { name: queryRegex }],
-   })
+   const categoryId: string | null = await Category.findOne({ $text: { $search: query } })
       .exec()
       .then((res) => res?._id)
 
-   const designsByNameSlugDescription = await Design.find({ $text: { $search: query } }).exec()
+   const designsByName = await Design.find({ $text: { $search: query } }).exec()
    const designsByCategory = await Design.find({
       $or: [{ category: categoryId }],
    }).exec()
 
-   const mergedDesigns: IDesign[] = [
-      ...designsByNameSlugDescription,
-      ...designsByCategory,
-   ]
+   const mergedDesigns: IDesign[] = [...designsByName, ...designsByCategory]
 
-   const uniqueMergedDesigns: IDesign[] = mergedDesigns.reduce(
-      (accumulator: IDesign[], design) => {
-         const existingDesign = accumulator.find(
-            (p) => p._id.toString() === design._id.toString(),
-         )
+   const uniqueMergedDesigns: IDesign[] = mergedDesigns.reduce((accumulator: IDesign[], design) => {
+      const existingDesign = accumulator.find((p) => p._id.toString() === design._id.toString())
 
-         if (!existingDesign) {
-            accumulator.push(design)
-         }
+      if (!existingDesign) {
+         accumulator.push(design)
+      }
 
-         return accumulator
-      },
-      [],
-   )
+      return accumulator
+   }, [])
 
    return { uniqueMergedDesigns }
 }
@@ -105,22 +93,26 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                   <Contents
                      params={JSON.parse(
                         JSON.stringify({
-                           dbDesigns: uniqueMergedDesigns
+                           designs: uniqueMergedDesigns,
                         }),
                      )}
                   />
                ) : (
                   <div>
-                     <span className='font-semibold text-xl'>!هیچ طرحی یافت نشد</span>
-                     <span className='text-sm block'>عبارت دیگری را امتحان کنید</span>
+                     <span className='font-semibold text-3xl doranExtraBold'>
+                        !هیچ طرحی یافت نشد
+                     </span>
+                     <span className='text-sm block yekanBold mt-3'>
+                        عبارت دیگری را امتحان کنید
+                     </span>
                      <div className='w-[20rem] mx-auto aspect-square relative'>
                         <Image
+                           className='mix-blend-darken object-contain'
                            src={
                               'https://tabrizian.storage.iran.liara.space/asadi_designs/noSearchResult.jpg'
                            }
                            alt='no search result'
                            layout='fill'
-                           objectFit='contain'
                            loading='lazy'
                         />
                      </div>

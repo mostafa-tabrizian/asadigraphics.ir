@@ -42,7 +42,7 @@ const SearchInput = () => {
          <form onSubmit={handleFormSubmit} className='w-full'>
             <input
                onChange={(e) => setSearchQuery(e.target.value)}
-               className='rounded-xl bg-slate-100 rtl w-full shadow-[0_0_7px_0_#00000040_inset] py-2 border border-black/25 text-center placeholder:text-center font-semibold placeholder:text-black'
+               className='rounded-xl bg-slate-100 w-full rtl shadow-[0_0_7px_0_#00000040_inset] py-2 border border-black/25 yekanBold text-center placeholder:text-center text-slate-800 placeholder:text-slate-700'
                type='text'
                placeholder='جستجو میان طرح ها ...'
             />

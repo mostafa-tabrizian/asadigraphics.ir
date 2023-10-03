@@ -9,13 +9,12 @@ const Footer = () => {
                <div className='text-center'>
                   <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
                      <Image
-                        className='mix-blend-multiply'
+                        className='mix-blend-multiply object-contain'
                         src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
                         alt='لوگو اسدی گرافیکس'
                         width={150}
                         height={150}
                         quality={100}
-                        objectFit='contain'
                         loading='lazy'
                      />
                   </Link>

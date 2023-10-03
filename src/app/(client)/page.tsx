@@ -1,13 +1,9 @@
-import Link from 'next/link'
-import Image from 'next/legacy/image'
-
 import dbConnect from '@/lib/dbConnect'
 import limiter from '@/lib/limiter'
 import Category from '@/models/category'
 import Slide from '@/models/slide'
 
 import Slides from '@/components/slides'
-import DesignSwiper from '../../components/design/swiper'
 import Script from 'next/script'
 import Categories from './components/categories'
 import SampleDesigns from './components/sampleDesigns'
@@ -126,7 +122,7 @@ async function Home() {
    }
 
    const categoriesData = await getCategories()
-   // const slides = await getSlides()
+   const slides = await getSlides()
 
    return (
       <>
@@ -142,7 +138,7 @@ async function Home() {
          />
 
          <div className='space-y-20 my-6'>
-            {/* <Slides slides={JSON.parse(JSON.stringify(slides))} /> */}
+            <Slides slides={JSON.parse(JSON.stringify(slides))} />
 
             <Categories categoriesData={categoriesData} />
 

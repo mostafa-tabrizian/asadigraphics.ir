@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
@@ -127,12 +127,11 @@ const NewSlide = () => {
                   <div className='text-sm flex w-fit mx-auto bg-blue-100 border-2 border-slate-200 rounded-xl'>
                      {slideImageToUploadMemo?.length ? (
                         <Image
-                           className='rounded-xl aspect-video'
+                           className='rounded-xl aspect-video object-contain'
                            src={URL.createObjectURL(slideImageToUploadMemo[0])}
                            alt={slideImageToUploadMemo[0].name}
                            width={690}
                            height={388.125}
-                           objectFit='contain'
                         />
                      ) : (
                         <div

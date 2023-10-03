@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import Image from 'next/legacy/image'
+import NextImage from 'next/image'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
 
@@ -14,6 +14,7 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 const ImageInput = ({ design }: { design: { _id: string; front: string; back: string } }) => {
    const [imageToUpload, setImageToUpload] = useState<FileList | null>(null)
+   const [imageDimention, setImageDimention] = useState([0, 0])
    const [loading, setLoading] = useState(false)
 
    const imageToUploadMemo = useMemo(() => {
@@ -24,6 +25,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
       const payload = {
          type,
          key,
+         imageDimention,
          _id: design._id,
       }
 
@@ -91,6 +93,22 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
       const sizeCheckRes = filesSizeValidation(filesList)
       if (!sizeCheckRes) return
 
+      for (const imageFile of filesList) {
+         const reader = new FileReader()
+
+         reader.onload = (e) => {
+            const img = new Image()
+            // @ts-ignore
+            img.src = e.target.result as string
+
+            img.onload = () => {
+               setImageDimention([img.width, img.height])
+            }
+         }
+
+         reader.readAsDataURL(imageFile)
+      }
+
       setImageToUpload(files)
    }
 
@@ -117,7 +135,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
 
                {imageToUploadMemo.map((imageData: File) => {
                   return (
-                     <Image
+                     <NextImage
                         key={imageData.name}
                         className='object-contain rounded-xl'
                         src={URL.createObjectURL(imageData)}
@@ -125,7 +143,6 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                         width='250'
                         height='250'
                         quality={100}
-                        objectFit='contain'
                         loading='lazy'
                      />
                   )
@@ -146,7 +163,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                         href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.front}`}
                      >
                         <div className='flex justify-center mx-auto w-full relative aspect-square'>
-                           <Image
+                           <NextImage
                               className='rounded-lg p-1'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.front}`}
                               alt={design._id}
@@ -223,7 +240,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                         href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.back}`}
                      >
                         <div className='flex justify-center mx-auto w-full relative aspect-square'>
-                           <Image
+                           <NextImage
                               className='rounded-lg p-1'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.back}`}
                               alt={design._id}

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import dbConnect from '@/lib/dbConnect'
 import Slide from '@/models/slide'
@@ -54,12 +54,11 @@ const AdminSlides = async () => {
                            href={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                         >
                            <Image
-                              className='rounded-xl aspect-video'
+                              className='rounded-xl aspect-video object-contain'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                               alt={slide.alt}
                               width={690}
                               height={388.125}
-                              objectFit='contain'
                               loading='lazy'
                            />
                         </Link>

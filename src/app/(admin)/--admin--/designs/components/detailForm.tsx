@@ -82,8 +82,8 @@ const DetailForm = memo(
                         <ImageInput
                            design={{
                               _id: design._id,
-                              front: design.designFront,
-                              back: design.designBack,
+                              front: design.frontSrc,
+                              back: design.backSrc,
                            }}
                         />
                      )}

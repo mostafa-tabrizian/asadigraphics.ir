@@ -71,7 +71,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                      <div>
                         <Link aria-label='صفحه اصلی' href='/' className='flex'>
                            <Image
-                              className='aspect-auto mix-blend-multiply'
+                              className='aspect-auto mix-blend-multiply object-contain'
                               src={
                                  'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
                               }
@@ -79,7 +79,6 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                               width={77}
                               height={100}
                               quality={100}
-                              objectFit='contain'
                            />
                         </Link>
                      </div>

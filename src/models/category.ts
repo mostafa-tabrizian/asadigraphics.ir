@@ -21,4 +21,6 @@ const CategorySchema = new mongoose.Schema({
 
 CategorySchema.set('timestamps', true)
 
+CategorySchema.index({ name: 'text', slug: 'text' })
+
 export default mongoose.models.Category || mongoose.model('Category', CategorySchema)

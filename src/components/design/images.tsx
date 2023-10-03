@@ -2,7 +2,7 @@
 
 import 'lightbox.js-react/dist/index.css'
 import dynamic from 'next/dynamic'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 const DynamicSlideshowLightbox = dynamic(
@@ -73,8 +73,8 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                   alt={thumbnail}
                   width={400}
                   height={400}
-                  objectFit='cover'
                   priority
+                  className='object-cover'
                />
             ) : (
                <span className='flex items-center justify-center text-xl py-1 font-medium text-rose-900'>
@@ -100,12 +100,11 @@ const Images = ({ params: { name, thumbnail, images } }: ImageProps) => {
                      }}
                   >
                      <Image
-                        className='opacity-0 transition-opacity duration-300'
+                        className='opacity-0 transition-opacity duration-300 object-cover'
                         src={data.src}
                         alt={data.alt}
                         width={70}
                         height={70}
-                        objectFit='cover'
                         loading='lazy'
                         onLoad={(e) => (e.target as HTMLImageElement).classList.remove('opacity-0')}
                      />

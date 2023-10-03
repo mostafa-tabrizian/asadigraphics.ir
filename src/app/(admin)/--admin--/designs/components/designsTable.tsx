@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { IDesign } from '@/models/design'
@@ -18,7 +18,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
          },
       },
       {
-         field: 'designFront',
+         field: 'frontSrc',
          headerName: 'جلو',
          width: 80,
          renderCell: ({ value }) => (
@@ -30,14 +30,13 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
             >
                {value ? (
                   <Image
-                     className='rounded-xl'
+                     className='rounded-xl object-cover'
                      src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${
                         value as string
                      }`}
                      alt={String(value)}
                      height={50}
                      width={50}
-                     objectFit='cover'
                   />
                ) : (
                   ''
@@ -46,7 +45,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
          ),
       },
       {
-         field: 'designBack',
+         field: 'backSrc',
          headerName: 'پشت',
          width: 80,
          renderCell: ({ value }) => (
@@ -58,14 +57,13 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
             >
                {value ? (
                   <Image
-                     className='rounded-xl'
+                     className='rounded-xl object-cover'
                      src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${
                         value as string
                      }`}
                      alt={String(value)}
                      height={50}
                      width={50}
-                     objectFit='cover'
                   />
                ) : (
                   ''

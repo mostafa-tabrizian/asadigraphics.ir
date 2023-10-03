@@ -2,7 +2,7 @@ import { memo } from 'react'
 import Link from 'next/link'
 import Sidebar from './sidebar'
 import SearchInput from '@/components/searchInput'
-import Image from 'next/legacy/image'
+import Image from 'next/image'
 import LinksForDesktop from './headerLinksforDesktop'
 import { ICategory } from '@/models/category'
 
@@ -22,7 +22,6 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
                   width={77}
                   height={52}
                   quality={100}
-                  objectFit='contain'
                   loading='lazy'
                />
             </Link>

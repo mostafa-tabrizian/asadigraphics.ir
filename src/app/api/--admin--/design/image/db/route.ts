@@ -6,11 +6,12 @@ import dbConnect from '@/lib/dbConnect'
 interface BodyType {
    type: string
    key: string
+   imageDimention: [number, number]
    _id: string
 }
 
 export async function POST(req: Request) {
-   const { type, key, _id }: BodyType = await req.json()
+   const { type, key, imageDimention, _id }: BodyType = await req.json()
 
    await dbConnect()
 
@@ -22,7 +23,9 @@ export async function POST(req: Request) {
             _id: _id,
          },
          {
-            designFront: key,
+            frontSrc: key,
+            width: imageDimention[0],
+            height: imageDimention[1]
          },
       ).exec()
    } else if (type == 'back') {
@@ -31,7 +34,9 @@ export async function POST(req: Request) {
             _id: _id,
          },
          {
-            designBack: key,
+            backSrc: key,
+            width: imageDimention[0],
+            height: imageDimention[1]
          },
       ).exec()
    }
@@ -52,7 +57,7 @@ export async function DELETE(req: Request) {
             _id: _id,
          },
          {
-            designFront: '',
+            frontSrc: '',
          },
       ).exec()
    } else if (type == 'back') {
@@ -61,7 +66,7 @@ export async function DELETE(req: Request) {
             _id: _id,
          },
          {
-            designBack: '',
+            backSrc: '',
          },
       ).exec()
    }

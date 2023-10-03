@@ -5,9 +5,10 @@ export interface IDesign {
    _id: string
    name: string
    category: string
-   designFront: string
-   designBack: string
-
+   frontSrc: string
+   backSrc: string
+   width: number
+   height: number
    createdAt: Date
    updatedAt: Date
 }
@@ -23,13 +24,14 @@ const DesignSchema = new mongoose.Schema({
       ref: 'Category',
       required: true,
    },
-   designFront: String,
-   designBack: String,
-
+   frontSrc: String,
+   backSrc: String,
+   width: Number,
+   height: Number
 })
 
 DesignSchema.set('timestamps', true)
 
-DesignSchema.index({ name: 'text', slug: 'text', description: 'text' })
+DesignSchema.index({ name: 'text' })
 
 export default mongoose.models.Design || mongoose.model('Design', DesignSchema)
