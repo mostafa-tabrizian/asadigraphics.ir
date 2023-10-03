@@ -28,7 +28,7 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
 
             <Sidebar categoriesList={JSON.parse(JSON.stringify(categories))} />
 
-            {/* <LinksForDesktop categoriesList={categories} brandsList={brands} /> */}
+            <LinksForDesktop categoriesList={categories} />
          </div>
 
          <div className='md:hidden'>

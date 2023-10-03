@@ -1,5 +1,4 @@
 import * as yup from 'yup'
-import * as rule from './rules'
 
 export const DesignEditForm = yup.object().shape({
    name: yup
