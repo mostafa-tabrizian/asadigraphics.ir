@@ -4,7 +4,7 @@ import hyphen from '@/lib/hyphen'
 
 const Categories = ({ categoriesData }: { categoriesData: ICategory[] }) => {
    return (
-      <div className='space-y-4 mx-5'>
+      <div className='space-y-4 mx-3'>
          {categoriesData.map((category, idx) => {
             return (
                <Link

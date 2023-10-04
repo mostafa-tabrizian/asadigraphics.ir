@@ -53,7 +53,7 @@ html {
 
 body {
    color: rgb(var(--foreground-rgb));
-   background: #F2F2F2;
+   background: #f2f2f2;
    user-select: none;
 }
 
@@ -120,9 +120,9 @@ li {
 
 input,
 textarea {
-   font-size: .85rem;
+   font-size: 0.75rem;
    font-family: YekanBakhBold, sans-serif;
-   background: #F2F2F2;
+   background: #f2f2f2;
    color: black;
 
    &::placeholder {
@@ -131,8 +131,9 @@ textarea {
 }
 
 span {
-   font-size: 0.85rem;
-   color: #1B1B1B;
+   font-family: YekanBakhRegular, sans-serif;
+   font-size: 0.75rem;
+   color: #1b1b1b;
 }
 
 label {
@@ -175,7 +176,6 @@ strong {
 .doranExtraBold {
    font-family: DoranExtraBold, sans-serif;
 }
-
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .styled-scrollbars {

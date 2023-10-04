@@ -137,10 +137,11 @@ async function Home() {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
 
-         <div className='space-y-20 my-6'>
-            <Slides slides={JSON.parse(JSON.stringify(slides))} />
-
-            <Categories categoriesData={categoriesData} />
+         <div className='space-y-16 my-6 px-2'>
+            <div className='space-y-5'>
+               {slides.length ? <Slides slides={JSON.parse(JSON.stringify(slides))} /> : ''}
+               <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
+            </div>
 
             <SampleDesigns />
 

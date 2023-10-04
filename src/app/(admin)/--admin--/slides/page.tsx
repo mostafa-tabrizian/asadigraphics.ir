@@ -34,6 +34,7 @@ const AdminSlides = async () => {
          </Breadcrumbs>
 
          <NewSlide />
+
          <hr />
 
          <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
@@ -63,14 +64,16 @@ const AdminSlides = async () => {
                            />
                         </Link>
 
-                        <div className='flex flex-col absolute bottom-4 right-2 bg-white/40 p-1 rounded'>
-                           <span className='text-right'>
-                              <strong>{slide.alt}</strong> :عنوان
-                           </span>
-                           <span className='text-right'>
-                              <strong>{slide.link}</strong> :لینک
-                           </span>
-                        </div>
+                        <Link href={`/${slide.link}`} target='_blank'>
+                           <div className='flex flex-col absolute bottom-4 right-2 bg-white/40 p-1 rounded'>
+                              <span className='text-right'>
+                                 <strong>{slide.alt}</strong>
+                              </span>
+                              <span className='text-right'>
+                                 <strong>{slide.link}</strong>
+                              </span>
+                           </div>
+                        </Link>
                      </div>
                   )
                })

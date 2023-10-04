@@ -4,33 +4,33 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
+import { useKeenSlider } from 'keen-slider/react'
 
 import { ISlide } from '@/models/slide'
 
 const Slides = ({ slides }: { slides: ISlide[] }) => {
    const [opacities, setOpacities] = useState<number[]>([])
 
-   const [currentSlide, setCurrentSlide] = useState(0)
-   const [loaded, setLoaded] = useState(false)
+   // const [currentSlide, setCurrentSlide] = useState(0)
+   // const [loaded, setLoaded] = useState(false)
 
    const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
       {
          initial: 0,
-         slides: slides.length - 1,
+         slides: slides.length,
          rtl: true,
          loop: true,
          detailsChanged(s) {
             const newOpacities = s.track.details.slides.map((slide) => slide.portion)
             setOpacities(newOpacities)
          },
-         slideChanged(slider) {
-            setCurrentSlide(slider.track.details.rel)
-         },
-         created() {
-            setLoaded(true)
-         },
+         // slideChanged(slider) {
+         //    setCurrentSlide(slider.track.details.rel)
+         // },
+         // created() {
+         //    setLoaded(true)
+         // },
       },
       [
          (slider) => {
@@ -44,7 +44,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                if (mouseOver) return
                timeout = setTimeout(() => {
                   slider.next()
-               }, 4000)
+               }, 3500)
             }
             slider.on('created', () => {
                slider.container.addEventListener('mouseover', () => {
@@ -64,22 +64,13 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
       ],
    )
 
-   useEffect(() => {
-      return () => {
-         setOpacities([])
-         setCurrentSlide(0)
-         instanceRef.current = null
-      }
-   }, [])
-
    return (
-      <div className='mx-auto w-full md:w-4/6 rtl relative space-y-3'>
+      <div className='mx-auto w-full px-3 md:w-4/6 rtl relative space-y-3'>
          <div ref={sliderRef} className='h-full aspect-video relative'>
             {slides.map((slide, idx) => {
                if (!slide.active) return
 
                return (
-                  // relative justify-center rounded-xl
                   <div
                      key={idx}
                      className='absolute top-0 w-full'
@@ -106,7 +97,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                )
             })}
          </div>
-         {loaded && instanceRef.current && (
+         {/* {loaded && instanceRef.current && (
             <div className='dots rtl'>
                {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
                   return (
@@ -121,7 +112,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                   )
                })}
             </div>
-         )}
+         )} */}
       </div>
    )
 }
