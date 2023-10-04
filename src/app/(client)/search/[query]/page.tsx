@@ -1,31 +1,29 @@
 import Image from 'next/image'
 
-import Category from '@/models/category'
+import Category, { ICategory } from '@/models/category'
 import Design, { IDesign } from '@/models/design'
 
 import dbConnect from '@/lib/dbConnect'
 import dehyphen from '@/lib/dehyphen'
 
-import Contents from './components/contents'
 import SearchTitle from './components/title'
 
 import GTMViewItemList from './GTM/GTMViewItemList'
 import GTMSearch from './GTM/GTMSearch'
 import limiter from '@/lib/limiter'
+import Gallery from '@/app/components/gallery'
 
 const getDesigns = async ({ query }: { query: string }) => {
    query = dehyphen(query)
 
    dbConnect()
 
-   const categoryId: string | null = await Category.findOne({ $text: { $search: query } })
+   const categoryId: string | null = await Category.findOne({ slug: query })
       .exec()
-      .then((res) => res?._id)
+      .then((res: ICategory) => res._id)
 
-   const designsByName = await Design.find({ $text: { $search: query } }).exec()
-   const designsByCategory = await Design.find({
-      $or: [{ category: categoryId }],
-   }).exec()
+   const designsByName = (await Design.find({ $text: { $search: query } }).exec()) || []
+   const designsByCategory = (await Design.find({ category: categoryId }).exec()) || []
 
    const mergedDesigns: IDesign[] = [...designsByName, ...designsByCategory]
 
@@ -90,13 +88,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
 
             <div className='mb-20 text-center space-y-6'>
                {uniqueMergedDesigns.length ? (
-                  <Contents
-                     params={JSON.parse(
-                        JSON.stringify({
-                           designs: uniqueMergedDesigns,
-                        }),
-                     )}
-                  />
+                  <Gallery designs={JSON.parse(JSON.stringify(uniqueMergedDesigns))} />
                ) : (
                   <div>
                      <span className='font-semibold text-3xl doranExtraBold'>
