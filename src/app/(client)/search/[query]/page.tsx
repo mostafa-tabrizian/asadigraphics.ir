@@ -16,7 +16,7 @@ import Gallery from '@/app/components/gallery'
 const getDesigns = async ({ query }: { query: string }) => {
    query = dehyphen(query)
 
-   dbConnect()
+   await dbConnect()
 
    const categoryId: string | null = await Category.findOne({ slug: query })
       .exec()

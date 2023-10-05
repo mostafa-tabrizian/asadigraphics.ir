@@ -10,7 +10,7 @@ import Delete from './components/delete'
 import ActiveStatus from './components/activeStatus'
 
 const getSlides = async () => {
-   dbConnect()
+   await dbConnect()
    return await Slide.find()
 }
 

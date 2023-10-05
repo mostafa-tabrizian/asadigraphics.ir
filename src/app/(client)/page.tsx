@@ -12,12 +12,12 @@ import About from './components/about'
 import SocialMedia from './components/socialMedia'
 
 const getCategories = async () => {
-   dbConnect()
+   await dbConnect()
    return await Category.find()
 }
 
 const getSlides = async () => {
-   dbConnect()
+   await dbConnect()
    return await Slide.find().sort({ createdAt: -1 })
 }
 

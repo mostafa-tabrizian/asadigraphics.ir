@@ -5,7 +5,7 @@ import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
 
 const getCategories = async () => {
-   dbConnect()
+   await dbConnect()
    const categories = await Category.find()
 
    return { categories }

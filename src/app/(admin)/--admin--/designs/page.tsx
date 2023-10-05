@@ -7,7 +7,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import DesignsTable from './components/designsTable'
 
 const getDesigns = async () => {
-   dbConnect()
+   await dbConnect()
    return await Design.find()
 }
 

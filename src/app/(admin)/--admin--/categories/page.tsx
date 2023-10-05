@@ -17,14 +17,14 @@ export const metadata = {
 }
 
 const getCategories = async () => {
-   dbConnect()
+   await dbConnect()
    return await Category.find()
 }
 
 const getCategoriesDesignsCount = async () => {
    const categoriesDesignCount: { [key: string]: number } = {}
 
-   dbConnect()
+   await dbConnect()
    const designs = await Design.find()
 
    designs.map((design) => {
