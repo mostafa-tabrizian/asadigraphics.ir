@@ -11,12 +11,12 @@ export default function NotFound() {
     h-screen
     bg-gradient-to-r
     from-indigo-600
-    to-blue-400
+    to-orange-400
   '
       >
          <div className='px-40 py-20 bg-white rounded-md shadow-xl'>
             <div className='flex flex-col items-center'>
-               <h1 className='font-bold text-blue-600 text-9xl'>۴۰۴</h1>
+               <h1 className='font-bold text-orange-600 text-9xl'>۴۰۴</h1>
 
                <h6 className='mb-2 text-xl items-end font-bold flex text-center text-gray-800 md:text-3xl'>
                   !صفحه پیدا نشد
@@ -27,7 +27,7 @@ export default function NotFound() {
                   !صفحه‌ای که دنبالش هستید وجود نداره
                </p>
 
-               <Link href='/' className='px-6 py-2 text-sm font-semibold text-blue-800 bg-blue-50'>
+               <Link href='/' className='px-6 py-2 text-sm font-semibold text-orange-800 bg-orange-50'>
                   رفتن به صفحه اصلی
                </Link>
             </div>

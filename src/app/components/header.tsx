@@ -59,8 +59,8 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
 
          <a
             aria-label='تلگرام'
-            id='#'
-            href='#'
+            id='telegram'
+            href='https://t.me/aliasadi_graphics'
             className='bg-gradient-to-t from-sky-500 to-sky-200 pr-2 py-2 flex items-center gap-2 border-2 border-black rounded-xl pl-12 fixed bottom-5 shadow-lg shadow-sky-300 left-5 z-10'
             title='تلگرام با پشتیبانی'
          >

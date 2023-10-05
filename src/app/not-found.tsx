@@ -16,7 +16,7 @@ export default function NotFound() {
                <div className='mt-10'>
                   <Link
                      href='/'
-                     className='text-lg text-white bg-blue-700 shadow-xl shadow-blue-400 p-2 rounded-2xl'
+                     className='text-lg text-white bg-orange-700 shadow-xl shadow-orange-400 p-2 rounded-2xl'
                   >
                      بازگشت به صفحه ی اصلی
                   </Link>

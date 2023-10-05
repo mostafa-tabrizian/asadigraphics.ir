@@ -3,30 +3,28 @@ import Image from 'next/image'
 
 const Footer = () => {
    return (
-      <footer className='py-3 md:py-8 text-slate-600 rtl mt-10 pb-32 border-t-2 border-t-gray-200 bg-gray-200 px-4 rounded-t-3xl'>
+      <footer className='py-3 md:py-8 text-slate-600 rtl mt-10 pb-40 border-t-2 border-t-gray-200 bg-gray-200 px-4 rounded-t-3xl'>
          <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
-                  <Link aria-label='صفحه اصلی' href='/' className='flex justify-center'>
-                     <Image
-                        className='mix-blend-multiply object-contain'
-                        src={
-                           'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
-                        }
-                        alt='لوگو اسدی گرافیکس'
-                        width={150}
-                        height={150}
-                        quality={100}
-                        loading='lazy'
-                     />
-                  </Link>
-
-                  <div className='mb-5'>
-                     <span className='doranExtraBold text-2xl'>اسدی گرافیکس</span>
+                  <div className='flex justify-around items-center mb-7'>
+                     <Link aria-label='صفحه اصلی' href='/'>
+                        <Image
+                           className='mix-blend-multiply'
+                           src={
+                              'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
+                           }
+                           alt='لوگو اسدی گرافیکس'
+                           width={154}
+                           height={104}
+                           loading='lazy'
+                        />
+                     </Link>
+                     <span className='doranExtraBold text-3xl'>اسدی گرافیکس</span>
                   </div>
 
                   <div className='flex justify-around mb-5 items-center'>
-                     <ul className='flex gap-3 items-center'>
+                     <ul className='flex gap-10 items-center'>
                         <li className='block'>
                            <a
                               aria-label='ایتا'
@@ -36,7 +34,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='h-6 w-6 hover:text-blue-600 transition'
+                                 className='h-6 w-6 hover:text-orange-600 transition'
                                  viewBox='0 0 24 24'
                                  fill='none'
                                  stroke='currentColor'
@@ -62,7 +60,7 @@ const Footer = () => {
                                  strokeWidth='0'
                                  role='img'
                                  viewBox='0 0 24 24'
-                                 className='w-6 h-6 hover:text-blue-600 transition'
+                                 className='w-6 h-6 hover:text-orange-600 transition'
                                  height='1em'
                                  width='1em'
                                  xmlns='http://www.w3.org/2000/svg'
@@ -77,11 +75,11 @@ const Footer = () => {
                               aria-label='تلگرام'
                               id='telegram'
                               rel='noreferrer'
-                              href='https://t.me/HanaTech2023'
+                              href='https://t.me/aliasadi_graphics'
                               target='_blank'
                            >
                               <svg
-                                 className='w-6 h-6 hover:text-blue-600 transition'
+                                 className='w-6 h-6 hover:text-orange-600 transition'
                                  width='24'
                                  height='24'
                                  viewBox='0 0 24 24'
@@ -99,13 +97,14 @@ const Footer = () => {
                         </li>
                      </ul>
                   </div>
-                  <h4 className='text-slate-500 font-bold yekan text-sm mb-6 text-center'>
+                  <h4 className='text-slate-600 font-bold yekan text-sm mb-6 text-center'>
                      دید خود را بالا ببرید، <br /> با اطمینان سفارش دهید، <br /> طرح را در آغوش
                      بگیرید.
                   </h4>
                   <div id='about-us' className='space-y-5'>
                      <p className='yekan rtl text-justify text-sm text-slate-600 leading-7'>
-                        با سلام 👋 <br />
+                        <span className='yekanBold text-base text-slate-700'>با سلام</span> 👋{' '}
+                        <br />
                         من <span className='yekanBold text-base text-slate-700'>علی اسدی</span>{' '}
                         هستم، یک طراح با تجربه در زمینه گرافیک و طراحی. تجربه‌ی چندین ساله‌ام در این
                         حوزه به من این امکان را داده تا به عنوان{' '}
@@ -156,12 +155,12 @@ const Footer = () => {
                </div>
             </div>
             {/* <div className='col-span-5 md:col-span-1 rtl'>
-               <h4 className='text-xl doranExtraBold mb-4 text-blue-600'>دسترسی سریع</h4>
+               <h4 className='text-xl doranExtraBold mb-4 text-orange-600'>دسترسی سریع</h4>
                <nav>
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>
                         <a
-                           className='py-2 transition-all duration-300 text-slate-500 hover:text-blue-500'
+                           className='py-2 transition-all duration-300 text-slate-500 hover:text-orange-500'
                            href='#'
                         >
                            قوانین و مقررات
@@ -171,9 +170,14 @@ const Footer = () => {
                </nav>
             </div> */}
             <div className='col-span-5'>
-               <p className='text-center text-slate-400 text-xs'>
-                  © تمامی حقوق برای اسدی گرافیکس محفوظ است
+               <p className='text-center text-orange-600 text-xs mb-2'>
+                  © تمامی حقوق این وب سایت برای اسدی گرافیکس محفوظ است
                </p>
+               <a href='https://t.me/Tabrizian_dev' target='_blank' rel='noreferrer'>
+                  <p className='text-center text-purple-400 text-xs'>
+                     ساخته شده با 💜 توسط Tabrizian Dev
+                  </p>
+               </a>
             </div>
          </div>
       </footer>

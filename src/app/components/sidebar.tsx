@@ -299,7 +299,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        id='telegram'
                                        rel='noreferrer'
                                        className=' flex items-center'
-                                       href='https://t.me/HanaTech2023'
+                                       href='https://t.me/aliasadi_graphics'
                                        target='_blank'
                                     >
                                        {/* <span className='bg-orange-500 rounded-md'> */}

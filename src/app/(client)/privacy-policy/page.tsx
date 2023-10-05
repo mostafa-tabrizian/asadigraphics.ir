@@ -3,7 +3,7 @@ const PrivacyPolicy = () => {
       <div className='px-5 md:px-0 text-right md:mx-auto my-6'>
          <div>
             <svg
-               className='h-8 w-8 ml-auto mb-2 flex justify-end text-blue-600'
+               className='h-8 w-8 ml-auto mb-2 flex justify-end text-orange-600'
                width='24'
                height='24'
                viewBox='0 0 24 24'

@@ -124,7 +124,7 @@ const NewSlide = () => {
          >
             {({ values, setFieldValue, isSubmitting, errors, touched }) => (
                <Form className='rtl mt-6 '>
-                  <div className='text-sm flex w-fit mx-auto bg-blue-100 border-2 border-slate-200 rounded-xl'>
+                  <div className='text-sm flex w-fit mx-auto bg-orange-100 border-2 border-slate-200 rounded-xl'>
                      {slideImageToUploadMemo?.length ? (
                         <Image
                            className='rounded-xl aspect-video object-contain'

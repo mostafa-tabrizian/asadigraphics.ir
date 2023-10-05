@@ -50,7 +50,7 @@ const corporationJsonLd = {
    email: '',
    sameAs: [
       'https://www.instagram.com/HanaTech2023',
-      'https://t.me/HanaTech2023',
+      'https://t.me/aliasadi_graphics',
       'https://eitaa.com/HanaTech2023',
    ],
    contactPoint: [

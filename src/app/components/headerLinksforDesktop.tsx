@@ -24,7 +24,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
             <div className='text-gray-700'>
                <Link href='/'>
                   <div className='relative flex items-center'>
-                     <span className='py-2 md:py-1 flex items-center hover:text-blue-600 gap-x-2 cursor-pointer font-bold'>
+                     <span className='py-2 md:py-1 flex items-center hover:text-orange-600 gap-x-2 cursor-pointer font-bold'>
                         <svg
                            xmlns='http://www.w3.org/2000/svg'
                            viewBox='0 0 22 22'
@@ -48,7 +48,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
          <li className='block'>
             <div className='text-gray-700'>
                <button onClick={(e) => setCategories(e.currentTarget)} className='w-full'>
-                  <span className='py-1 flex items-center gap-x-2 hover:text-blue-600 cursor-pointer font-bold '>
+                  <span className='py-1 flex items-center gap-x-2 hover:text-orange-600 cursor-pointer font-bold '>
                      <svg
                         className='h-5 w-5'
                         width='24'
@@ -123,7 +123,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
          <li className='block '>
             <div className='text-gray-700'>
                <button onClick={(e) => setContactUsOptions(e.currentTarget)} className='w-full'>
-                  <span className='py-1 flex items-center gap-x-2 hover:text-blue-600 cursor-pointer font-bold'>
+                  <span className='py-1 flex items-center gap-x-2 hover:text-orange-600 cursor-pointer font-bold'>
                      <svg
                         className='h-5 w-5'
                         viewBox='0 0 24 24'
@@ -178,7 +178,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
                            href='https://eitaa.com/HanaTech2023'
                            target='_blank'
                         >
-                           {/* <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'> */}
+                           {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}
                            <span>
                               <svg
                                  className='h-5 w-5 text-slate-700'
@@ -206,7 +206,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
                            href='https://www.instagram.com/HanaTech2023'
                            target='_blank'
                         >
-                           {/* <span className='bg-gradient-to-br from-blue-500 via-rose-500 to-yellow-500 rounded-md'> */}
+                           {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}
                            <span>
                               <svg
                                  className='h-5 w-5 text-slate-700'
@@ -234,10 +234,10 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
                            id='telegram'
                            rel='noreferrer'
                            className='flex items-center'
-                           href='https://t.me/HanaTech2023'
+                           href='https://t.me/aliasadi_graphics'
                            target='_blank'
                         >
-                           {/* <span className='bg-blue-500 rounded-md'> */}
+                           {/* <span className='bg-orange-500 rounded-md'> */}
                            <span>
                               <svg
                                  className='h-5 w-5 text-slate-700'
@@ -269,7 +269,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
             <div className='text-gray-700'>
                <a id='about_us' href='#about-us'>
                   <div className='relative flex items-center'>
-                     <span className='py-2 md:py-1 flex items-center gap-x-2 hover:text-blue-600 cursor-pointer font-bold'>
+                     <span className='py-2 md:py-1 flex items-center gap-x-2 hover:text-orange-600 cursor-pointer font-bold'>
                         <svg
                            className='h-5 w-5'
                            fill='none'
