@@ -26,27 +26,27 @@ export const metadata = {
    description:
       'ما در اسدی گرافیکس با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید',
    alternates: {
-      canonical: 'https://asadi_designs.ir',
+      canonical: 'https://asadidesigns.ir',
    },
 }
 
 const jsonLd = {
    '@context': 'https://schema.org',
    '@type': 'WebSite',
-   id: 'https://asadi_designs.ir/#webSite',
+   id: 'https://asadidesigns.ir/#webSite',
    name: 'اسدی گرافیکس',
-   url: 'https://asadi_designs.ir',
+   url: 'https://asadidesigns.ir',
 }
 
 const corporationJsonLd = {
    '@context': 'https://schema.org',
    '@type': 'Corporation',
-   id: 'https://asadi_designs.ir/#corporation',
+   id: 'https://asadidesigns.ir/#corporation',
    name: 'اسدی گرافیکس',
-   alternateName: ['اسدی گرافیکس', 'Hana'],
+   alternateName: ['اسدی گرافیکس'],
    legalName: 'اسدی گرافیکس',
-   url: 'https://asadi_designs.ir',
-   logo: 'https://asadi_designs.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
+   url: 'https://asadidesigns.ir',
+   logo: 'https://asadidesigns.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
    email: '',
    sameAs: [
       'https://www.instagram.com/HanaTech2023',
@@ -61,41 +61,13 @@ const corporationJsonLd = {
          areaServed: 'IR',
          availableLanguage: 'Persian',
       },
-      {
-         '@type': 'ContactPoint',
-         telephone: '+989109960802',
-         contactType: 'customer service',
-         areaServed: 'IR',
-         availableLanguage: 'Persian',
-      },
    ],
-   address: {
-      '@type': 'PostalAddress',
-      streetAddress:
-         'Qom Province, Qom, Imam Reza Boulevard, Ferdows Residential Commercial Complex, Unit 229, First Floor',
-      addressLocality: 'Qom, Iran',
-      postalCode: '000000',
-      areaServed: {
-         '@context': 'https://schema.org',
-         '@type': 'Place',
-         geo: {
-            '@type': 'GeoCoordinates',
-            latitude: '34.6271489',
-            longitude: '50.8490246',
-         },
-         hasMap: 'https://maps.app.goo.gl/RuiGssypE4p2WPrY9',
-      },
-      addressCountry: {
-         '@type': 'Country',
-         name: 'Iran',
-      },
-   },
    founders: [
       {
          '@context': 'https://schema.org',
          '@type': 'Person',
          jobTitle: 'Chief executive officer',
-         name: 'Mohammad --admin--i',
+         name: 'Ali Asadi',
          sameAs: [],
       },
       {
@@ -103,7 +75,7 @@ const corporationJsonLd = {
          '@type': 'Person',
          image: '',
          jobTitle: 'Chairman',
-         name: 'Mohammad --admin--i',
+         name: 'Ali Asadi',
          sameAs: [],
       },
    ],

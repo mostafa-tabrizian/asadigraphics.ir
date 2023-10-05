@@ -12,6 +12,8 @@ import GTMViewItemList from './GTM/GTMViewItemList'
 import GTMSearch from './GTM/GTMSearch'
 import limiter from '@/lib/limiter'
 import Gallery from '@/app/components/gallery'
+import Script from 'next/script'
+import hyphen from '@/lib/hyphen'
 
 const getDesigns = async ({ query }: { query: string }) => {
    query = dehyphen(query)
@@ -46,7 +48,7 @@ export const generateMetadata = async ({ params }: { params: { query: string } }
       description:
          'ما در اسدی گرافیکس به حفاظت از شما و محیط‌هایتان متعهدیم. با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، ما به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید. ما در تلاشیم تا با ارائه راه‌حل‌هایی نوآورانه و اطمینان‌بخش، زندگی و کسب و کار شما را تقویت کنیم. به ما بپیوندید و با ما در جهت ساختن یک آینده امن‌تر و بهتر همکاری کنید. ',
       alternates: {
-         canonical: `https://asadi_designs.ir/search/${params.query}`,
+         canonical: `https://asadidesigns.ir/search/${params.query}`,
       },
    }
 }
@@ -66,8 +68,60 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
 
    const { uniqueMergedDesigns } = await getDesigns({ query })
 
+   const creativeWorkJsonLd = {
+      '@context': 'http://schema.org',
+      '@type': 'CreativeWork',
+      name: 'اسدی دیزاینس',
+      description: 'طرح های لوگو، پوستر، بنر و دیگر طرح های اسدی دیزاینس',
+      image: ['https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'],
+      creator: {
+         '@type': 'Person',
+         name: 'علی اسدی',
+      },
+      url: `https://asadidesigns.ir/search/${hyphen(query)}?type=search&name=${query}`,
+      dateCreated: uniqueMergedDesigns[0].createdAt,
+      dateModified: uniqueMergedDesigns[uniqueMergedDesigns.length - 1].updatedAt,
+      keywords: 'طراحی, دیزاین, طراحی لوگو, طراحی بنر, طراحی پوستر',
+      license: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+      mainEntity: {
+         '@type': 'ImageGallery',
+         name: 'طرح های اسدی دیزاینس',
+         description: 'طرح های لوگو، پوستر، بنر و دیگر طرح های اسدی دیزاینس',
+         image: uniqueMergedDesigns.map((design) => `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`),
+      },
+   }
+
+   const breadcrumbJsonLd = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+         {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'اسدی دیزاینس',
+            item: {
+               '@type': 'Corporation',
+               '@id': 'https://asadidesigns.ir/#corporation',
+            },
+         },
+         { '@type': 'ListItem', position: 2, name: dehyphen(query) },
+      ],
+   }
+
    return (
       <>
+         <Script
+            id='breadcrumb-jsonld'
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+         />
+
+         <Script
+            id='creativeWork-jsonld'
+            type='application/ld+json'
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
+         />
+
          {uniqueMergedDesigns.length ? (
             <GTMViewItemList
                params={JSON.parse(
