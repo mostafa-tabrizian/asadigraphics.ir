@@ -62,6 +62,39 @@ const DetailForm = memo(
          }
       }
 
+      const handleDeleteDesign = async () => {
+         try {
+            if (design.frontSrc || design.backSrc) {
+               return toast.warning('برای حذف طرح ابتدا می‌بایست تصاویر مربوطه حذف گردد')
+            }
+
+            toast.info('در حال حذف طرح...')
+
+            const payload = {
+               _id: design._id,
+            }
+
+            const res = await fetch('/api/--admin--/design', {
+               method: 'DELETE',
+               body: JSON.stringify(payload),
+            })
+
+            const resData = await res.json()
+
+            if (!res.ok) throw new Error()
+            else if (resData.status == 500) {
+               console.error(resData.message)
+               return toast.error('خطا در برقراری ارتباط')
+            }
+
+            toast.success('طرح با موفقیت حذف گردید.')
+            router.push('/--admin--/designs')
+         } catch (err) {
+            toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')
+            return console.error(err)
+         }
+      }
+
       return (
          <Formik
             initialValues={{
@@ -144,19 +177,26 @@ const DetailForm = memo(
                         />
                      </div>
 
-                     {!addingNewDesign && (
-                        <span className='text-rose-400 yekan flex justify-end !my-0 text-[.65rem] text-right'>
-                           .طرح ها قابل حذف نمی‌باشند. تنها میتوان آنها را مخفی کرد
-                        </span>
-                     )}
-
                      <button
                         type='submit'
                         disabled={isSubmitting}
-                        className='border-2 border-green-600 w-full rounded-lg'
+                        className='border-2 border-green-600 hover:shadow-md hover:shadow-green-600/40 w-full rounded-lg'
                      >
                         {isSubmitting ? <CircularProgress color='success' size={25} /> : 'ذخیره'}
                      </button>
+
+                     {addingNewDesign ? (
+                        ''
+                     ) : (
+                        <button
+                           type='button'
+                           disabled={isSubmitting}
+                           onClick={handleDeleteDesign}
+                           className='border-2 border-rose-300 hover:shadow-md hover:shadow-rose-300/40 w-full rounded-lg'
+                        >
+                           {isSubmitting ? <CircularProgress color='error' size={25} /> : 'حذف'}
+                        </button>
+                     )}
                   </div>
                </Form>
             )}

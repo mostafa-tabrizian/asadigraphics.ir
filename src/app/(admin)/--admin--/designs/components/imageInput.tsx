@@ -167,7 +167,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                               className='rounded-lg p-1'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.front}`}
                               alt={design._id}
-                              layout='fill'
+                              fill
                               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                               loading='lazy'
                            />
@@ -244,7 +244,7 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
                               className='rounded-lg p-1'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.back}`}
                               alt={design._id}
-                              layout='fill'
+                              fill
                               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                               loading='lazy'
                            />

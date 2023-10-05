@@ -34,7 +34,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                      className='transition-opacity'
                   >
                      <Image
-                        className={`rounded-xl ${
+                        className={`rounded-xl border ${
                            photo.backSrc ? 'hover:opacity-0 active:opacity-0' : ''
                         } transition-opacity duration-300`}
                         src={photo}

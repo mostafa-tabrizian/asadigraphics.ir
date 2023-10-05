@@ -43,7 +43,7 @@ const FAQ = () => {
    }
 
    return (
-      <div className='border-t-2 px-7 space-y-3 border-black/25 rounded-2xl text-center bg-gradient-to-b from-[#ff7b005f] via-orange-200 to-transparent'>
+      <div className='border-t-2 px-7 space-y-3 border-black/25 rounded-2xl text-center bg-gradient-to-br from-[#ff7b005f] via-orange-200 to-transparent'>
          <div className='mb-5'>
             <h2 className='mt-10'>سوالات متداول</h2>
             <span className='yekanBold'>سوالاتی که شاید برای شما هم پیش آمده باشد</span>

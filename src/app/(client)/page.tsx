@@ -1,7 +1,8 @@
 import dbConnect from '@/lib/dbConnect'
 import limiter from '@/lib/limiter'
-import Category from '@/models/category'
 import Slide from '@/models/slide'
+import Category from '@/models/category'
+import Design from '@/models/design'
 
 import Slides from '@/components/slides'
 import Script from 'next/script'
@@ -11,20 +12,25 @@ import FAQ from './components/faq'
 import About from './components/about'
 import SocialMedia from './components/socialMedia'
 
-const getCategories = async () => {
-   await dbConnect()
-   return await Category.find()
-}
-
 const getSlides = async () => {
    await dbConnect()
    return await Slide.find().sort({ createdAt: -1 })
 }
 
+const getCategories = async () => {
+   await dbConnect()
+   return await Category.find()
+}
+
+const getDesigns = async () => {
+   await dbConnect()
+   return await Design.find().limit(10)
+}
+
 export const metadata = {
-   title: 'اسدی گرافیکس | دوربین مدابسته، دزدگیر های امنیتی و تجهیزات شبکه',
+   title: 'اسدی گرافیکس | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',
    description:
-      'ما در اسدی گرافیکس با ارائه ابزارهای پیشرفته دوربین مداربسته، سیستم‌های اعلام حریق، دزدگیرهای امنیتی و تجهیزات شبکه، به شما امکان می‌دهیم تا نظارت، امنیت، و ارتباطات خود را به سطح جدیدی برسانید',
+      'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
    alternates: {
       canonical: 'https://asadidesigns.ir',
    },
@@ -93,6 +99,7 @@ async function Home() {
       )
    }
 
+   const designs = await getDesigns()
    const categoriesData = await getCategories()
    const slides = await getSlides()
 
@@ -115,7 +122,7 @@ async function Home() {
                <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
             </div>
 
-            <SampleDesigns />
+            <SampleDesigns designs={designs} />
 
             <FAQ />
 
