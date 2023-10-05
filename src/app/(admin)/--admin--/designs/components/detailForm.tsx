@@ -3,6 +3,7 @@
 import { memo } from 'react'
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 import { IDesign } from '@/models/design'
 import { ICategory } from '@/models/category'
@@ -14,6 +15,7 @@ import Autocomplete from '@mui/material/Autocomplete'
 
 import ImageInput from './imageInput'
 import { DesignEditForm } from '@/formik/schema/validation'
+import hyphen from '@/lib/hyphen'
 
 const DetailForm = memo(
    ({
@@ -25,14 +27,9 @@ const DetailForm = memo(
       design: IDesign
       categories: ICategory[]
    }) => {
-      const handleSubmit = async (
-         values: {
-            name: string
-            category: object
-            active: boolean
-         },
-         { resetForm }: { resetForm: () => void },
-      ) => {
+      const router = useRouter()
+
+      const handleSubmit = async (values: { name: string; category: object; active: boolean }) => {
          try {
             toast.info('در حال ثبت اطلاعات طرح...')
 
@@ -55,7 +52,10 @@ const DetailForm = memo(
             }
 
             toast.success('اطلاعات طرح با موفقیت ثبت گردید.')
-            return resetForm()
+
+            if (addingNewDesign) {
+               router.push(`/--admin--/designs/${hyphen(values.name)}`)
+            }
          } catch (err) {
             toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')
             return console.error(err)

@@ -30,7 +30,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
             >
                {value ? (
                   <Image
-                     className='rounded-xl object-cover'
+                     className='rounded-md object-cover'
                      src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${
                         value as string
                      }`}
@@ -57,7 +57,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
             >
                {value ? (
                   <Image
-                     className='rounded-xl object-cover'
+                     className='rounded-md object-cover'
                      src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${
                         value as string
                      }`}
