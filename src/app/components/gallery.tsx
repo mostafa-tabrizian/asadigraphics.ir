@@ -1,27 +1,34 @@
 'use client'
 
 import Image from 'next/image'
-import Link from 'next/link'
+import dynamic from 'next/dynamic'
+
 import PhotoAlbum from 'react-photo-album'
+
 import { IDesign } from '@/models/design'
+import { useState } from 'react'
+const UseLightbox = dynamic(() => import('./useLightbox'))
 
 const Gallery = ({ designs }: { designs: IDesign[] }) => {
+   const [lightboxImageIndex, setLightboxImageIndex] = useState(-1)
+
    return (
-      <PhotoAlbum
-         layout='columns'
-         columns={2}
-         photos={designs.map(({ name, frontSrc, backSrc, width, height }) => {
-            return {
-               src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,
-               backSrc: backSrc,
-               width,
-               height,
-               alt: name,
-            }
-         })}
-         renderPhoto={({ photo, imageProps: { alt, title, sizes, onClick }, wrapperStyle }) => {
-            return (
-               <Link href={photo.src} target='_blank'>
+      <>
+         <PhotoAlbum
+            layout='columns'
+            columns={2}
+            onClick={({ index }) => setLightboxImageIndex(index)}
+            photos={designs.map(({ name, frontSrc, backSrc, width, height }) => {
+               return {
+                  src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,
+                  backSrc: backSrc,
+                  width,
+                  height,
+                  alt: name,
+               }
+            })}
+            renderPhoto={({ photo, imageProps: { alt, title, sizes, onClick }, wrapperStyle }) => {
+               return (
                   <div
                      style={{ ...wrapperStyle, position: 'relative' }}
                      className='transition-opacity'
@@ -63,10 +70,19 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                         ''
                      )}
                   </div>
-               </Link>
-            )
-         }}
-      />
+               )
+            }}
+         />
+         {lightboxImageIndex !== -1 ? (
+            <UseLightbox
+               designs={designs}
+               lightboxImageIndex={lightboxImageIndex}
+               setLightboxImageIndex={setLightboxImageIndex}
+            />
+         ) : (
+            ''
+         )}
+      </>
    )
 }
 
