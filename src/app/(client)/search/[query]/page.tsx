@@ -24,7 +24,7 @@ const getDesigns = async ({ query }: { query: string }) => {
 
    const designsByName = (await Design.find({ $text: { $search: query } }).exec()) || []
 
-   const categoryId: string | null = await Category.findOne({ slug: query })
+   const categoryId: string | null = await Category.findOne({ $text: { $search: query } })
       .exec()
       .then((res: ICategory) => res?._id || null)
 

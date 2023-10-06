@@ -17,7 +17,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
          <PhotoAlbum
             layout='columns'
             columns={(containerWidth) => {
-               if (containerWidth < 450) return 2
+               if (containerWidth < 600) return 2
                return 3
             }}
             onClick={({ index }) => setLightboxImageIndex(index)}
