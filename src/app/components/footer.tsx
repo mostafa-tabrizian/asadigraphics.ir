@@ -7,7 +7,7 @@ const Footer = () => {
          <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
-                  <div className='flex justify-around items-center mb-7'>
+                  <div className='flex justify-around md:justify-evenly items-center mb-7'>
                      <Link aria-label='صفحه اصلی' href='/'>
                         <Image
                            className='mix-blend-multiply'

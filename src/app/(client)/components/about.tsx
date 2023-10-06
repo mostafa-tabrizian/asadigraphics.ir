@@ -1,7 +1,7 @@
 const About = () => {
    return (
-      <div className='border-t-2 px-5 border-black/25 rounded-2xl bg-gradient-to-b from-[#ff7b005f] via-transparent to-transparent'>
-         <h2 className='my-10 text-right justify-center flex'>
+      <div className='border-t-2 p-5 border-black/25 rounded-2xl bg-gradient-to-b from-orange-200 to-orange-50'>
+         <h2 className='mb-10 mt-3 text-right justify-center flex'>
             من کی هستم <br /> و چیکار می‌کنم؟
          </h2>
 

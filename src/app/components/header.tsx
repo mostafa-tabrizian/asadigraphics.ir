@@ -8,13 +8,15 @@ import { ICategory } from '@/models/category'
 
 const Header = memo(({ params: { categories } }: { params: { categories: ICategory[] } }) => {
    return (
-      <header className='bg-white py-3 px-5 rounded-b-xl border border-black/25'>
-         <div className='flex md:grid md:grid-cols-7 justify-between items-center'>
-            <div className='md:col-span-3 md:w-3/4 hidden md:block'>
+      <header className='bg-white py-3 px-5 md:fixed w-full z-20 rounded-b-xl border border-black/25'>
+         <div className='flex md:grid md:grid-cols-7 md:max-w-screen-xl mx-auto justify-between items-center'>
+            <div className='md:col-span-2 mb-auto md:w-3/4 hidden md:block'>
                <SearchInput />
             </div>
 
-            <Link aria-label='صفحه اصلی' href='/'>
+            <LinksForDesktop categoriesList={JSON.parse(JSON.stringify(categories))} />
+
+            <Link aria-label='صفحه اصلی' href='/' className='justify-end flex col-span-2'>
                <Image
                   className='object-contain'
                   src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
@@ -27,8 +29,6 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             </Link>
 
             <Sidebar categoriesList={JSON.parse(JSON.stringify(categories))} />
-
-            <LinksForDesktop categoriesList={JSON.parse(JSON.stringify(categories))} />
          </div>
 
          <div className='md:hidden'>

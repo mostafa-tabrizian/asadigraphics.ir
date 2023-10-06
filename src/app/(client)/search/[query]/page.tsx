@@ -20,11 +20,14 @@ const getDesigns = async ({ query }: { query: string }) => {
 
    await dbConnect()
 
-   const categoryId: string | null = await Category.findOne({ slug: query })
-      .exec()
-      .then((res: ICategory) => res._id)
+   if (query == 'all') return await Design.find()
 
    const designsByName = (await Design.find({ $text: { $search: query } }).exec()) || []
+
+   const categoryId: string | null = await Category.findOne({ slug: query })
+      .exec()
+      .then((res: ICategory) => res?._id || null)
+
    const designsByCategory = (await Design.find({ category: categoryId }).exec()) || []
 
    const mergedDesigns: IDesign[] = [...designsByName, ...designsByCategory]
@@ -39,7 +42,7 @@ const getDesigns = async ({ query }: { query: string }) => {
       return accumulator
    }, [])
 
-   return { uniqueMergedDesigns }
+   return uniqueMergedDesigns
 }
 
 export const generateMetadata = async ({ params }: { params: { query: string } }) => {
@@ -66,76 +69,81 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
       )
    }
 
-   const { uniqueMergedDesigns } = await getDesigns({ query })
+   const uniqueMergedDesigns = await getDesigns({ query })
 
-   const creativeWorkJsonLd = {
-      '@context': 'http://schema.org',
-      '@type': 'CreativeWork',
-      name: 'اسدی دیزاینس',
-      description:
-         'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
-      image: ['https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'],
-      creator: {
-         '@type': 'Person',
-         name: 'علی اسدی',
-      },
-      url: `https://asadidesigns.ir/search/${hyphen(query)}?type=search&name=${query}`,
-      dateCreated: uniqueMergedDesigns[0].createdAt,
-      dateModified: uniqueMergedDesigns[uniqueMergedDesigns.length - 1].updatedAt,
-      keywords: 'طراحی, دیزاین, طراحی لوگو, طراحی بنر, طراحی پوستر، طراحی کارت ویزیت',
-      license: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
-      mainEntity: {
-         '@type': 'ImageGallery',
-         name: 'طرح های اسدی دیزاینس',
+   let creativeWorkJsonLd, breadcrumbJsonLd
+
+   if (uniqueMergedDesigns.length) {
+      creativeWorkJsonLd = {
+         '@context': 'http://schema.org',
+         '@type': 'CreativeWork',
+         name: 'اسدی دیزاینس',
          description:
             'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
-         image: uniqueMergedDesigns.map(
-            (design) =>
-               `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`,
-         ),
-      },
-   }
-
-   const breadcrumbJsonLd = {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-         {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'اسدی دیزاینس',
-            item: {
-               '@type': 'Corporation',
-               '@id': 'https://asadidesigns.ir/#corporation',
-            },
+         image: ['https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'],
+         creator: {
+            '@type': 'Person',
+            name: 'علی اسدی',
          },
-         { '@type': 'ListItem', position: 2, name: dehyphen(query) },
-      ],
+         url: `https://asadidesigns.ir/search/${hyphen(query)}?type=search&name=${query}`,
+         dateCreated: uniqueMergedDesigns[0].createdAt,
+         dateModified: uniqueMergedDesigns[uniqueMergedDesigns.length - 1].updatedAt,
+         keywords: 'طراحی, دیزاین, طراحی لوگو, طراحی بنر, طراحی پوستر، طراحی کارت ویزیت',
+         license: 'https://creativecommons.org/licenses/by-nc-sa/4.0/',
+         mainEntity: {
+            '@type': 'ImageGallery',
+            name: 'طرح های اسدی دیزاینس',
+            description:
+               'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+            image: uniqueMergedDesigns.map(
+               (design) =>
+                  `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`,
+            ),
+         },
+      }
+
+      breadcrumbJsonLd = {
+         '@context': 'https://schema.org',
+         '@type': 'BreadcrumbList',
+         itemListElement: [
+            {
+               '@type': 'ListItem',
+               position: 1,
+               name: 'اسدی دیزاینس',
+               item: {
+                  '@type': 'Corporation',
+                  '@id': 'https://asadidesigns.ir/#corporation',
+               },
+            },
+            { '@type': 'ListItem', position: 2, name: dehyphen(query) },
+         ],
+      }
    }
 
    return (
       <>
-         <Script
-            id='breadcrumb-jsonld'
-            type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-         />
-
-         <Script
-            id='creativeWork-jsonld'
-            type='application/ld+json'
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
-         />
-
          {uniqueMergedDesigns.length ? (
-            <GTMViewItemList
-               params={JSON.parse(
-                  JSON.stringify({
-                     query,
-                     designList: uniqueMergedDesigns,
-                  }),
-               )}
-            />
+            <>
+               <Script
+                  id='breadcrumb-jsonld'
+                  type='application/ld+json'
+                  dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+               />
+
+               <Script
+                  id='creativeWork-jsonld'
+                  type='application/ld+json'
+                  dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
+               />
+               <GTMViewItemList
+                  params={JSON.parse(
+                     JSON.stringify({
+                        query,
+                        designList: uniqueMergedDesigns,
+                     }),
+                  )}
+               />
+            </>
          ) : (
             ''
          )}

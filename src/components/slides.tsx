@@ -15,7 +15,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    // const [currentSlide, setCurrentSlide] = useState(0)
    // const [loaded, setLoaded] = useState(false)
 
-   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
+   const [sliderRef] = useKeenSlider<HTMLDivElement>(  // instanceRef
       {
          initial: 0,
          slides: slides.length,
@@ -65,7 +65,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    )
 
    return (
-      <div className='mx-auto w-full px-3 md:w-4/6 rtl relative space-y-3'>
+      <div className='mx-auto w-full px-3 md:w-5/6 rtl relative space-y-3'>
          <div ref={sliderRef} className='h-full aspect-video relative'>
             {slides.map((slide, idx) => {
                if (!slide.active) return
@@ -88,8 +88,8 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                            alt={slide.alt}
                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                           width={600}
-                           height={337}
+                           width={900}
+                           height={505}
                            priority
                         />
                      </Link>

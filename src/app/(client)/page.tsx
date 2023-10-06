@@ -117,12 +117,11 @@ async function Home() {
          />
 
          <div className='space-y-16 my-6 px-2'>
-            <div className='space-y-5'>
-               {slides.length ? <Slides slides={JSON.parse(JSON.stringify(slides))} /> : ''}
-               <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
-            </div>
+            {slides.length ? <Slides slides={JSON.parse(JSON.stringify(slides))} /> : ''}
 
-            <SampleDesigns designs={designs} />
+            <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
+
+            {designs.length ? <SampleDesigns designs={designs} /> : ''}
 
             <FAQ />
 

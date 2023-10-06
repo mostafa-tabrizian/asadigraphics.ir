@@ -18,7 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <>
          <Header params={{ categories }} />
 
-         <main className='mb-24 max-w-screen-lg overflow-x-hidden mx-auto'>{children}</main>
+         <main className='mb-24 md:mt-24 max-w-screen-lg overflow-x-hidden mx-auto'>{children}</main>
 
          <Footer />
       </>
