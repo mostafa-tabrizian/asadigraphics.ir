@@ -8,7 +8,23 @@ import DesignsTable from './components/designsTable'
 
 const getDesigns = async () => {
    await dbConnect()
-   return await Design.find()
+   const designs = await Design.aggregate([
+      {
+         $lookup: {
+            from: 'categories',
+            localField: 'category',
+            foreignField: '_id',
+            as: 'category',
+         },
+      },
+   ])
+
+   return designs.reverse().map((design) => {
+      return {
+         ...design,
+         category: design.category[0].name,
+      }
+   })
 }
 
 export const metadata = {
@@ -16,7 +32,7 @@ export const metadata = {
 }
 
 const AdminDesigns = async () => {
-   const designs = (await getDesigns()).reverse()
+   const designs = (await getDesigns())
 
    return (
       <div className='md:mx-auto mx-6 max-w-screen-lg space-y-10 my-16 relative'>

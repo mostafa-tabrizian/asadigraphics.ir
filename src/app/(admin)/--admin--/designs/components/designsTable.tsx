@@ -7,6 +7,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { IDesign } from '@/models/design'
 
 const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
+
    const columns: GridColDef[] = [
       {
          field: 'id',
@@ -110,18 +111,22 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                </svg>
             ),
       },
-
       {
          field: 'name',
          headerName: 'عنوان',
-         width: 300,
+         width: 150,
          renderCell: ({ value }) => (
             <Link href={`/--admin--/designs/${(value as string).replaceAll(' ', '-')}`}>
                <span>{value}</span>
             </Link>
          ),
       },
-
+      {
+         field: 'category',
+         headerName: 'دسته بندی',
+         width: 150,
+         renderCell: ({ value }) => <span>{value}</span>,
+      },
       {
          field: 'createdAt',
          headerName: 'تاریخ ایجاد',
