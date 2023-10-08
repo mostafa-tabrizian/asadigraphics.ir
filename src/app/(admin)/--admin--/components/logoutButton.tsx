@@ -21,7 +21,7 @@ const LogoutButton = () => {
          ) : (
             <button disabled={loading} onClick={handleLogout}>
                <div className='flex justify-end space-x-3 items-center'>
-                  <span className='text-base yekanBold'>خروج</span>
+                  <span className='text-base yekan'>خروج</span>
                   <svg
                      className='h-7 w-7'
                      width='24'

@@ -88,7 +88,7 @@ const corporationJsonLd = {
 }
 
 async function Home() {
-   const remaining = await limiter.removeTokens(2)
+   const remaining = await limiter.removeTokens(3)
 
    if (remaining < 0) {
       return (

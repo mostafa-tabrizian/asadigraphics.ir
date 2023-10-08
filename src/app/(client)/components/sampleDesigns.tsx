@@ -8,9 +8,9 @@ const SampleDesigns = ({ designs }: { designs: IDesign[] }) => {
          <h2 className='my-10 text-center'>نمونه طراحی ها</h2>
          <div className='mx-5 relative min-h-[50vh]'>
             <Gallery designs={JSON.parse(JSON.stringify(designs))} />
-            <span className='bg-gradient-to-t from-[#F2F2F2] rounded-xl to-transparent absolute bottom-0 md:bottom-5 min-h-[50vh] w-full'></span>
+            <span className='bg-gradient-to-t from-[#F2F2F2] rounded-xl to-transparent absolute bottom-0 min-h-[50vh] w-full'></span>
             <Link href='/search/all?type=all&name=تمامی+طرح+ها' className='flex w-full justify-center'>
-               <span className='border-2 border-black rounded-full yekanBold px-3 py-1 absolute bottom-0 md:bottom-5 bg-[#F2F2F2]'>
+               <span className='border-2 border-black rounded-full yekanBold px-3 py-1 absolute bottom-0  bg-[#F2F2F2]'>
                   نمایش بیشتر
                </span>
             </Link>

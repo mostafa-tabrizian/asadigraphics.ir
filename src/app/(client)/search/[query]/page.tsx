@@ -24,7 +24,7 @@ const getDesigns = async ({ query }: { query: string }) => {
 
    const designsByName = (await Design.find({ $text: { $search: query } }).exec()) || []
 
-   const categoryId: string | null = await Category.findOne({ $text: { $search: query } })
+   const categoryId: string | null = await Category.findOne({ slug: query })
       .exec()
       .then((res: ICategory) => res?._id || null)
 
@@ -59,7 +59,8 @@ export const generateMetadata = async ({ params }: { params: { query: string } }
 const Search = async ({ params: { query } }: { params: { query: string } }) => {
    query = dehyphen(decodeURI(query))
 
-   const remaining = await limiter.removeTokens(1)
+   const remaining = await limiter.removeTokens(5)
+
    if (remaining < 0) {
       return (
          <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>
