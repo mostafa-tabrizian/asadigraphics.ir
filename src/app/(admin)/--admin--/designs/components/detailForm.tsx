@@ -113,11 +113,7 @@ const DetailForm = memo(
                         ''
                      ) : (
                         <ImageInput
-                           design={{
-                              _id: design._id,
-                              front: design.frontSrc,
-                              back: design.backSrc,
-                           }}
+                           design={JSON.parse(JSON.stringify(design))}
                         />
                      )}
                   </div>

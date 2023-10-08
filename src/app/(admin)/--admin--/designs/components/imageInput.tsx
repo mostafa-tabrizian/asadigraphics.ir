@@ -11,8 +11,9 @@ import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
+import { IDesign } from '@/models/design'
 
-const ImageInput = ({ design }: { design: { _id: string; front: string; back: string } }) => {
+const ImageInput = ({ design }: { design: IDesign }) => {
    const [imageToUpload, setImageToUpload] = useState<FileList | null>(null)
    const [imageDimention, setImageDimention] = useState([0, 0])
    const [loading, setLoading] = useState(false)
@@ -153,28 +154,28 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
          )}
 
          <div className='space-y-6'>
-            {design.front ? (
+            {design.frontSrc ? (
                <div>
                   <span className='text-slate-400 yekan'>تصویر جلو طرح</span>
 
                   <div className='relative'>
                      <Link
                         target='_blank'
-                        href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.front}`}
+                        href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`}
                      >
-                        <div className='flex justify-center mx-auto w-full relative aspect-square'>
+                        <div className='flex justify-center mx-auto'>
                            <NextImage
                               className='rounded-lg p-1'
-                              src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.front}`}
+                              src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`}
                               alt={design._id}
-                              fill
-                              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                              width={design.width}
+                              height={design.height}
                               loading='lazy'
                            />
                         </div>
                      </Link>
 
-                     <ImageDelete type='front' design={design._id} image={design.front} />
+                     <ImageDelete type='front' design={design._id} image={design.frontSrc} />
                   </div>
                </div>
             ) : (
@@ -230,28 +231,28 @@ const ImageInput = ({ design }: { design: { _id: string; front: string; back: st
          </div>
 
          <div className='space-y-3'>
-            {design.back ? (
+            {design.backSrc ? (
                <div>
                   <span className='text-slate-400 yekan'>تصویر پشت طرح</span>
 
                   <div className='relative'>
                      <Link
                         target='_blank'
-                        href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.back}`}
+                        href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.backSrc}`}
                      >
-                        <div className='flex justify-center mx-auto w-full relative aspect-square'>
+                        <div className='flex justify-center mx-auto'>
                            <NextImage
                               className='rounded-lg p-1'
-                              src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.back}`}
+                              src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.backSrc}`}
                               alt={design._id}
-                              fill
-                              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                              width={design.width}
+                              height={design.height}
                               loading='lazy'
                            />
                         </div>
                      </Link>
 
-                     <ImageDelete type='back' design={design._id} image={design.back} />
+                     <ImageDelete type='back' design={design._id} image={design.backSrc} />
                   </div>
                </div>
             ) : (
