@@ -1,11 +1,24 @@
 const About = () => {
    return (
-      <div className='border-t-2 p-5 border-black/25 rounded-2xl bg-gradient-to-b from-orange-200 to-orange-50'>
-         <h2 className='mb-10 mt-3 text-right justify-center flex'>
-            من کی هستم <br /> و چیکار می‌کنم؟
-         </h2>
+      <div>
+         <div className='relative max-w-screen-sm mx-auto'>
+            <svg
+               xmlns='http://www.w3.org/2000/svg'
+               className='absolute right-20 md:right-40 top-2 w-14 h-14 text-black/10'
+               viewBox='0 0 1024 1024'
+               version='1.1'
+            >
+               <path
+                  d='M870.4 448a64 64 0 0 0 0-128h-114.56l26.88-148.48a64 64 0 0 0-126.08-23.04l-32 171.52h-156.8l26.88-148.48a64 64 0 0 0-126.08-23.04l-32 171.52H198.4a64 64 0 1 0 0 128h116.16l-23.36 128H153.6a64 64 0 0 0 0 128h114.56l-26.88 148.48a64 64 0 1 0 126.08 23.04l32-171.52h157.76l-26.88 148.48a64 64 0 1 0 126.08 23.04l32-171.52h137.28a64 64 0 1 0 0-128h-116.16l23.36-128z m-291.2 128h-157.76l23.36-128h157.76z'
+                  fill='currentColor'
+               />
+            </svg>
+            <h2 className='my-10 text-center border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 shadow-[0_6px_10px_0_#00000040] py-5 mx-5 rounded-2xl'>
+               من کی هستم <br /> و چیکار می‌کنم؟
+            </h2>
+         </div>
 
-         <p className='yekan rtl text-justify leading-7'>
+         <p className='yekan rtl text-justify leading-7 mx-5'>
             با سلام 👋 <br />
             من <span className='yekanBold text-base'>علی اسدی</span> هستم، یک طراح با تجربه در زمینه
             گرافیک و طراحی. تجربه‌ی چندین ساله‌ام در این حوزه به من این امکان را داده تا به عنوان{' '}
