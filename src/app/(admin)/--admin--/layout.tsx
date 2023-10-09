@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify'
+
 export const metadata = {
    robots: {
       index: false,
@@ -13,6 +15,18 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    return (
       <>
+         <ToastContainer
+            position='top-center'
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme='light'
+         />
          <main className='mb-24 max-w-screen-lg overflow-x-hidden mx-auto'>{children}</main>
       </>
    )

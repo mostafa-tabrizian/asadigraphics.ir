@@ -7,8 +7,7 @@ import '@/app/styles/lightbox.scss'
 import 'react-toastify/dist/ReactToastify.min.css'
 
 import { SessionProvider } from 'next-auth/react'
-import { ToastContainer } from 'react-toastify'
-import Analytics from './GTM'
+// import Analytics from './GTM'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    console.log(
@@ -30,18 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
          <body>
             {/* <Analytics /> */}
             <SessionProvider>
-               <ToastContainer
-                  position='top-center'
-                  autoClose={3000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme='light'
-               />
 
                <main className='overflow-x-hidden mx-auto'>{children}</main>
             </SessionProvider>

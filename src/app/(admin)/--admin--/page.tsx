@@ -1,3 +1,4 @@
+
 import User from '@/lib/user'
 import Link from 'next/link'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
@@ -12,7 +13,6 @@ const AdminPanel = async () => {
 
    return (
       <div className='mx-6 my-16 space-y-10'>
-         <>
             <Breadcrumbs aria-label='breadcrumb'>
                <Link className='text-gray-400' href='/'>
                   صفحه اصلی
@@ -127,7 +127,6 @@ const AdminPanel = async () => {
 
                <LogoutButton />
             </div>
-         </>
       </div>
    )
 }
