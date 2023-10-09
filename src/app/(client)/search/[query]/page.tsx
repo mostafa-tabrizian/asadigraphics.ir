@@ -51,7 +51,7 @@ export const generateMetadata = async ({ params }: { params: { query: string } }
       description:
          'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
       alternates: {
-         canonical: `https://asadidesigns.ir/search/${params.query}`,
+         canonical: `https://asadigraphics.ir/search/${params.query}`,
       },
    }
 }
@@ -86,7 +86,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
             '@type': 'Person',
             name: 'علی اسدی',
          },
-         url: `https://asadidesigns.ir/search/${hyphen(query)}?type=search&name=${query}`,
+         url: `https://asadigraphics.ir/search/${hyphen(query)}?type=search&name=${query}`,
          dateCreated: uniqueMergedDesigns[0].createdAt,
          dateModified: uniqueMergedDesigns[uniqueMergedDesigns.length - 1].updatedAt,
          keywords: 'طراحی, دیزاین, طراحی لوگو, طراحی بنر, طراحی پوستر، طراحی کارت ویزیت',
@@ -113,7 +113,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                name: 'اسدی دیزاینس',
                item: {
                   '@type': 'Corporation',
-                  '@id': 'https://asadidesigns.ir/#corporation',
+                  '@id': 'https://asadigraphics.ir/#corporation',
                },
             },
             { '@type': 'ListItem', position: 2, name: dehyphen(query) },
@@ -159,7 +159,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                   <Gallery designs={JSON.parse(JSON.stringify(uniqueMergedDesigns))} />
                ) : (
                   <div>
-                     <span className='font-semibold text-3xl doranExtraBold'>
+                     <span className='font-semibold text-3xl Doran'>
                         !هیچ طرحی یافت نشد
                      </span>
                      <span className='text-sm block yekanBold mt-3'>

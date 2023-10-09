@@ -33,11 +33,19 @@
 }
 
 @font-face {
-   font-family: 'DoranExtraBold';
+   font-family: 'Doran';
    font-display: swap;
    src:
       url('/font/DoranNoEn-ExtraBold.woff2') format('woff2'),
       url('/font/DoranNoEn-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+   font-family: 'BebasNeue';
+   font-display: swap;
+   src:
+      url('/font/BebasNeue-Regular.woff2') format('woff2'),
+      url('/font/BebasNeue-Regular.woff') format('woff');
 }
 
 * {
@@ -66,14 +74,14 @@ a {
 
 h1 {
    font-size: 2rem;
-   font-family: DoranExtraBold, sans-serif;
+   font-family: Doran, sans-serif;
    color: black;
 }
 
 h2 {
    font-size: 2rem;
    font-weight: bold;
-   font-family: DoranExtraBold, sans-serif;
+   font-family: Doran, sans-serif;
    color: black;
 }
 
@@ -173,8 +181,12 @@ strong {
    font-family: YekanBakhBold, sans-serif;
 }
 
-.doranExtraBold {
-   font-family: DoranExtraBold, sans-serif;
+.Doran {
+   font-family: Doran, sans-serif;
+}
+
+.BebasNeue {
+   font-family: BebasNeue, sans-serif;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */

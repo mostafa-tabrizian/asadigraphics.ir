@@ -33,7 +33,7 @@ const Categories = ({ categoriesData }: { categoriesData: ICategory[] }) => {
                      </div>
                   </div>
                   <div className='col-span-3'>
-                     <span className='text-center block font-[Tungsten] opacity-30 leading-[2.7rem] text-6xl whitespace-pre'>
+                     <span className='text-center block BebasNeue opacity-30 leading-[2.7rem] tracking-tight text-6xl whitespace-pre'>
                         {category.slug.toUpperCase().replaceAll(' ', '\n')}
                      </span>
                   </div>

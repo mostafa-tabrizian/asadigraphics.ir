@@ -32,27 +32,27 @@ export const metadata = {
    description:
       'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
    alternates: {
-      canonical: 'https://asadidesigns.ir',
+      canonical: 'https://asadigraphics.ir',
    },
 }
 
 const jsonLd = {
    '@context': 'https://schema.org',
    '@type': 'WebSite',
-   id: 'https://asadidesigns.ir/#webSite',
+   id: 'https://asadigraphics.ir/#webSite',
    name: 'اسدی گرافیکس',
-   url: 'https://asadidesigns.ir',
+   url: 'https://asadigraphics.ir',
 }
 
 const corporationJsonLd = {
    '@context': 'https://schema.org',
    '@type': 'Corporation',
-   id: 'https://asadidesigns.ir/#corporation',
+   id: 'https://asadigraphics.ir/#corporation',
    name: 'اسدی گرافیکس',
    alternateName: ['اسدی گرافیکس'],
    legalName: 'اسدی گرافیکس',
-   url: 'https://asadidesigns.ir',
-   logo: 'https://asadidesigns.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
+   url: 'https://asadigraphics.ir',
+   logo: 'https://asadigraphics.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
    email: '',
    sameAs: [
       'https://www.instagram.com/HanaTech2023',

@@ -3,7 +3,7 @@ import Category from '@/models/category'
 import dbConnect from '@/lib/dbConnect'
 import hyphen from '@/lib/hyphen'
 
-const URL = 'https://asadidesigns.ir'
+const URL = 'https://asadigraphics.ir'
 
 async function getAllPages() {
    await dbConnect()

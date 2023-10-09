@@ -20,7 +20,7 @@ const Footer = () => {
                            loading='lazy'
                         />
                      </Link>
-                     <span className='doranExtraBold text-3xl'>اسدی گرافیکس</span>
+                     <span className='Doran text-3xl'>اسدی گرافیکس</span>
                   </div>
 
                   <div className='flex justify-around mb-5 items-center'>
@@ -155,7 +155,7 @@ const Footer = () => {
                </div>
             </div>
             {/* <div className='col-span-5 md:col-span-1 rtl'>
-               <h4 className='text-xl doranExtraBold mb-4 text-orange-600'>دسترسی سریع</h4>
+               <h4 className='text-xl Doran mb-4 text-orange-600'>دسترسی سریع</h4>
                <nav>
                   <ul className='text-sm'>
                      <li className='list-disc py-2 list-inside'>
