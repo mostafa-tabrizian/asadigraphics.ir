@@ -12,6 +12,17 @@ import FAQ from './components/faq'
 import About from './components/about'
 import SocialMedia from './components/socialMedia'
 
+export const metadata = {
+   title: 'اسدی گرافیکس | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',
+   description:
+      'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+   alternates: {
+      canonical: 'https://asadigraphics.ir',
+   },
+}
+
+export const revalidate = 24 * 60 * 60
+
 const getSlides = async () => {
    await dbConnect()
    return await Slide.find().sort({ createdAt: -1 })
@@ -24,16 +35,7 @@ const getCategories = async () => {
 
 const getDesigns = async () => {
    await dbConnect()
-   return await Design.find().limit(10)
-}
-
-export const metadata = {
-   title: 'اسدی گرافیکس | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',
-   description:
-      'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
-   alternates: {
-      canonical: 'https://asadigraphics.ir',
-   },
+   return await Design.find().limit(14)
 }
 
 const jsonLd = {

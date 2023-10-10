@@ -9,13 +9,15 @@ import NewSlide from './components/newSlide'
 import Delete from './components/delete'
 import ActiveStatus from './components/activeStatus'
 
-const getSlides = async () => {
-   await dbConnect()
-   return await Slide.find()
-}
+export const revalidate = 0
 
 export const metadata = {
    title: 'اسدی گرافیکس | پنل ادمین | اسلاید ها',
+}
+
+const getSlides = async () => {
+   await dbConnect()
+   return await Slide.find()
 }
 
 const AdminSlides = async () => {

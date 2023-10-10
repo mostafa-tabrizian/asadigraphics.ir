@@ -8,6 +8,8 @@ export const metadata = {
    title: 'اسدی گرافیکس | پنل ادمین',
 }
 
+export const revalidate = 0
+
 const AdminPanel = async () => {
    const user = await User()
 

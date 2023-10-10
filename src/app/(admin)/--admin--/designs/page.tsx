@@ -6,6 +6,12 @@ import Design from '@/models/design'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
 import DesignsTable from './components/designsTable'
 
+export const revalidate = 0
+
+export const metadata = {
+   title: 'اسدی گرافیکس | پنل ادمین | طرح ها',
+}
+
 const getDesigns = async () => {
    await dbConnect()
    const designs = await Design.aggregate([
@@ -25,10 +31,6 @@ const getDesigns = async () => {
          category: design.category[0].name,
       }
    })
-}
-
-export const metadata = {
-   title: 'اسدی گرافیکس | پنل ادمین | طرح ها',
 }
 
 const AdminDesigns = async () => {

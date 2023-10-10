@@ -15,6 +15,19 @@ import Gallery from '@/app/components/gallery'
 import Script from 'next/script'
 import hyphen from '@/lib/hyphen'
 
+export const generateMetadata = async ({ params }: { params: { query: string } }) => {
+   return {
+      title: dehyphen(decodeURI(params.query)) + ' | اسدی گرافیکس',
+      description:
+         'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+      alternates: {
+         canonical: `https://asadigraphics.ir/search/${params.query}`,
+      },
+   }
+}
+
+export const revalidate = 24 * 60 * 60
+
 const getDesigns = async ({ query }: { query: string }) => {
    query = dehyphen(query)
 
@@ -43,17 +56,6 @@ const getDesigns = async ({ query }: { query: string }) => {
    }, [])
 
    return uniqueMergedDesigns
-}
-
-export const generateMetadata = async ({ params }: { params: { query: string } }) => {
-   return {
-      title: dehyphen(decodeURI(params.query)) + ' | اسدی گرافیکس',
-      description:
-         'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
-      alternates: {
-         canonical: `https://asadigraphics.ir/search/${params.query}`,
-      },
-   }
 }
 
 const Search = async ({ params: { query } }: { params: { query: string } }) => {

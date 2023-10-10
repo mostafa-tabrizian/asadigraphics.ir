@@ -16,6 +16,8 @@ export const metadata = {
    title: '‌اسدی گرافیکس تکنولوژی | پنل ادمین | دسته بندی ها',
 }
 
+export const revalidate = 0
+
 const getCategories = async () => {
    await dbConnect()
    return await Category.find()
