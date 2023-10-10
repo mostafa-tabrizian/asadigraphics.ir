@@ -34,9 +34,7 @@ export async function POST(req: Request) {
             _id: _id,
          },
          {
-            backSrc: key,
-            width: imageDimention[0],
-            height: imageDimention[1],
+            backSrc: key
          },
       ).exec()
    }

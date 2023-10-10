@@ -114,6 +114,36 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
 
                      <li className='block'>
                         <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
+                           <Link href='/search/all?type=all&name=تمامی+طرح+ها'>
+                              <div className='relative menu-item flex items-center'>
+                                 <span className='py-2 md:py-1 flex items-center gap-x-2 cursor-pointer font-bold'>
+                                    <svg
+                                       className='h-5 w-5 text-black'
+                                       width='24'
+                                       height='24'
+                                       viewBox='0 0 24 24'
+                                       strokeWidth='2'
+                                       stroke='currentColor'
+                                       fill='none'
+                                       strokeLinecap='round'
+                                       strokeLinejoin='round'
+                                    >
+                                       {' '}
+                                       <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                                       <path d='M12 21a9 9 0 1 1 0 -18a9 8 0 0 1 9 8a4.5 4 0 0 1 -4.5 4h-2.5a2 2 0 0 0 -1 3.75a1.3 1.3 0 0 1 -1 2.25' />{' '}
+                                       <circle cx='7.5' cy='10.5' r='.5' fill='currentColor' />{' '}
+                                       <circle cx='12' cy='7.5' r='.5' fill='currentColor' />{' '}
+                                       <circle cx='16.5' cy='10.5' r='.5' fill='currentColor' />
+                                    </svg>
+                                    <span className='text-base'>نمونه طراحی ها</span>
+                                 </span>
+                              </div>
+                           </Link>
+                        </div>
+                     </li>
+
+                     <li className='block'>
+                        <div className='text-gray-700 bg-gradient-to-l from-white to-transparent shadow-inner rounded-lg pr-1'>
                            <button
                               aria-label='categories'
                               onClick={() => setCategories((prev) => !prev)}

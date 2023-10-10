@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
@@ -11,6 +12,8 @@ import Dialog from '@mui/material/Dialog'
 const ImageDelete = ({ type, image, design }: { type: string; image: string; design: string }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
+
+   const router = useRouter()
 
    const handleDelete = async () => {
       setConfirmation(false)
@@ -57,6 +60,7 @@ const ImageDelete = ({ type, image, design }: { type: string; image: string; des
          if (!res.ok) throw new Error()
 
          toast.success('تصویر با موفقیت حذف شد.')
+         router.refresh()
       } catch (err) {
          toast.error('در حذف تصویر خطایی رخ داد!')
          console.error(err)

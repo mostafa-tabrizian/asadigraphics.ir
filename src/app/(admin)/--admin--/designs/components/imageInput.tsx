@@ -1,7 +1,10 @@
+'use client'
+
 import { useState, useMemo } from 'react'
 import NextImage from 'next/image'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import Button from '@mui/material/Button'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -14,13 +17,20 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import { IDesign } from '@/models/design'
 
 const ImageInput = ({ design }: { design: IDesign }) => {
-   const [imageToUpload, setImageToUpload] = useState<FileList | null>(null)
+   const [frontDesignPreview, setFrontDesignPreview] = useState<FileList | null>(null)
+   const [backDesignPreview, setBackDesignPreview] = useState<FileList | null>(null)
    const [imageDimention, setImageDimention] = useState([0, 0])
    const [loading, setLoading] = useState(false)
 
-   const imageToUploadMemo = useMemo(() => {
-      return imageToUpload && Object.values(imageToUpload)
-   }, [imageToUpload])
+   const frontDesignMemo = useMemo(() => {
+      return frontDesignPreview && Object.values(frontDesignPreview)
+   }, [frontDesignPreview])
+
+   const backDesignMemo = useMemo(() => {
+      return backDesignPreview && Object.values(backDesignPreview)
+   }, [backDesignPreview])
+
+   const router = useRouter()
 
    const createDbData = async (type: string, key: string, imageName: string) => {
       const payload = {
@@ -38,8 +48,11 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
          if (!res.ok) throw new Error()
 
-         setImageToUpload(null)
+         if (type == 'front') setFrontDesignPreview(null)
+         else if (type == 'back') setBackDesignPreview(null)
+
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
+         router.refresh()
       } catch (err) {
          toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
          console.error(err)
@@ -56,23 +69,27 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       }
    }
 
-   const onSubmit = async (type: string) => {
-      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
-
-      if (!imageToUpload || !imageToUploadMemo) {
+   const onSubmit = async () => {
+      if (!frontDesignMemo && !backDesignMemo) {
          return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
       }
       if (!design._id) {
          return toast.error('در تعیین طرح خطایی رخ داده است!')
       }
 
+      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
       setLoading(true)
 
       try {
-         for (const image of imageToUploadMemo) {
-            const res = await imageUploadHandler(image, 'designs')
+         for (const imageData of [
+            { design: frontDesignMemo, type: 'front' },
+            { design: backDesignMemo, type: 'back' },
+         ]) {
+            if (!imageData.design) continue
 
-            if (res) await createDbData(type, res.key, res.imageName)
+            const res = await imageUploadHandler(imageData.design[0], 'designs')
+
+            if (res) await createDbData(imageData.type, res.key, res.imageName)
             else throw new Error()
          }
          return
@@ -83,7 +100,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       }
    }
 
-   const onImagesSelected = (files: FileList | null) => {
+   const onFileSelected = (files: FileList | null, type: string) => {
       if (!files) return
 
       const filesList: File[] = Object.values(files)
@@ -103,19 +120,20 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             img.src = e.target.result as string
 
             img.onload = () => {
-               setImageDimention([img.width, img.height])
+               if (type == 'front') setImageDimention([img.width, img.height])
             }
          }
 
          reader.readAsDataURL(imageFile)
       }
 
-      setImageToUpload(files)
+      if (type == 'front') setFrontDesignPreview(files)
+      else if (type == 'back') setBackDesignPreview(files)
    }
 
    const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
 
-   const dropHandlerDesign = (event: React.DragEvent<HTMLDivElement>) => {
+   const dropHandlerDesign = (event: React.DragEvent<HTMLDivElement>, type: string) => {
       event.preventDefault()
       const files = event.dataTransfer.files
 
@@ -125,16 +143,39 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             'تعداد تصاویر انتخاب شده بیشتر از یک عدد می‌باشد. تصویر طرح می‌بایست یک عدد باشد',
          )
 
-      onImagesSelected(files)
+      onFileSelected(files, type)
    }
 
    return (
       <div className='text-right space-y-4'>
-         {imageToUploadMemo?.length ? (
+         {frontDesignMemo?.length ? (
             <div>
-               <span className='text-slate-400 yekan'>پیش نمایش تصویر برای آپلود</span>
+               <span className='text-slate-400 yekan'>پیش نمایش تصویر جلو برای آپلود</span>
 
-               {imageToUploadMemo.map((imageData: File) => {
+               {frontDesignMemo.map((imageData: File) => {
+                  return (
+                     <NextImage
+                        key={imageData.name}
+                        className='object-contain rounded-xl'
+                        src={URL.createObjectURL(imageData)}
+                        alt={imageData.name}
+                        width='250'
+                        height='250'
+                        quality={100}
+                        loading='lazy'
+                     />
+                  )
+               })}
+            </div>
+         ) : (
+            ''
+         )}
+
+         {backDesignMemo?.length ? (
+            <div>
+               <span className='text-slate-400 yekan'>پیش نمایش تصویر پشت برای آپلود</span>
+
+               {backDesignMemo.map((imageData: File) => {
                   return (
                      <NextImage
                         key={imageData.name}
@@ -179,53 +220,22 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   </div>
                </div>
             ) : (
-               <div className='flex items-center justify-end space-x-3'>
-                  {loading ? (
-                     <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
-                        <CircularProgress color='success' size={20} />
-                     </div>
-                  ) : (
-                     <button
+               <div
+                  onDrop={(e) => dropHandlerDesign(e, 'front')}
+                  onDragOver={dragOverHandler}
+                  className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+               >
+                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                     <span className='yekan text-sm'>انتخاب جلو طرح</span>
+                     <input
+                        hidden
+                        accept='image/*'
+                        type='file'
+                        name='frontDesignPreview'
+                        onChange={(e) => onFileSelected(e?.target?.files, 'front')}
                         disabled={loading}
-                        onClick={() => onSubmit('front')}
-                        className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                     >
-                        <svg
-                           className='h-5 w-5'
-                           width='24'
-                           height='24'
-                           viewBox='0 0 24 24'
-                           strokeWidth='2'
-                           stroke='currentColor'
-                           fill='none'
-                           strokeLinecap='round'
-                           strokeLinejoin='round'
-                        >
-                           {' '}
-                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                           <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
-                           <polyline points='9 15 12 12 15 15' />{' '}
-                           <line x1='12' y1='12' x2='12' y2='21' />
-                        </svg>
-                     </button>
-                  )}
-                  <div
-                     onDrop={dropHandlerDesign}
-                     onDragOver={dragOverHandler}
-                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-                  >
-                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                        <span className='yekan'>انتخاب جلو طرح</span>
-                        <input
-                           hidden
-                           accept='image/*'
-                           type='file'
-                           name='imageToUpload'
-                           onChange={(e) => onImagesSelected(e?.target?.files)}
-                           disabled={loading}
-                        />
-                     </Button>
-                  </div>
+                     />
+                  </Button>
                </div>
             )}
          </div>
@@ -256,55 +266,58 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   </div>
                </div>
             ) : (
-               <div className='flex items-center justify-end space-x-3'>
-                  {loading ? (
-                     <div className='bg-slate-100 border-2 border-slate-200 rounded-lg p-1.5'>
-                        <CircularProgress color='success' size={20} />
-                     </div>
-                  ) : (
-                     <button
+               <div
+                  onDrop={(e) => dropHandlerDesign(e, 'back')}
+                  onDragOver={dragOverHandler}
+                  className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+               >
+                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                     <span className='yekan text-sm'>انتخاب پشت طرح</span>
+                     <input
+                        hidden
+                        accept='image/*'
+                        type='file'
+                        name='backDesignPreview'
+                        onChange={(e) => onFileSelected(e?.target?.files, 'back')}
                         disabled={loading}
-                        onClick={() => onSubmit('back')}
-                        className='bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
-                     >
-                        <svg
-                           className='h-5 w-5'
-                           width='24'
-                           height='24'
-                           viewBox='0 0 24 24'
-                           strokeWidth='2'
-                           stroke='currentColor'
-                           fill='none'
-                           strokeLinecap='round'
-                           strokeLinejoin='round'
-                        >
-                           {' '}
-                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                           <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
-                           <polyline points='9 15 12 12 15 15' />{' '}
-                           <line x1='12' y1='12' x2='12' y2='21' />
-                        </svg>
-                     </button>
-                  )}
-                  <div
-                     onDrop={dropHandlerDesign}
-                     onDragOver={dragOverHandler}
-                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-                  >
-                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                        <span className='yekan'>انتخاب پشت طرح</span>
-                        <input
-                           hidden
-                           accept='image/*'
-                           type='file'
-                           name='imageToUpload'
-                           onChange={(e) => onImagesSelected(e?.target?.files)}
-                           disabled={loading}
-                        />
-                     </Button>
-                  </div>
+                     />
+                  </Button>
                </div>
             )}
+
+            <div className='flex justify-center items-center bg-slate-100 border-2 border-slate-200 rounded-lg'>
+               {loading ? (
+                  <div className='p-1.5'>
+                     <CircularProgress color='success' size={20} />
+                  </div>
+               ) : (
+                  <button
+                     className='flex gap-5'
+                     disabled={loading}
+                     onClick={() => onSubmit()}
+                     type='button'
+                  >
+                     <svg
+                        className='h-5 w-5'
+                        width='24'
+                        height='24'
+                        viewBox='0 0 24 24'
+                        strokeWidth='2'
+                        stroke='currentColor'
+                        fill='none'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                     >
+                        {' '}
+                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                        <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
+                        <polyline points='9 15 12 12 15 15' />{' '}
+                        <line x1='12' y1='12' x2='12' y2='21' />
+                     </svg>
+                     <span className='yekan text-sm'>آپلود تصاویر</span>
+                  </button>
+               )}
+            </div>
 
             <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
                <span className='text-xs text-green-600/70 yekan'>

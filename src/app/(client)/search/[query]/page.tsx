@@ -33,15 +33,20 @@ const getDesigns = async ({ query }: { query: string }) => {
 
    await dbConnect()
 
-   if (query == 'all') return await Design.find()
+   if (query == 'all') return await Design.find({ active: true }).sort({ createdAt: -1 })
 
-   const designsByName = (await Design.find({ $text: { $search: query } }).exec()) || []
+   const designsByName =
+      (await Design.find({ $text: { $search: query }, active: true })
+         .sort({ createdAt: -1 })
+         .exec()) || []
 
    const categoryId: string | null = await Category.findOne({ slug: query })
       .exec()
       .then((res: ICategory) => res?._id || null)
 
-   const designsByCategory = (await Design.find({ category: categoryId }).exec()) || []
+   const designsByCategory =
+      (await Design.find({ category: categoryId, active: true }).sort({ createdAt: -1 }).exec()) ||
+      []
 
    const mergedDesigns: IDesign[] = [...designsByName, ...designsByCategory]
 
@@ -161,9 +166,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                   <Gallery designs={JSON.parse(JSON.stringify(uniqueMergedDesigns))} />
                ) : (
                   <div>
-                     <span className='font-semibold text-3xl Doran'>
-                        !هیچ طرحی یافت نشد
-                     </span>
+                     <span className='font-semibold text-3xl Doran'>!هیچ طرحی یافت نشد</span>
                      <span className='text-sm block yekanBold mt-3'>
                         عبارت دیگری را امتحان کنید
                      </span>

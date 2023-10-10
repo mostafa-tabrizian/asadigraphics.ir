@@ -9,14 +9,14 @@ import { ICategory } from '@/models/category'
 const Header = memo(({ params: { categories } }: { params: { categories: ICategory[] } }) => {
    return (
       <header className='bg-white py-3 px-5 md:fixed w-full z-20 rounded-b-xl border border-black/25'>
-         <div className='flex md:grid md:grid-cols-7 md:max-w-screen-xl mx-auto justify-between items-center'>
+         <div className='flex md:grid md:grid-cols-8 md:max-w-screen-2xl mx-auto justify-between items-center'>
             <div className='md:col-span-2 mb-auto md:w-3/4 hidden md:block'>
                <SearchInput />
             </div>
 
             <LinksForDesktop categoriesList={JSON.parse(JSON.stringify(categories))} />
 
-            <Link aria-label='صفحه اصلی' href='/' className='justify-end flex col-span-2'>
+            <Link aria-label='صفحه اصلی' href='/' className='justify-end flex col-span-1'>
                <Image
                   className='object-contain'
                   src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
@@ -39,7 +39,7 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             aria-label='ایتا'
             id='eitaa'
             href='https://eitaa.com/aliasadi_graphics'
-            className='bg-gradient-to-t from-orange-400 to-orange-200 pr-2 py-2 flex items-center gap-2 border-2 border-black rounded-xl pl-12 fixed bottom-20 shadow-lg shadow-orange-300 left-5 z-10'
+            className='bg-gradient-to-t from-orange-400 to-orange-200 pr-2 py-2 flex items-center gap-2 border-2 border-black rounded-xl pl-12 fixed bottom-[4.3rem] shadow-lg shadow-orange-300 left-5 z-10'
             title='ایتا با پشتیبانی'
          >
             <svg
