@@ -68,8 +68,6 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
       <div className='mx-auto w-full px-3 md:w-5/6 rtl relative space-y-3'>
          <div ref={sliderRef} className='h-full aspect-video relative'>
             {slides.map((slide, idx) => {
-               if (!slide.active) return
-
                return (
                   <div
                      key={idx}
@@ -84,12 +82,11 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                         style={{ opacity: opacities[idx] }}
                      >
                         <Image
-                           className='rounded-xl object-fit'
+                           className='rounded-xl'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                            alt={slide.alt}
-                           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                           width={900}
-                           height={505}
+                           width={816}
+                           height={459}
                            priority
                         />
                      </Link>

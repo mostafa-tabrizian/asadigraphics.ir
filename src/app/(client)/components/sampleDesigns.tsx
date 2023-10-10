@@ -24,7 +24,7 @@ const SampleDesigns = ({ designs }: { designs: IDesign[] }) => {
          </div>
          <div className='mx-5 relative min-h-[50vh]'>
             <Gallery designs={JSON.parse(JSON.stringify(designs))} />
-            <span className='bg-gradient-to-t from-[#F2F2F2] rounded-xl to-transparent absolute bottom-0 min-h-[50vh] w-full'></span>
+            <span className='pointer-events-none bg-gradient-to-t from-[#F2F2F2] rounded-xl to-transparent absolute bottom-0 min-h-[50vh] w-full'></span>
             <Link
                href='/search/all?type=all&name=تمامی+طرح+ها'
                className='flex w-full justify-center'

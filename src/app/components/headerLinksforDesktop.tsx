@@ -175,7 +175,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
                            id='eitaa'
                            rel='noreferrer'
                            className='flex items-center'
-                           href='https://eitaa.com/HanaTech2023'
+                           href='https://eitaa.com/aliasadi_graphics'
                            target='_blank'
                         >
                            {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}
@@ -203,7 +203,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
                            id='instagram'
                            rel='noreferrer'
                            className='flex items-center'
-                           href='https://www.instagram.com/HanaTech2023'
+                           href='https://www.instagram.com/aliasadi_graphics'
                            target='_blank'
                         >
                            {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}

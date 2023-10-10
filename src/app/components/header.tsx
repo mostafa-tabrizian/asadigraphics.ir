@@ -37,8 +37,8 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
 
          <a
             aria-label='ایتا'
-            id='#'
-            href='#'
+            id='eitaa'
+            href='https://eitaa.com/aliasadi_graphics'
             className='bg-gradient-to-t from-orange-400 to-orange-200 pr-2 py-2 flex items-center gap-2 border-2 border-black rounded-xl pl-12 fixed bottom-20 shadow-lg shadow-orange-300 left-5 z-10'
             title='ایتا با پشتیبانی'
          >

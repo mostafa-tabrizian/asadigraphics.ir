@@ -30,7 +30,7 @@ const Footer = () => {
                               aria-label='ایتا'
                               id='eitaa'
                               rel='noreferrer'
-                              href='https://eitaa.com/HanaTech2023'
+                              href='https://eitaa.com/aliasadi_graphics'
                               target='_blank'
                            >
                               <svg
@@ -51,7 +51,7 @@ const Footer = () => {
                               aria-label='اینستاگرام'
                               id='instagram'
                               rel='noreferrer'
-                              href='https://www.instagram.com/HanaTech2023/'
+                              href='https://www.instagram.com/aliasadi_graphics'
                               target='_blank'
                            >
                               <svg

@@ -25,7 +25,7 @@ export const revalidate = 24 * 60 * 60
 
 const getSlides = async () => {
    await dbConnect()
-   return await Slide.find().sort({ createdAt: -1 })
+   return await Slide.find({ active: true }).sort({ createdAt: -1 })
 }
 
 const getCategories = async () => {
@@ -35,7 +35,7 @@ const getCategories = async () => {
 
 const getDesigns = async () => {
    await dbConnect()
-   return await Design.find().limit(14)
+   return await Design.find({ active: true }).limit(14).sort({ createdAt: -1 })
 }
 
 const jsonLd = {
@@ -57,14 +57,14 @@ const corporationJsonLd = {
    logo: 'https://asadigraphics.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
    email: '',
    sameAs: [
-      'https://www.instagram.com/HanaTech2023',
+      'https://www.instagram.com/aliasadi_graphics',
       'https://t.me/aliasadi_graphics',
-      'https://eitaa.com/HanaTech2023',
+      'https://eitaa.com/aliasadi_graphics',
    ],
    contactPoint: [
       {
          '@type': 'ContactPoint',
-         telephone: '+989128530920',
+         telephone: '+989352601280',
          contactType: 'customer service',
          areaServed: 'IR',
          availableLanguage: 'Persian',
@@ -76,7 +76,11 @@ const corporationJsonLd = {
          '@type': 'Person',
          jobTitle: 'Chief executive officer',
          name: 'Ali Asadi',
-         sameAs: [],
+         sameAs: [
+            'https://www.instagram.com/aliasadi_graphics',
+            'https://t.me/aliasadi_graphics',
+            'https://eitaa.com/aliasadi_graphics',
+         ],
       },
       {
          '@context': 'https://schema.org',
@@ -84,7 +88,11 @@ const corporationJsonLd = {
          image: '',
          jobTitle: 'Chairman',
          name: 'Ali Asadi',
-         sameAs: [],
+         sameAs: [
+            'https://www.instagram.com/aliasadi_graphics',
+            'https://t.me/aliasadi_graphics',
+            'https://eitaa.com/aliasadi_graphics',
+         ],
       },
    ],
 }
