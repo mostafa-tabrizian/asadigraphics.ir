@@ -17,9 +17,9 @@ import hyphen from '@/lib/hyphen'
 
 export const generateMetadata = async ({ params }: { params: { query: string } }) => {
    return {
-      title: dehyphen(decodeURI(params.query)) + ' | اسدی گرافیکس',
+      title: dehyphen(decodeURI(params.query)) + ' | اسدی گرافیک',
       description:
-         'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+         'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
       alternates: {
          canonical: `https://asadigraphics.ir/search/${params.query}`,
       },
@@ -87,7 +87,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
          '@type': 'CreativeWork',
          name: 'اسدی دیزاینس',
          description:
-            'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+            'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
          image: ['https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'],
          creator: {
             '@type': 'Person',
@@ -102,7 +102,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
             '@type': 'ImageGallery',
             name: 'طرح های اسدی دیزاینس',
             description:
-               'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+               'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
             image: uniqueMergedDesigns.map(
                (design) =>
                   `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`,

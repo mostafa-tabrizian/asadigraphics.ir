@@ -9,7 +9,7 @@ import DesignsTable from './components/designsTable'
 export const revalidate = 0
 
 export const metadata = {
-   title: 'اسدی گرافیکس | پنل ادمین | طرح ها',
+   title: 'اسدی گرافیک | پنل ادمین | طرح ها',
 }
 
 const getDesigns = async () => {

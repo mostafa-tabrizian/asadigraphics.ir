@@ -8,7 +8,7 @@ import DetailDesign from '../components/detailForm'
 import dehyphen from '@/lib/dehyphen'
 
 export const metadata = {
-   title: 'اسدی گرافیکس | ادمین | طرح',
+   title: 'اسدی گرافیک | ادمین | طرح',
 }
 
 const DesignPage = async ({ params: { name } }: { params: { name: string } }) => {

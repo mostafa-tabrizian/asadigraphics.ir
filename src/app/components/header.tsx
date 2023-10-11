@@ -20,7 +20,7 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
                <Image
                   className='object-contain'
                   src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
-                  alt='لوگو اسدی گرافیکس'
+                  alt='لوگو اسدی گرافیک'
                   width={77}
                   height={52}
                   quality={100}
@@ -39,11 +39,11 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             aria-label='ایتا'
             id='eitaa'
             href='https://eitaa.com/aliasadi_graphics'
-            className='bg-gradient-to-t from-orange-400 to-orange-200 pr-2 py-2 flex items-center gap-2 border-2 border-black rounded-xl pl-12 fixed bottom-[4.3rem] shadow-lg shadow-orange-300 left-5 z-10'
+            className='bg-gradient-to-t from-orange-400 to-orange-200 pr-1 md:pr-2 py-1 md:py-2 flex items-center gap-2 border-2 border-black rounded-lg md:rounded-xl pl-9 md:pl-12 fixed bottom-16 md:bottom-[4.3rem] shadow-lg shadow-orange-300 left-5 z-10'
             title='ایتا با پشتیبانی'
          >
             <svg
-               className='h-8 w-8 text-black absolute left-1 top-.5'
+               className='h-6 w-6 md:h-8 md:w-8 text-black absolute left-1 top-.5'
                viewBox='0 0 24 24'
                fill='none'
                stroke='currentColor'
@@ -61,16 +61,14 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             aria-label='تلگرام'
             id='telegram'
             href='https://t.me/aliasadi_graphics'
-            className='bg-gradient-to-t from-sky-500 to-sky-200 pr-2 py-2 flex items-center gap-2 border-2 border-black rounded-xl pl-12 fixed bottom-5 shadow-lg shadow-sky-300 left-5 z-10'
+            className='bg-gradient-to-t from-sky-500 to-sky-200 pr-1 md:pr-2 py-1 md:py-2 flex items-center gap-2 border-2 border-black rounded-lg md:rounded-xl pl-9 md:pl-12 fixed bottom-5 shadow-lg shadow-sky-300 left-5 z-10'
             title='تلگرام با پشتیبانی'
          >
             <svg
-               width='45'
-               height='45'
+               className='h-8 w-8 md:h-10 md:w-10 absolute left-0 -top-1'
                viewBox='0 0 45 45'
                fill='none'
                xmlns='http://www.w3.org/2000/svg'
-               className='absolute left-0 -top-1'
             >
                <rect width='45' height='45' fill='url(#pattern0)' />
                <defs>

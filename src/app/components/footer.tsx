@@ -7,20 +7,19 @@ const Footer = () => {
          <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
-                  <div className='flex justify-around md:justify-evenly items-center mb-7'>
+                  <div className='mb-7 w-full justify-center grid'>
                      <Link aria-label='صفحه اصلی' href='/'>
                         <Image
                            className='mix-blend-multiply'
                            src={
                               'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
                            }
-                           alt='لوگو اسدی گرافیکس'
+                           alt='لوگو اسدی گرافیک'
                            width={154}
                            height={104}
                            loading='lazy'
                         />
                      </Link>
-                     <span className='Doran text-3xl'>اسدی گرافیکس</span>
                   </div>
 
                   <div className='flex justify-around mb-5 items-center'>
@@ -137,7 +136,7 @@ const Footer = () => {
                         فرآیند همکاری با من به این صورت است که ابتدا نمونه کارهای موجود در وبسایت را
                         بررسی می‌کنید. اگر از سبک و کیفیت کارهای من راضی شدید،{' '}
                         <span className='yekanBold text-base text-slate-700'>
-                           با من به شکل مستقیم از طریق تلگرام
+                           با من به شکل مستقیم از طریق تلگرام و ایتا
                         </span>
                         ، نیازها و توقعات خود را مطرح می‌کنید. سپس من{' '}
                         <span className='yekanBold text-base text-slate-700'>
@@ -171,7 +170,7 @@ const Footer = () => {
             </div> */}
             <div className='col-span-5'>
                <p className='text-center text-orange-600 text-xs mb-2'>
-                  © تمامی حقوق این وب سایت برای اسدی گرافیکس محفوظ است
+                  © تمامی حقوق این وب سایت برای اسدی گرافیک محفوظ است
                </p>
                <a href='https://t.me/Tabrizian_dev' target='_blank' rel='noreferrer'>
                   <p className='text-center text-purple-400 text-xs'>

@@ -5,7 +5,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import LogoutButton from './components/logoutButton'
 
 export const metadata = {
-   title: 'اسدی گرافیکس | پنل ادمین',
+   title: 'اسدی گرافیک | پنل ادمین',
 }
 
 export const revalidate = 0

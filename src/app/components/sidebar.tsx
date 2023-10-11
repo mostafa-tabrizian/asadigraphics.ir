@@ -75,7 +75,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                               src={
                                  'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
                               }
-                              alt='لوگو اسدی گرافیکس'
+                              alt='لوگو اسدی گرافیک'
                               width={77}
                               height={100}
                               quality={100}

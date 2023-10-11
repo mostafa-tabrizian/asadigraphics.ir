@@ -63,14 +63,14 @@ const FAQ = () => {
          </div>
 
          <div className='mx-5 space-y-2'>
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ1)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q1 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -85,27 +85,27 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      چطور میتوانم سفارش خود را ثبت کنم؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q1}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      بعد از مشاهده نمونه‌های طرح، لطفاً دکمه &quot;ثبت سفارش&quot; را در پایین سمت
                      چپ صفحه فشار داده و درخواست خود را ثبت نمایید
                   </p>
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ2)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q2 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -120,13 +120,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      چطور مطمئن باشم که میتونید طرحی رو طراحی کنید <br /> که مطابق سلیقه من باشد؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q2}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      می‌توانید به اطمینان از تطابق طرح با سلیقه خود برسید. تیم ما در طراحی طرح‌های
                      متنوع برای افراد با سلایق مختلف تجربه زیادی دارد. ما سال‌های زیادی را در ارتقاء
                      سلایق و نیازهای مختلف افراد و کسب رضایت آن‌ها گذرانده‌ایم. برای اطمینان بیشتر،
@@ -141,14 +141,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ3)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q3 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -163,13 +163,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      آیا فایل لایه باز طرح رو دریافت می‌کنم؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q3}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      خیر، مطابق با یکی از قوانین جهانی طراحی گرافیک، فایل لایه باز طراحی به مشتری
                      ارائه نمی‌شود. این اقدام به منظور حفظ مسئولیت و جلوگیری از سوء استفاده احتمالی
                      از طرح توسط شخصیت‌های غیرمجاز انجام می‌شود. پس از اتمام هر طراحی و دریافت تأیید
@@ -182,14 +182,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ8)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q8 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -204,13 +204,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      به فایل لایه باز طراحیم نیاز دارم آیا امکانش هست داشته باشمش؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q8}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      به طور کلی ارسال فایل لایه باز مقدور نیست. اگر قصد دارید به عنوان آرشیو فایلتون
                      رو نگهداری کنید فایل لایه بسته با کیفیت مناسب براتون ارسال میشه اما اگر واقعا
                      نیاز به فایل لایه باز طرح دارید میتونید با پرداخت مبلغ ۵۰٪ مازاد بر رقم اصلی
@@ -219,14 +219,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ4)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q4 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -241,13 +241,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      چطور میتونم هزینه سفارشاتم رو پرداخت کنم؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q4}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      شما می‌توانید هزینه سفارشات خود را به یکی از روش‌های زیر پرداخت کنید
                      <br />
                      <br />
@@ -278,14 +278,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ5)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q5 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -300,7 +300,7 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      ،بعد از پایان طراحی و چاپ <br /> متوجه شدم شماره تلفن آدرس یا متن طرحم غلط
                      املایی دارد <br />
                      مسئولیتش با کیست؟
@@ -308,7 +308,7 @@ const FAQ = () => {
                </button>
 
                <Collapse unmountOnExit in={q5}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      تمامی طرح‌ها پس از اتمام مرحله طراحی به منظور بررسی جزییات دقیق به اختیار مشتری
                      قرار می‌گیرند. مشتری موظف است در این مرحله تمام جزئیات را با دقت بررسی کند، از
                      جمله متن‌ها، شماره‌ها، تلفن‌ها، سریال‌ها و سایر جزئیات. در صورتی که نیاز به
@@ -328,14 +328,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ6)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q6 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -350,11 +350,11 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>روز کاری یعنی چه؟</span>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>روز کاری یعنی چه؟</span>
                </button>
 
                <Collapse unmountOnExit in={q6}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      با توجه به تعاریف عمومی، روزهای کاری به معنای روزهایی هستند که در تقویم رسمی
                      کشور به جز روزهای تعطیل (مثل جمعه‌ها و روزهای تعطیلات رسمی مانند نوروز) به کار
                      می‌روند. شمارش روزهای کاری برای سفارش شما از روز ثبت سفارش و پرداخت شما شروع
@@ -367,14 +367,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ7)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q7 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -389,13 +389,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      فایلهای طراحی شده رو چطور به دستم میرسونید؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q7}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      فایل‌های طراحی شده به شما از طریق تلگرام، واتساپ یا ایتا ارسال می‌شوند <br />
                      <br /> این روش‌های ارتباطی معمولاً برای ارسال فایل‌های کوچک و مستندات مناسب
                      هستند. به همین دلیل، پس از اتمام طراحی و آماده‌سازی فایل‌ها، تیم ما آن‌ها را به
@@ -409,14 +409,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ9)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q9 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -431,13 +431,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      فرمت نهایی سفارش طرح گرافیکی که در اختیار من قرار میگیره چیه؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q9}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      فایل نهایی سفارش شما پس از تایید شما به صورت فرمت TIFF یا JPEG خواهد بود و حاوی
                      حداکثر کیفیت ممکن برای چاپ می‌باشد. <br />
                      <br /> این فرمت‌ها مناسب ترین فرمت‌ها برای چاپ حرفه‌ای هستند. در مورد ارسال
@@ -451,14 +451,14 @@ const FAQ = () => {
                </Collapse>
             </div>
 
-            <div className='border-r-2 border-orange-300 px-2'>
+            <div className='border-r-2 border-orange-300'>
                <button
-                  className='flex justify-between w-full items-center pr-5'
+                  className='flex justify-between w-full items-center'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ10)}
                >
                   <svg
-                     className={`h-4 w-4 transition-transform text-orange-400 ${
+                     className={`h-4 w-4 transition-transform text-orange-400 absolute ${
                         q10 ? 'rotate-45' : 'rotate-0'
                      }`}
                      fill='none'
@@ -473,13 +473,13 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right'>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
                      برآورد قیمت طراحی برای طرح ها چگونه انجام میشه؟
                   </span>
                </button>
 
                <Collapse unmountOnExit in={q10}>
-                  <p className='yekanBold text-base text-right m-5'>
+                  <p className='yekan text-slate-700 text-base text-right mx-5'>
                      برآورد قیمت طراحی آیتم‌ها و پروژه‌های گرافیکی عموماً بر اساس عوامل زیر انجام
                      می‌شود: <br />
                      <br /> 1.میزان پیچیدگی طراحی: <br /> پیچیدگی طراحی، از جمله تعداد المان‌ها،

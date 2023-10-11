@@ -9,13 +9,13 @@ import Script from 'next/script'
 import Categories from './components/categories'
 import SampleDesigns from './components/sampleDesigns'
 import FAQ from './components/faq'
-import About from './components/about'
+// import About from './components/about'
 import SocialMedia from './components/socialMedia'
 
 export const metadata = {
-   title: 'اسدی گرافیکس | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',
+   title: 'اسدی گرافیک | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',
    description:
-      'ما در اسدی گرافیکس با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+      'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
    alternates: {
       canonical: 'https://asadigraphics.ir',
    },
@@ -42,7 +42,7 @@ const jsonLd = {
    '@context': 'https://schema.org',
    '@type': 'WebSite',
    id: 'https://asadigraphics.ir/#webSite',
-   name: 'اسدی گرافیکس',
+   name: 'اسدی گرافیک',
    url: 'https://asadigraphics.ir',
 }
 
@@ -50,9 +50,9 @@ const corporationJsonLd = {
    '@context': 'https://schema.org',
    '@type': 'Corporation',
    id: 'https://asadigraphics.ir/#corporation',
-   name: 'اسدی گرافیکس',
-   alternateName: ['اسدی گرافیکس'],
-   legalName: 'اسدی گرافیکس',
+   name: 'اسدی گرافیک',
+   alternateName: ['اسدی گرافیک'],
+   legalName: 'اسدی گرافیک',
    url: 'https://asadigraphics.ir',
    logo: 'https://asadigraphics.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
    email: '',
@@ -135,7 +135,7 @@ async function Home() {
 
             <FAQ />
 
-            <About />
+            {/* <About /> */}
 
             <SocialMedia />
          </div>

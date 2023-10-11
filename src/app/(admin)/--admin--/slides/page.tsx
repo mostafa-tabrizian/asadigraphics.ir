@@ -12,7 +12,7 @@ import ActiveStatus from './components/activeStatus'
 export const revalidate = 0
 
 export const metadata = {
-   title: 'اسدی گرافیکس | پنل ادمین | اسلاید ها',
+   title: 'اسدی گرافیک | پنل ادمین | اسلاید ها',
 }
 
 const getSlides = async () => {

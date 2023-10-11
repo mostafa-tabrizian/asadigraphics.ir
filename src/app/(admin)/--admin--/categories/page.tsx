@@ -13,7 +13,7 @@ import dbConnect from '@/lib/dbConnect'
 import hyphen from '@/lib/hyphen'
 
 export const metadata = {
-   title: '‌اسدی گرافیکس | پنل ادمین | دسته بندی ها',
+   title: '‌اسدی گرافیک | پنل ادمین | دسته بندی ها',
 }
 
 export const revalidate = 0
