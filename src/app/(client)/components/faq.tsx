@@ -350,7 +350,9 @@ const FAQ = () => {
                      />
                   </svg>
 
-                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>روز کاری یعنی چه؟</span>
+                  <span className='yekanBold text-base text-right mr-5 ml-8 flex justify-end w-full'>
+                     روز کاری یعنی چه؟
+                  </span>
                </button>
 
                <Collapse unmountOnExit in={q6}>

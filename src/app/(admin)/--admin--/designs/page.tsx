@@ -34,7 +34,7 @@ const getDesigns = async () => {
 }
 
 const AdminDesigns = async () => {
-   const designs = (await getDesigns())
+   const designs = await getDesigns()
 
    return (
       <div className='md:mx-auto mx-6 max-w-screen-lg space-y-10 my-16 relative'>

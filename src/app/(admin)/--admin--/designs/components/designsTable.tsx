@@ -7,7 +7,6 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { IDesign } from '@/models/design'
 
 const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
-
    const columns: GridColDef[] = [
       {
          field: 'id',

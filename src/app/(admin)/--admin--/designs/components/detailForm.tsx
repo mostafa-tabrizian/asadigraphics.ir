@@ -112,9 +112,7 @@ const DetailForm = memo(
                      {addingNewDesign ? (
                         ''
                      ) : (
-                        <ImageInput
-                           design={JSON.parse(JSON.stringify(design))}
-                        />
+                        <ImageInput design={JSON.parse(JSON.stringify(design))} />
                      )}
                   </div>
                   <div className='space-y-5 col-span-2'>

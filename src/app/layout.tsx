@@ -29,7 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
          <body>
             <Analytics />
             <SessionProvider>
-
                <main className='overflow-x-hidden mx-auto'>{children}</main>
             </SessionProvider>
          </body>

@@ -34,7 +34,7 @@ export async function POST(req: Request) {
             _id: _id,
          },
          {
-            backSrc: key
+            backSrc: key,
          },
       ).exec()
    } else if (type == 'gallery') {
