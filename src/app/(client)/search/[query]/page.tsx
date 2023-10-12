@@ -8,8 +8,7 @@ import dehyphen from '@/lib/dehyphen'
 
 import SearchTitle from './components/title'
 
-// import GTMViewItemList from './GTM/GTMViewItemList'
-// import GTMSearch from './GTM/GTMSearch'
+import GTMSearch from './GTM/GTMSearch'
 import limiter from '@/lib/limiter'
 import Gallery from '@/app/components/gallery'
 import Script from 'next/script'
@@ -143,20 +142,12 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                   type='application/ld+json'
                   dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkJsonLd) }}
                />
-               {/* <GTMViewItemList
-                  params={JSON.parse(
-                     JSON.stringify({
-                        query,
-                        designList: uniqueMergedDesigns,
-                     }),
-                  )}
-               /> */}
             </>
          ) : (
             ''
          )}
 
-         {/* <GTMSearch query={query} /> */}
+         <GTMSearch query={query} />
 
          <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
             <SearchTitle />

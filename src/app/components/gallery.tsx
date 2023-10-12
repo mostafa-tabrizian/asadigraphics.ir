@@ -20,7 +20,18 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                if (containerWidth < 600) return 2
                return 3
             }}
-            onClick={({ index }) => setLightboxImageIndex(index)}
+            onClick={({ index, photo }) => {
+               setLightboxImageIndex(index)
+               // @ts-ignore
+               window.dataLayer = window.dataLayer || []
+
+               // @ts-ignore
+               window.dataLayer.push({
+                  event: 'click_design',
+                  // eslint-disable-next-line camelcase
+                  design_name: photo.alt,
+               })
+            }}
             photos={designs.map(({ name, frontSrc, backSrc, width, height }) => {
                return {
                   src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,

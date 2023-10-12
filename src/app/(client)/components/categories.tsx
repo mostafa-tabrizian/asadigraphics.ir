@@ -9,6 +9,7 @@ const Categories = ({ categoriesData }: { categoriesData: ICategory[] }) => {
             return (
                <Link
                   key={idx}
+                  id='category'
                   aria-label='دسته بندی'
                   href={`/search/${hyphen(category.slug)}?type=category&name=${category.name}`}
                   className='grid grid-cols-6 overflow-hidden whitespace-pre border py-6 px-3 items-center rounded-xl border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 shadow-[0_6px_10px_0_#00000040]'

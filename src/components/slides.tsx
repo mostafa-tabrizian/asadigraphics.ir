@@ -15,7 +15,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    // const [currentSlide, setCurrentSlide] = useState(0)
    // const [loaded, setLoaded] = useState(false)
 
-   const [sliderRef] = useKeenSlider<HTMLDivElement>(  // instanceRef
+   const [sliderRef] = useKeenSlider<HTMLDivElement>( // instanceRef
       {
          initial: 0,
          slides: slides.length,
@@ -81,6 +81,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                         href={slide.link}
                         style={{ opacity: opacities[idx] }}
                      >
+                        <span className='hidden'>{slide.alt}</span>
                         <Image
                            className='rounded-xl'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
