@@ -17,18 +17,23 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import { IDesign } from '@/models/design'
 
 const ImageInput = ({ design }: { design: IDesign }) => {
-   const [frontDesignPreview, setFrontDesignPreview] = useState<FileList | null>(null)
-   const [backDesignPreview, setBackDesignPreview] = useState<FileList | null>(null)
+   const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
+   const [backPreview, setBackPreview] = useState<FileList | null>(null)
+   const [galleryPreview, setGalleryPreview] = useState<FileList | null>(null)
    const [imageDimention, setImageDimention] = useState([0, 0])
    const [loading, setLoading] = useState(false)
 
-   const frontDesignMemo = useMemo(() => {
-      return frontDesignPreview && Object.values(frontDesignPreview)
-   }, [frontDesignPreview])
+   const frontPrevMemo = useMemo(() => {
+      return frontPreview && Object.values(frontPreview)
+   }, [frontPreview])
 
-   const backDesignMemo = useMemo(() => {
-      return backDesignPreview && Object.values(backDesignPreview)
-   }, [backDesignPreview])
+   const backPrevMemo = useMemo(() => {
+      return backPreview && Object.values(backPreview)
+   }, [backPreview])
+
+   const galleryPrevMemo = useMemo(() => {
+      return galleryPreview && Object.values(galleryPreview)
+   }, [galleryPreview])
 
    const router = useRouter()
 
@@ -48,8 +53,9 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
          if (!res.ok) throw new Error()
 
-         if (type == 'front') setFrontDesignPreview(null)
-         else if (type == 'back') setBackDesignPreview(null)
+         if (type == 'front') setFrontPreview(null)
+         else if (type == 'back') setBackPreview(null)
+         else if (type == 'gallery') setGalleryPreview(null)
 
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
          router.refresh()
@@ -70,7 +76,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
    }
 
    const onSubmit = async () => {
-      if (!frontDesignMemo && !backDesignMemo) {
+      if (!frontPrevMemo && !backPrevMemo && !galleryPrevMemo) {
          return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
       }
       if (!design._id) {
@@ -82,15 +88,18 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
       try {
          for (const imageData of [
-            { design: frontDesignMemo, type: 'front' },
-            { design: backDesignMemo, type: 'back' },
+            { design: frontPrevMemo, type: 'front' },
+            { design: backPrevMemo, type: 'back' },
+            { design: galleryPrevMemo, type: 'gallery' },
          ]) {
             if (!imageData.design) continue
 
-            const res = await imageUploadHandler(imageData.design[0], 'designs')
+            for (const image of imageData.design) {
+               const res = await imageUploadHandler(image, 'designs')
 
-            if (res) await createDbData(imageData.type, res.key, res.imageName)
-            else throw new Error()
+               if (res) await createDbData(imageData.type, res.key, res.imageName)
+               else throw new Error()
+            }
          }
          return
       } catch (error) {
@@ -111,24 +120,26 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       const sizeCheckRes = filesSizeValidation(filesList)
       if (!sizeCheckRes) return
 
-      for (const imageFile of filesList) {
-         const reader = new FileReader()
+      if (type == 'front') {
+         setFrontPreview(files)
+         for (const imageFile of filesList) {
+            // calculate and set image dimention
+            const reader = new FileReader()
 
-         reader.onload = (e) => {
-            const img = new Image()
-            // @ts-ignore
-            img.src = e.target.result as string
+            reader.onload = (e) => {
+               const img = new Image()
+               // @ts-ignore
+               img.src = e.target.result as string
 
-            img.onload = () => {
-               if (type == 'front') setImageDimention([img.width, img.height])
+               img.onload = () => {
+                  if (type == 'front') setImageDimention([img.width, img.height])
+               }
             }
+
+            reader.readAsDataURL(imageFile)
          }
-
-         reader.readAsDataURL(imageFile)
-      }
-
-      if (type == 'front') setFrontDesignPreview(files)
-      else if (type == 'back') setBackDesignPreview(files)
+      } else if (type == 'back') setBackPreview(files)
+      else if (type == 'gallery') setGalleryPreview(files)
    }
 
    const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
@@ -138,7 +149,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       const files = event.dataTransfer.files
 
       if (!files) return toast.warning('در دریافت فایل ها خطایی رخ داد')
-      else if (files.length !== 1)
+      else if (files.length !== 1 && type !== 'gallery')
          return toast.warning(
             'تعداد تصاویر انتخاب شده بیشتر از یک عدد می‌باشد. تصویر طرح می‌بایست یک عدد باشد',
          )
@@ -148,11 +159,11 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
    return (
       <div className='text-right space-y-4'>
-         {frontDesignMemo?.length ? (
+         {frontPrevMemo?.length ? (
             <div>
                <span className='text-slate-400 yekan'>پیش نمایش تصویر جلو برای آپلود</span>
 
-               {frontDesignMemo.map((imageData: File) => {
+               {frontPrevMemo.map((imageData: File) => {
                   return (
                      <NextImage
                         key={imageData.name}
@@ -171,11 +182,11 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             ''
          )}
 
-         {backDesignMemo?.length ? (
+         {backPrevMemo?.length ? (
             <div>
                <span className='text-slate-400 yekan'>پیش نمایش تصویر پشت برای آپلود</span>
 
-               {backDesignMemo.map((imageData: File) => {
+               {backPrevMemo.map((imageData: File) => {
                   return (
                      <NextImage
                         key={imageData.name}
@@ -189,6 +200,30 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                      />
                   )
                })}
+            </div>
+         ) : (
+            ''
+         )}
+
+         {galleryPrevMemo?.length ? (
+            <div>
+               <span className='text-slate-400 yekan'>پیش نمایش تصاویر گالری برای آپلود</span>
+               <div className='space-y-3'>
+                  {galleryPrevMemo.map((imageData: File) => {
+                     return (
+                        <NextImage
+                           key={imageData.name}
+                           className='object-contain rounded-xl'
+                           src={URL.createObjectURL(imageData)}
+                           alt={imageData.name}
+                           width='250'
+                           height='250'
+                           quality={100}
+                           loading='lazy'
+                        />
+                     )
+                  })}
+               </div>
             </div>
          ) : (
             ''
@@ -231,7 +266,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                         hidden
                         accept='image/*'
                         type='file'
-                        name='frontDesignPreview'
+                        name='frontPreview'
                         onChange={(e) => onFileSelected(e?.target?.files, 'front')}
                         disabled={loading}
                      />
@@ -277,13 +312,59 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                         hidden
                         accept='image/*'
                         type='file'
-                        name='backDesignPreview'
+                        name='backPreview'
                         onChange={(e) => onFileSelected(e?.target?.files, 'back')}
                         disabled={loading}
                      />
                   </Button>
                </div>
             )}
+
+            <div>
+               <span className='text-slate-400 yekan'>گالری طرح</span>
+               {design.gallery.map((image: string, idx: number) => {
+                  return (
+                     <div key={idx} className='relative'>
+                        <Link
+                           target='_blank'
+                           href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${image}`}
+                        >
+                           <div className='flex justify-center mx-auto'>
+                              <NextImage
+                                 className='rounded-lg p-1'
+                                 src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${image}`}
+                                 alt={design._id}
+                                 width={design.width}
+                                 height={design.height}
+                                 loading='lazy'
+                              />
+                           </div>
+                        </Link>
+
+                        <ImageDelete type='gallery' design={design._id} image={image} />
+                     </div>
+                  )
+               })}
+            </div>
+
+            <div
+               onDrop={(e) => dropHandlerDesign(e, 'gallery')}
+               onDragOver={dragOverHandler}
+               className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+            >
+               <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                  <span className='yekan text-sm'>انتخاب تصاویر</span>
+                  <input
+                     hidden
+                     accept='image/*'
+                     type='file'
+                     name='galleryPreview'
+                     multiple
+                     onChange={(e) => onFileSelected(e?.target?.files, 'gallery')}
+                     disabled={loading}
+                  />
+               </Button>
+            </div>
 
             <div className='flex justify-center items-center bg-slate-100 border-2 border-slate-200 rounded-lg'>
                {loading ? (

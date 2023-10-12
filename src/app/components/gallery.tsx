@@ -9,8 +9,17 @@ import { IDesign } from '@/models/design'
 import { useState } from 'react'
 const UseLightbox = dynamic(() => import('./useLightbox'))
 
+export interface IPhoto {
+   src: string
+   backSrc: string
+   gallery: [string]
+   width: number
+   height: number
+   alt: string
+}
+
 const Gallery = ({ designs }: { designs: IDesign[] }) => {
-   const [lightboxImageIndex, setLightboxImageIndex] = useState(-1)
+   const [designData, setDesignData] = useState<IPhoto | null>(null)
 
    return (
       <>
@@ -20,8 +29,8 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                if (containerWidth < 600) return 2
                return 3
             }}
-            onClick={({ index, photo }) => {
-               setLightboxImageIndex(index)
+            onClick={({ photo }) => {
+               setDesignData(photo)
                // @ts-ignore
                window.dataLayer = window.dataLayer || []
 
@@ -32,10 +41,11 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                   design_name: photo.alt,
                })
             }}
-            photos={designs.map(({ name, frontSrc, backSrc, width, height }) => {
+            photos={designs.map(({ name, frontSrc, backSrc, gallery, width, height }) => {
                return {
                   src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,
                   backSrc: backSrc,
+                  gallery,
                   width,
                   height,
                   alt: name,
@@ -87,15 +97,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                )
             }}
          />
-         {lightboxImageIndex !== -1 ? (
-            <UseLightbox
-               designs={designs}
-               lightboxImageIndex={lightboxImageIndex}
-               setLightboxImageIndex={setLightboxImageIndex}
-            />
-         ) : (
-            ''
-         )}
+         {designData ? <UseLightbox designData={designData} setDesignData={setDesignData} /> : ''}
       </>
    )
 }

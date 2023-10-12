@@ -6,9 +6,7 @@ import Design from '@/models/design'
 export async function POST(request: Request) {
    const {
       name,
-
       category,
-
       active,
    }: {
       name: string
@@ -21,6 +19,7 @@ export async function POST(request: Request) {
       const design = await Design.create({
          name,
          category,
+         gallery: [],
          active: active,
       })
 

@@ -114,7 +114,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
       {
          field: 'name',
          headerName: 'عنوان',
-         width: 150,
+         width: 250,
          renderCell: ({ value }) => (
             <Link href={`/--admin--/designs/${(value as string).replaceAll(' ', '-')}`}>
                <span>{value}</span>

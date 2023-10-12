@@ -7,37 +7,66 @@ import Lightbox, {
    isImageSlide,
    useLightboxProps,
 } from 'yet-another-react-lightbox'
+import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 
 import Image from 'next/image'
-import { IDesign } from '@/models/design'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { IPhoto } from './gallery'
 
 const UseLightbox = ({
-   designs,
-   lightboxImageIndex,
-   setLightboxImageIndex,
+   designData,
+   setDesignData,
 }: {
-   designs: IDesign[]
-   lightboxImageIndex: number
-   setLightboxImageIndex: Dispatch<SetStateAction<number>>
+   designData: IPhoto
+   setDesignData: Dispatch<SetStateAction<IPhoto | null>>
 }) => {
+   const [lightBoxSlides, setLightboxSlides] = useState<
+      { src: string; width: number; height: number; alt: string }[]
+   >([])
+
+   const baseURL = 'https://tabrizian.storage.iran.liara.space/asadi_designs/designs/'
+   const width = designData.width
+   const height = designData.height
+   const alt = designData.alt
+
+   useEffect(() => {
+      setLightboxSlides([])
+      const newLightboxSlides = []
+      newLightboxSlides.push({
+         src: designData.src,
+         width,
+         height,
+         alt,
+      })
+      if (designData.backSrc) {
+         newLightboxSlides.push({
+            src: `${baseURL}${designData.backSrc}`,
+            width,
+            height,
+            alt,
+         })
+      }
+      designData.gallery.map((src) => {
+         newLightboxSlides.push({
+            src: `${baseURL}${src}`,
+            width,
+            height,
+            alt,
+         })
+      })
+      setLightboxSlides(newLightboxSlides)
+   }, [alt, designData, height, width])
+
    return (
       <>
-         {lightboxImageIndex !== -1 ? (
+         {designData ? (
             <Lightbox
-               slides={designs.map(({ name, frontSrc, width, height }) => {
-                  return {
-                     src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,
-                     width,
-                     height,
-                     alt: name,
-                  }
-               })}
+               slides={lightBoxSlides}
                styles={{ container: { backgroundColor: 'rgba(0, 0, 0, .93)' } }}
-               open={lightboxImageIndex >= 0}
-               index={lightboxImageIndex}
-               close={() => setLightboxImageIndex(-1)}
+               open={Boolean(designData)}
+               close={() => setDesignData(null)}
                render={{ slide: NextJsImage }}
+               plugins={[Thumbnails]}
             />
          ) : (
             ''

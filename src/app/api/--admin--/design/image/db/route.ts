@@ -37,13 +37,17 @@ export async function POST(req: Request) {
             backSrc: key
          },
       ).exec()
+   } else if (type == 'gallery') {
+      res = await Design.findOne({ _id: _id }).exec()
+      res.gallery.push(key)
+      res.save()
    }
 
    return NextResponse.json({ res })
 }
 
 export async function DELETE(req: Request) {
-   const { type, _id }: BodyType = await req.json()
+   const { type, key, _id }: BodyType = await req.json()
 
    await dbConnect()
 
@@ -67,6 +71,11 @@ export async function DELETE(req: Request) {
             backSrc: '',
          },
       ).exec()
+   } else if (type == 'gallery') {
+      res = await Design.findOne({ _id: _id }).exec()
+      const galleryAfterDelete = res.gallery.filter((item: string) => item !== key)
+      res.gallery = galleryAfterDelete
+      res.save()
    }
 
    return NextResponse.json({ res })

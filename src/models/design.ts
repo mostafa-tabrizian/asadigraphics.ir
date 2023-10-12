@@ -7,6 +7,7 @@ export interface IDesign {
    category: string
    frontSrc: string
    backSrc: string
+   gallery: [string]
    width: number
    height: number
    createdAt: Date
@@ -26,6 +27,7 @@ const DesignSchema = new mongoose.Schema({
    },
    frontSrc: String,
    backSrc: String,
+   gallery: [String],
    width: Number,
    height: Number,
 })
