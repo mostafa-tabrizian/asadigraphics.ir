@@ -21,7 +21,7 @@ export const metadata = {
    },
 }
 
-export const revalidate = 24 * 60 * 60
+export const revalidate = 1 * 30 * 24 * 60 * 60
 
 const getSlides = async () => {
    await dbConnect()

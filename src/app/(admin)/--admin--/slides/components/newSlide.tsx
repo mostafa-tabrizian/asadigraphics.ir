@@ -15,6 +15,7 @@ import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
+import { revalidatePath } from 'next/cache'
 
 const NewSlide = () => {
    const router = useRouter()
@@ -52,8 +53,9 @@ const NewSlide = () => {
          if (!res.ok) throw new Error()
 
          setSlideImageToUpload(null)
-         router.refresh()
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
+
+         return revalidatePath('/')
       } catch (err) {
          toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
          console.error(err)
@@ -70,11 +72,11 @@ const NewSlide = () => {
       },
       { resetForm }: { resetForm: () => void },
    ) => {
-      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
-
       if (!slideImageToUpload || !slideImageToUploadMemo) {
          return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
       }
+
+      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
 
       try {
          if (!slideImageToUploadMemo[0]) return
@@ -85,7 +87,12 @@ const NewSlide = () => {
 
          if (res) {
             await createDbData(values, res.key, res.imageName)
-            return resetForm()
+
+            revalidatePath('/')
+            
+            resetForm()
+
+            return router.refresh()
          } else throw new Error()
       } catch (error) {
          toast.error(

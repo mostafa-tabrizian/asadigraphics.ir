@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Formik, Form } from 'formik'
 import CircularProgress from '@mui/material/CircularProgress'
 import { NameSlugValidation } from '@/formik/schema/validation'
+import { revalidatePath } from 'next/cache'
 
 const CategoryNewInput = () => {
    const router = useRouter()
@@ -37,7 +38,11 @@ const CategoryNewInput = () => {
          }
 
          toast.success('دسته بندی با موفقیت ثبت گردید')
+
+         revalidatePath('/')
+         
          resetForm()
+
          return router.refresh()
       } catch (err) {
          toast.warning('در ثبت دسته بندی خطایی رخ داد')

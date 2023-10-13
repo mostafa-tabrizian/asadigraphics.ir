@@ -16,6 +16,7 @@ import Autocomplete from '@mui/material/Autocomplete'
 import ImageInput from './imageInput'
 import { DesignEditForm } from '@/formik/schema/validation'
 import hyphen from '@/lib/hyphen'
+import { revalidatePath } from 'next/cache'
 
 const DetailForm = memo(
    ({
@@ -53,6 +54,9 @@ const DetailForm = memo(
 
             toast.success('اطلاعات طرح با موفقیت ثبت گردید.')
 
+            revalidatePath('/')
+            revalidatePath('/search/[query]')
+
             if (addingNewDesign) {
                router.push(`/--admin--/designs/${hyphen(values.name)}`)
             }
@@ -88,6 +92,10 @@ const DetailForm = memo(
             }
 
             toast.success('طرح با موفقیت حذف گردید.')
+
+            revalidatePath('/')
+            revalidatePath('/search/[query]')
+            
             router.push('/--admin--/designs')
          } catch (err) {
             toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')

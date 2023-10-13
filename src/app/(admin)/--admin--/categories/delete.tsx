@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import CircularProgress from '@mui/material/CircularProgress'
+import { revalidatePath } from 'next/cache'
 
 const DeleteButton = ({
    params: { _id, ableToDelete },
@@ -28,6 +29,9 @@ const DeleteButton = ({
          if (!res.ok) throw new Error()
 
          toast.success('دسته بندی با موفقیت حذف گردید')
+
+         revalidatePath('/')
+         
          router.refresh()
       } catch (err) {
          toast.error('در ثبت تغییرات خطایی رخ داد. لطفا مجدد تلاش کنید.')

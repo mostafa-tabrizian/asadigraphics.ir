@@ -2,15 +2,19 @@
 
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/navigation'
 
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
+import { revalidatePath } from 'next/cache'
 
 const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: string } }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
+
+   const router = useRouter()
 
    const handleDelete = async () => {
       setConfirmation(false)
@@ -51,6 +55,10 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
          if (!res.ok) throw new Error()
 
          toast.success('اسلاید با موفقیت حذف شد.')
+
+         revalidatePath('/')
+         
+         return router.refresh()
       } catch (err) {
          toast.error('در حذف اسلاید خطایی رخ داد!')
          console.error(err)

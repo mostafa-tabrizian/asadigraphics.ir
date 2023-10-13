@@ -15,6 +15,7 @@ import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import { IDesign } from '@/models/design'
+import { revalidatePath } from 'next/cache'
 
 const ImageInput = ({ design }: { design: IDesign }) => {
    const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
@@ -58,6 +59,10 @@ const ImageInput = ({ design }: { design: IDesign }) => {
          else if (type == 'gallery') setGalleryPreview(null)
 
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
+
+         revalidatePath('/')
+         revalidatePath('/search/[query]')
+         
          router.refresh()
       } catch (err) {
          toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
