@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import CircularProgress from '@mui/material/CircularProgress'
-import { revalidatePath } from 'next/cache'
+
 
 const DeleteButton = ({
    params: { _id, ableToDelete },
@@ -30,7 +30,7 @@ const DeleteButton = ({
 
          toast.success('دسته بندی با موفقیت حذف گردید')
 
-         revalidatePath('/')
+         fetch('/api/--admin--/revalidate?path=/')
 
          router.refresh()
       } catch (err) {

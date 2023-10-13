@@ -15,7 +15,6 @@ import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
-import { revalidatePath } from 'next/cache'
 
 const NewSlide = () => {
    const router = useRouter()
@@ -54,8 +53,6 @@ const NewSlide = () => {
 
          setSlideImageToUpload(null)
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
-
-         return revalidatePath('/')
       } catch (err) {
          toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
          console.error(err)
@@ -88,11 +85,11 @@ const NewSlide = () => {
          if (res) {
             await createDbData(values, res.key, res.imageName)
 
-            revalidatePath('/')
-
             resetForm()
 
-            return router.refresh()
+            router.refresh()
+
+            return fetch('/api/--admin--/revalidate?path=/')
          } else throw new Error()
       } catch (error) {
          toast.error(

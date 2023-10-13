@@ -8,7 +8,7 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
-import { revalidatePath } from 'next/cache'
+
 
 const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: string } }) => {
    const [loading, setLoading] = useState(false)
@@ -56,7 +56,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
 
          toast.success('اسلاید با موفقیت حذف شد.')
 
-         revalidatePath('/')
+         fetch('/api/--admin--/revalidate?path=/')
 
          return router.refresh()
       } catch (err) {

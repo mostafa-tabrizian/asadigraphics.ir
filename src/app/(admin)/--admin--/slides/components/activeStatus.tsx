@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 
 import CircularProgress from '@mui/material/CircularProgress'
-import { revalidatePath } from 'next/cache'
+
 
 const ActiveStatus = ({
    params: { _id, active },
@@ -35,7 +35,7 @@ const ActiveStatus = ({
 
          setStatus((prev) => !prev)
 
-         revalidatePath('/')
+         fetch('/api/--admin--/revalidate?path=/')
 
          return toast.success('وضعیت اسلاید با موفقیت تغییر یافت.')
       } catch (err) {

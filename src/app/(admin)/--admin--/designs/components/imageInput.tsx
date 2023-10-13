@@ -15,7 +15,7 @@ import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import { IDesign } from '@/models/design'
-import { revalidatePath } from 'next/cache'
+
 
 const ImageInput = ({ design }: { design: IDesign }) => {
    const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
@@ -60,8 +60,8 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
          toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
 
-         revalidatePath('/')
-         revalidatePath('/search/[query]')
+         fetch('/api/--admin--/revalidate?path=/')
+         fetch('/api/--admin--/revalidate?path=/search/[query]')
 
          router.refresh()
       } catch (err) {

@@ -3,7 +3,7 @@
 import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { NameSlugValidation } from '@/formik/schema/validation'
-import { revalidatePath } from 'next/cache'
+
 
 const NameAndSlug = ({
    params,
@@ -37,7 +37,7 @@ const NameAndSlug = ({
             return toast.error('خطا در برقراری ارتباط')
          }
 
-         revalidatePath('/')
+         fetch('/api/--admin--/revalidate?path=/')
 
          return toast.success('نام دسته بندی با موفقیت تغییر یافت')
       } catch (err) {

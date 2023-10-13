@@ -8,7 +8,7 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
-import { revalidatePath } from 'next/cache'
+
 
 const ImageDelete = ({ type, image, design }: { type: string; image: string; design: string }) => {
    const [loading, setLoading] = useState(false)
@@ -62,8 +62,8 @@ const ImageDelete = ({ type, image, design }: { type: string; image: string; des
 
          toast.success('تصویر با موفقیت حذف شد.')
 
-         revalidatePath('/')
-         revalidatePath('/search/[query]')
+         fetch('/api/--admin--/revalidate?path=/')
+         fetch('/api/--admin--/revalidate?path=/search/[query]')
 
          router.refresh()
       } catch (err) {
