@@ -31,7 +31,7 @@ const DeleteButton = ({
          toast.success('دسته بندی با موفقیت حذف گردید')
 
          revalidatePath('/')
-         
+
          router.refresh()
       } catch (err) {
          toast.error('در ثبت تغییرات خطایی رخ داد. لطفا مجدد تلاش کنید.')

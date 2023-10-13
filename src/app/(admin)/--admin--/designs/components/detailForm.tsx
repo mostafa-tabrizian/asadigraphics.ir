@@ -95,7 +95,7 @@ const DetailForm = memo(
 
             revalidatePath('/')
             revalidatePath('/search/[query]')
-            
+
             router.push('/--admin--/designs')
          } catch (err) {
             toast.error('خطا در برقراری ارتباط. لطفا مجدد تلاش کنید.')

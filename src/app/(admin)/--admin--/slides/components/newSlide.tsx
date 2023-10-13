@@ -89,7 +89,7 @@ const NewSlide = () => {
             await createDbData(values, res.key, res.imageName)
 
             revalidatePath('/')
-            
+
             resetForm()
 
             return router.refresh()

@@ -57,7 +57,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
          toast.success('اسلاید با موفقیت حذف شد.')
 
          revalidatePath('/')
-         
+
          return router.refresh()
       } catch (err) {
          toast.error('در حذف اسلاید خطایی رخ داد!')

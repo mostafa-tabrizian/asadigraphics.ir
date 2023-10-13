@@ -36,7 +36,7 @@ const ActiveStatus = ({
          setStatus((prev) => !prev)
 
          revalidatePath('/')
-         
+
          return toast.success('وضعیت اسلاید با موفقیت تغییر یافت.')
       } catch (err) {
          toast.error('در تغییر وضعیت اسلاید خطایی رخ داد!')

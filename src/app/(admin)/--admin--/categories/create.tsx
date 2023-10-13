@@ -40,7 +40,7 @@ const CategoryNewInput = () => {
          toast.success('دسته بندی با موفقیت ثبت گردید')
 
          revalidatePath('/')
-         
+
          resetForm()
 
          return router.refresh()

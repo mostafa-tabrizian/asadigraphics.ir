@@ -62,7 +62,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
          revalidatePath('/')
          revalidatePath('/search/[query]')
-         
+
          router.refresh()
       } catch (err) {
          toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)

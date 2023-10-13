@@ -64,7 +64,7 @@ const ImageDelete = ({ type, image, design }: { type: string; image: string; des
 
          revalidatePath('/')
          revalidatePath('/search/[query]')
-         
+
          router.refresh()
       } catch (err) {
          toast.error('در حذف تصویر خطایی رخ داد!')
