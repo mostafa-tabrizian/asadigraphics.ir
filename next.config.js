@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
    async headers() {
       return [
@@ -23,16 +24,16 @@ const nextConfig = {
    },
    images: {
       formats: ['image/avif', 'image/webp'],
-      minimumCacheTTL: 1 * 24 * 60 * 60,
+      minimumCacheTTL: 1 * 30 * 24 * 60 * 60,
       remotePatterns: [
          {
             protocol: 'https',
             hostname: 'tabrizian.storage.iran.liara.space',
             port: '',
-         }
+         },
       ],
    },
-   output: 'standalone'
+   output: 'standalone',
 }
 
 module.exports = nextConfig

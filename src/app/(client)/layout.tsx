@@ -11,7 +11,7 @@ export const metadata: Metadata = {
    title: 'اسدی گرافیک',
    description:
       'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
-   manifest: 'http://localhost:3000/site.webmanifest',
+   manifest: 'https://asadigraphics.ir/site.webmanifest',
 }
 
 const getCategories = async () => {

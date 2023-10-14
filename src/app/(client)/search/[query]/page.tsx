@@ -78,6 +78,19 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
 
    let creativeWorkJsonLd, breadcrumbJsonLd
 
+   console.log(
+      `%c
+   _______    _          _     _             
+  |__   __|  | |        (_)   (_)            
+     | | __ _| |__  _ __ _ _____  __ _ _ __  
+     | |/ _\` | '_ \\| '__| |_  / |/ _\` | '_ \\ 
+     | | (_| | |_) | |  | |/ /| | (_| | | | |
+     |_|\\__,_|_.__/|_|  |_/___|_|\\__,_|_| |_|
+     Telegram: @Tabrizian_dev
+`,
+      'color: #2495ff; font-weight: bold;',
+   )
+
    if (uniqueMergedDesigns.length) {
       creativeWorkJsonLd = {
          '@context': 'http://schema.org',
