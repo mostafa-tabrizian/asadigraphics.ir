@@ -25,8 +25,6 @@ export const generateMetadata = async ({ params }: { params: { query: string } }
    }
 }
 
-export const revalidate = 1 * 30 * 24 * 60 * 60
-
 const getDesigns = async ({ query }: { query: string }) => {
    query = dehyphen(query)
 

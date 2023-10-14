@@ -21,8 +21,6 @@ export const metadata = {
    },
 }
 
-export const revalidate = 1 * 30 * 24 * 60 * 60
-
 const getSlides = async () => {
    await dbConnect()
    return await Slide.find({ active: true }).sort({ createdAt: -1 })

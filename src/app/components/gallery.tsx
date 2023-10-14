@@ -67,7 +67,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                      {photo.backSrc ? (
                         <div>
                            <svg
-                              className='h-5 w-5 text-gray-500 absolute top-0 left-0 m-2'
+                              className='h-5 w-5 text-[#f2f2f2] absolute top-0 left-0 m-2'
                               width='24'
                               height='24'
                               viewBox='0 0 24 24'

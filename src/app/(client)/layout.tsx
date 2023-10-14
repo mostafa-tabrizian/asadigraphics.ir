@@ -1,10 +1,18 @@
-import Header from '../components/header'
+import { Metadata } from 'next'
+import { ToastContainer } from 'react-toastify'
+
 import Footer from '../components/footer'
+import Header from '../components/header'
 
 import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
 
-import { ToastContainer } from 'react-toastify'
+export const metadata: Metadata = {
+   title: 'اسدی گرافیک',
+   description:
+      'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
+   manifest: 'http://localhost:3000/site.webmanifest',
+}
 
 const getCategories = async () => {
    await dbConnect()
