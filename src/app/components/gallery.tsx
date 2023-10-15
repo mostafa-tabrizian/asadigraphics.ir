@@ -62,6 +62,8 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                            photo.backSrc ? 'hover:opacity-0 active:opacity-0' : ''
                         } transition-opacity duration-300`}
                         src={photo}
+                        width={photo.width}
+                        height={photo.height}
                         {...{ alt, title, sizes, onClick }}
                      />
                      {photo.backSrc ? (

@@ -65,7 +65,7 @@ const UseLightbox = ({
                styles={{ container: { backgroundColor: 'rgba(0, 0, 0, .93)' } }}
                open={Boolean(designData)}
                close={() => setDesignData(null)}
-               render={{ slide: NextJsImage }}
+               render={{ slide: NextJsImage, thumbnail: NextJsImage }}
                plugins={[Thumbnails]}
             />
          ) : (
