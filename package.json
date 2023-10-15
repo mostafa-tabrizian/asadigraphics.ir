@@ -13,6 +13,7 @@
    "dependencies": {
       "@mui/material": "^5.13.3",
       "@mui/x-data-grid": "^6.13.0",
+      "@sentry/nextjs": "^7.74.0",
       "aws-sdk": "^2.1427.0",
       "bcrypt": "^5.1.0",
       "bcryptjs": "^2.4.3",
