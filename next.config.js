@@ -67,7 +67,7 @@ const sentryWebpackPluginOptions = {
    // Suppresses source map uploading logs during build
    silent: true,
    org: 'tabriziancodes',
-   project: 'javascript-nextjs'
+   project: 'asadigraphics'
 }
 
 module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions)
