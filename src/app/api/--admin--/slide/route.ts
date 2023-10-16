@@ -5,16 +5,16 @@ import dbConnect from '@/lib/dbConnect'
 
 interface BodyType {
    values: { alt: string; link: string; active: boolean }
-   key: string
+   imageKey: string
 }
 
 export async function POST(req: Request) {
-   const { values, key }: BodyType = await req.json()
+   const { values, imageKey }: BodyType = await req.json()
 
    await dbConnect()
 
    const newSlide = await Slide.create({
-      src: key,
+      src: imageKey,
       alt: values.alt,
       link: values.link,
       active: values.active,

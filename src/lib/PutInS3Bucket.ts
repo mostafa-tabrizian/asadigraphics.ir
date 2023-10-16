@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify'
 
-const putInS3Bucket = async (uploadUrl: string, image: File) => {
+const putInS3Bucket = async (uploadUrl: string, imageFile: File) => {
    try {
       const res = await fetch(uploadUrl, {
          method: 'PUT',
-         body: image,
+         body: imageFile,
       })
 
       if (!res.ok) throw new Error()

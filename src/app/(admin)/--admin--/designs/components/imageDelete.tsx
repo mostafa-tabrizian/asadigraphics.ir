@@ -10,7 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Dialog from '@mui/material/Dialog'
 
 
-const ImageDelete = ({ type, image, design }: { type: string; image: string; design: string }) => {
+const ImageDelete = ({ type, imageKey, design }: { type: string; imageKey: string; design: string }) => {
    const [loading, setLoading] = useState(false)
    const [confirmation, setConfirmation] = useState(false)
 
@@ -19,7 +19,7 @@ const ImageDelete = ({ type, image, design }: { type: string; image: string; des
    const handleDelete = async () => {
       setConfirmation(false)
 
-      if (!image) {
+      if (!imageKey) {
          return toast.warning('در حذف تصویر خطایی رخ داده است!')
       }
 
@@ -30,7 +30,7 @@ const ImageDelete = ({ type, image, design }: { type: string; image: string; des
       setLoading(true)
 
       try {
-         const fileUploadResult = await deleteFromS3Bucket(image, 'designs')
+         const fileUploadResult = await deleteFromS3Bucket(imageKey, 'designs')
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
@@ -48,7 +48,7 @@ const ImageDelete = ({ type, image, design }: { type: string; image: string; des
    const removeFromDb = async () => {
       const payload = {
          type,
-         key: image,
+         imageKey,
          _id: design,
       }
 

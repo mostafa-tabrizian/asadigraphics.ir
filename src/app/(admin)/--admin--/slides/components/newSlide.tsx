@@ -25,9 +25,9 @@ const NewSlide = () => {
       return slideImageToUpload && Object.values(slideImageToUpload)
    }, [slideImageToUpload])
 
-   const deleteLeftOvers = async (key: string) => {
+   const deleteLeftOvers = async (imageKey: string) => {
       try {
-         await deleteFromS3Bucket(key, 'slides')
+         await deleteFromS3Bucket(imageKey, 'slides')
       } catch (err) {
          console.error('deleteLeftOvers', err)
       }
@@ -35,12 +35,12 @@ const NewSlide = () => {
 
    const createDbData = async (
       values: { alt: string; link: string; active: boolean },
-      key: string,
+      imageKey: string,
       imageName: string,
    ) => {
       const payload = {
          values,
-         key,
+         imageKey,
       }
 
       try {
@@ -57,7 +57,7 @@ const NewSlide = () => {
          toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
          console.error(err)
 
-         await deleteLeftOvers(key)
+         await deleteLeftOvers(imageKey)
       }
    }
 
@@ -83,14 +83,14 @@ const NewSlide = () => {
          const res = await imageUploadHandler(image, 'slides')
 
          if (res) {
-            await createDbData(values, res.key, res.imageName)
+            await createDbData(values, res.imageKey, res.imageName)
 
             resetForm()
 
             router.refresh()
 
             return fetch('/api/--admin--/revalidate?path=/')
-         } else throw new Error()
+         } else throw new Error('imageUploadHandler')
       } catch (error) {
          toast.error(
             'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',

@@ -38,10 +38,10 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
    const router = useRouter()
 
-   const createDbData = async (type: string, key: string, imageName: string) => {
+   const createDbData = async (type: string, imageKey: string, imageName: string) => {
       const payload = {
          type,
-         key,
+         imageKey,
          imageDimention,
          _id: design._id,
       }
@@ -68,13 +68,13 @@ const ImageInput = ({ design }: { design: IDesign }) => {
          toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
          console.error(err)
 
-         await deleteLeftOvers(key)
+         await deleteLeftOvers(imageKey)
       }
    }
 
-   const deleteLeftOvers = async (key: string) => {
+   const deleteLeftOvers = async (imageKey: string) => {
       try {
-         await deleteFromS3Bucket(key, 'designs')
+         await deleteFromS3Bucket(imageKey, 'designs')
       } catch (err) {
          console.error('deleteLeftOvers', err)
       }
@@ -102,8 +102,8 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             for (const image of imageData.design) {
                const res = await imageUploadHandler(image, 'designs')
 
-               if (res) await createDbData(imageData.type, res.key, res.imageName)
-               else throw new Error()
+               if (res) await createDbData(imageData.type, res.imageKey, res.imageName)
+               else throw new Error('imageUploadHandler')
             }
          }
          return
@@ -256,7 +256,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                         </div>
                      </Link>
 
-                     <ImageDelete type='front' design={design._id} image={design.frontSrc} />
+                     <ImageDelete type='front' design={design._id} imageKey={design.frontSrc} />
                   </div>
                </div>
             ) : (
@@ -302,7 +302,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                         </div>
                      </Link>
 
-                     <ImageDelete type='back' design={design._id} image={design.backSrc} />
+                     <ImageDelete type='back' design={design._id} imageKey={design.backSrc} />
                   </div>
                </div>
             ) : (
@@ -346,7 +346,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                            </div>
                         </Link>
 
-                        <ImageDelete type='gallery' design={design._id} image={image} />
+                        <ImageDelete type='gallery' design={design._id} imageKey={image} />
                      </div>
                   )
                })}

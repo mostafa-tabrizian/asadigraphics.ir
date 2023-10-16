@@ -5,13 +5,13 @@ import dbConnect from '@/lib/dbConnect'
 
 interface BodyType {
    type: string
-   key: string
+   imageKey: string
    imageDimention: [number, number]
    _id: string
 }
 
 export async function POST(req: Request) {
-   const { type, key, imageDimention, _id }: BodyType = await req.json()
+   const { type, imageKey, imageDimention, _id }: BodyType = await req.json()
 
    await dbConnect()
 
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
             _id: _id,
          },
          {
-            frontSrc: key,
+            frontSrc: imageKey,
             width: imageDimention[0],
             height: imageDimention[1],
          },
@@ -34,12 +34,12 @@ export async function POST(req: Request) {
             _id: _id,
          },
          {
-            backSrc: key,
+            backSrc: imageKey,
          },
       ).exec()
    } else if (type == 'gallery') {
       res = await Design.findOne({ _id: _id }).exec()
-      res.gallery.push(key)
+      res.gallery.push(imageKey)
       res.save()
    }
 
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 }
 
 export async function DELETE(req: Request) {
-   const { type, key, _id }: BodyType = await req.json()
+   const { type, imageKey, _id }: BodyType = await req.json()
 
    await dbConnect()
 
@@ -73,7 +73,7 @@ export async function DELETE(req: Request) {
       ).exec()
    } else if (type == 'gallery') {
       res = await Design.findOne({ _id: _id }).exec()
-      const galleryAfterDelete = res.gallery.filter((item: string) => item !== key)
+      const galleryAfterDelete = res.gallery.filter((item: string) => item !== imageKey)
       res.gallery = galleryAfterDelete
       res.save()
    }

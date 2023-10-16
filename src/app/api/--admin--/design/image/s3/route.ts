@@ -1,39 +1,46 @@
-import S3 from 'aws-sdk/clients/s3'
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client, DeleteObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3';
 import { NextResponse } from 'next/server'
 
-const s3 = new S3({
+const s3Client = new S3Client({
    region: 'me-central-1',
    endpoint: process.env.LIARA_ENDPOINT,
-   accessKeyId: process.env.LIARA_ACCESS_KEY,
-   secretAccessKey: process.env.LIARA_SECRET_KEY,
-   signatureVersion: 'v4',
+   credentials: {
+      accessKeyId: process.env.LIARA_ACCESS_KEY || '',
+      secretAccessKey: process.env.LIARA_SECRET_KEY || '',
+   },
 })
 
 export async function POST(req: Request) {
-   const { imageName, folder }: { imageName: string; folder: string } = await req.json()
+   const { imageName, folder } = await req.json();
 
    const uniqueId = Math.random().toString(36).substring(2, 7)
-   const Key = `${uniqueId}-${imageName}`
+   const imageKey = `${uniqueId}-${imageName}`
+   const Key = `/asadi_designs/${folder}/${imageKey}`
 
    const params = {
-      Bucket: `${process.env.LIARA_BUCKET_NAME}/asadi_designs/${folder}`,
-      Key: Key,
+      Bucket: process.env.LIARA_BUCKET_NAME,
+      Key,
    }
 
-   const uploadUrl = s3.getSignedUrl('putObject', params)
+   const uploadUrl = await getSignedUrl(s3Client, new PutObjectCommand(params), {
+      expiresIn: 3600
+   })
 
-   return NextResponse.json({ key: Key, uploadUrl })
+   return NextResponse.json({ imageKey, uploadUrl })
 }
 
 export async function DELETE(req: Request) {
-   const { key, folder } = await req.json()
+   const { imageKey, folder } = await req.json()
+
+   const Key = `/asadi_designs/${folder}/${imageKey}`
 
    const params = {
-      Bucket: `${process.env.LIARA_BUCKET_NAME}/asadi_designs/${folder}`,
-      Key: key,
+      Bucket: process.env.LIARA_BUCKET_NAME,
+      Key
    }
 
-   const resDelete = await s3.deleteObject(params).promise()
+   const resDelete = await s3Client.send(new DeleteObjectCommand(params))
 
    return NextResponse.json({ resDelete })
 }
