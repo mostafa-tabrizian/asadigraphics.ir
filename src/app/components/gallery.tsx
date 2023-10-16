@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import PhotoAlbum from 'react-photo-album'
 
 import { IDesign } from '@/models/design'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 const UseLightbox = dynamic(() => import('./useLightbox'))
 
 export interface IPhoto {
@@ -20,6 +20,30 @@ export interface IPhoto {
 
 const Gallery = ({ designs }: { designs: IDesign[] }) => {
    const [designData, setDesignData] = useState<IPhoto | null>(null)
+   const [designsList, setDesignsList] = useState<IPhoto[]>([])
+
+   useEffect(() => {
+      const designsListBeta: IPhoto[] = []
+
+      designs.forEach(({ name, frontSrc, backSrc, gallery, width, height }) => {
+         if (!frontSrc) return
+
+         designsListBeta.push({
+            src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,
+            backSrc: backSrc,
+            gallery,
+            width,
+            height,
+            alt: name,
+         })
+      })
+      
+      setDesignsList(designsListBeta)
+
+      return () => {
+         setDesignsList([])
+      }
+   }, [designs])
 
    return (
       <>
@@ -41,16 +65,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                   design_name: photo.alt,
                })
             }}
-            photos={designs.map(({ name, frontSrc, backSrc, gallery, width, height }) => {
-               return {
-                  src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`,
-                  backSrc: backSrc,
-                  gallery,
-                  width,
-                  height,
-                  alt: name,
-               }
-            })}
+            photos={designsList}
             renderPhoto={({ photo, imageProps: { alt, title, sizes, onClick }, wrapperStyle }) => {
                return (
                   <div
