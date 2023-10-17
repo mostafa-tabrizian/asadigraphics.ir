@@ -7,7 +7,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import Button from '@mui/material/Button'
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
 import ImageDelete from './imageDelete'
 import filesSizeValidation from '@/lib/filesSizeValidation'

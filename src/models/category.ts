@@ -4,6 +4,7 @@ export interface ICategory {
    _id: string
    slug: string
    name: string
+   cover: string
    createdAt: Date
    updatedAt: Date
 }
@@ -17,6 +18,7 @@ const CategorySchema = new mongoose.Schema({
       type: String,
       unique: true,
    },
+   cover: String
 })
 
 CategorySchema.set('timestamps', true)

@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation'
 
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 import Dialog from '@mui/material/Dialog'
 
 

@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
 
 const ActiveStatus = ({

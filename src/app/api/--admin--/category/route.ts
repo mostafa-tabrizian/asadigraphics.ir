@@ -44,6 +44,24 @@ export async function PATCH(req: Request) {
    }
 }
 
+export async function PUT(req: Request) {
+   const { _id, cover } = await req.json()
+
+   try {
+      await dbConnect()
+
+      const category = await Category.findOne({ _id }).exec()
+      category.cover = cover
+      category.save()
+
+      return NextResponse.json({
+         category,
+      })
+   } catch (error) {
+      return NextResponse.json({ status: 500, message: error })
+   }
+}
+
 export async function DELETE(req: Request) {
    try {
       const { _id } = await req.json()

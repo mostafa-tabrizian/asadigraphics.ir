@@ -8,7 +8,8 @@ import { toast } from 'react-toastify'
 
 import { SlideValidation } from '@/formik/schema/validation'
 
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 import Button from '@mui/material/Button'
 import { Switch } from '@mui/material'
 import filesSizeValidation from '@/lib/filesSizeValidation'

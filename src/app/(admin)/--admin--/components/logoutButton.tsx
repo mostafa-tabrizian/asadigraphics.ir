@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { signOut } from 'next-auth/react'
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
 const LogoutButton = () => {
    const [loading, setLoading] = useState(false)

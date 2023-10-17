@@ -11,6 +11,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 import dbConnect from '@/lib/dbConnect'
 import hyphen from '@/lib/hyphen'
+import Cover from './cover'
 
 export const metadata = {
    title: '‌اسدی گرافیک | پنل ادمین | دسته بندی ها',
@@ -61,11 +62,12 @@ const AdminCategories = async () => {
             <CategoryNewInput />
 
             <div className='rtl'>
-               <div className='bg-white grid grid-cols-6 mb-3 justify-between rounded-lg p-5 py-2 text-center items-center'>
+               <div className='bg-white grid grid-cols-7 mb-3 justify-between rounded-lg p-5 py-2 text-center items-center'>
                   <div className='grid grid-cols-2 col-span-4'>
                      <p className='flex'>نام</p>
                      <p className='flex'>اسلاگ</p>
                   </div>
+                  <p className='col-span-1'>کاور</p>
                   <p className='col-span-1'>طرح ها</p>
                </div>
 
@@ -76,9 +78,14 @@ const AdminCategories = async () => {
                         return (
                            <div
                               key={category._id}
-                              className='bg-white grid grid-cols-6 justify-between rounded-lg p-2 text-center items-center'
+                              className='bg-white grid grid-cols-7 justify-between rounded-lg p-2 text-center items-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...category }))} />
+                              <Cover
+                                 params={JSON.parse(
+                                    JSON.stringify({ _id: category._id, name: category.name, cover: category?.cover }),
+                                 )}
+                              />
                               <Link
                                  href={`/search/${hyphen(category.slug)}?type=category&name=${
                                     category.name

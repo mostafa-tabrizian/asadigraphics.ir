@@ -1,7 +1,21 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
 import dbConnect from '@/lib/dbConnect'
 import Design from '@/models/design'
+
+export async function GET(request: NextRequest) {
+   try {
+      await dbConnect()
+
+      const categoryId = request.nextUrl.searchParams.get('id')
+      const designs = await Design.find({ category: categoryId })
+
+      return NextResponse.json(designs)
+   }
+   catch (error) {
+      return NextResponse.json({ status: 500, message: error })
+   }
+}
 
 export async function POST(request: Request) {
    const {

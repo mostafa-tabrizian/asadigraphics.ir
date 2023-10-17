@@ -3,8 +3,10 @@
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import { Formik, Form } from 'formik'
-import CircularProgress from '@mui/material/CircularProgress'
 import { NameSlugValidation } from '@/formik/schema/validation'
+
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
 const CategoryNewInput = () => {
    const router = useRouter()

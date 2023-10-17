@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import hyphen from '@/lib/hyphen'
 import { toast } from 'react-toastify'
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
 const SearchInput = () => {
    const [searchQuery, setSearchQuery] = useState('')

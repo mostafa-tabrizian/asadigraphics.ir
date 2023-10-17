@@ -10,7 +10,8 @@ import { ICategory } from '@/models/category'
 
 import { Switch } from '@mui/material'
 import TextField from '@mui/material/TextField'
-import CircularProgress from '@mui/material/CircularProgress'
+import dynamic from 'next/dynamic'
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 import Autocomplete from '@mui/material/Autocomplete'
 
 import ImageInput from './imageInput'
