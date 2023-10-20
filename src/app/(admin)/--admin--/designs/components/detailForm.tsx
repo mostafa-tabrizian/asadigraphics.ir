@@ -10,7 +10,6 @@ import { toast } from 'react-toastify'
 import { IDesign } from '@/models/design'
 import { ICategory } from '@/models/category'
 
-
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 const Switch = dynamic(() => import('@mui/material/Switch'), { ssr: false })
 const TextField = dynamic(() => import('@mui/material/TextField'), { ssr: false })

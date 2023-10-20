@@ -20,7 +20,7 @@ export default async function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.8,
    }))
-   
+
    const home = {
       url: `${URL}`,
       lastModified: new Date(),
@@ -32,7 +32,7 @@ export default async function sitemap() {
       url: `${URL}/search/all?type=all&amp;name=تمامی+طرح+ها`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: .8,
+      priority: 0.8,
    }
 
    return [home, allDesigns, ...categories]

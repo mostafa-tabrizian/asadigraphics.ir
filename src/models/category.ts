@@ -18,7 +18,7 @@ const CategorySchema = new mongoose.Schema({
       type: String,
       unique: true,
    },
-   cover: String
+   cover: String,
 })
 
 CategorySchema.set('timestamps', true)

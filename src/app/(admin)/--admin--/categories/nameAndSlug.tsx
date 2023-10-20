@@ -4,7 +4,6 @@ import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { NameSlugValidation } from '@/formik/schema/validation'
 
-
 const NameAndSlug = ({
    params,
 }: {

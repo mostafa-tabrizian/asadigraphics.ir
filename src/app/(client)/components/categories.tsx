@@ -60,7 +60,7 @@ const Categories = ({ categoriesData }: { categoriesData: ICategory[] }) => {
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${category.cover}`}
                            fill
                            alt={category.name}
-                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                           sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
                         />
                         <span className='absolute top-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-black/30'></span>
                      </div>

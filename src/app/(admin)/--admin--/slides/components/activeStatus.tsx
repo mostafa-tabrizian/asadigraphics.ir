@@ -6,7 +6,6 @@ import { toast } from 'react-toastify'
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
-
 const ActiveStatus = ({
    params: { _id, active },
 }: {

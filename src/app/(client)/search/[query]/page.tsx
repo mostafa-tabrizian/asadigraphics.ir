@@ -168,7 +168,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
                            alt='no search result'
                            fill
                            loading='lazy'
-                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                           sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
                         />
                      </div>
                   </div>

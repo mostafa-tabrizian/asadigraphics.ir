@@ -170,7 +170,7 @@ const Cover = ({
                                  src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${preview}`}
                                  fill
                                  alt={name}
-                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                                 sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
                               />
                               <span className='absolute rounded-xl top-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-black/30'></span>
                            </div>

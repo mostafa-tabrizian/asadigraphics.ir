@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
-
 const DeleteButton = ({
    params: { _id, ableToDelete },
 }: {

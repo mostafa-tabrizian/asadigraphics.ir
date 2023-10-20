@@ -17,7 +17,6 @@ import imageUploadHandler from '@/lib/imageUploadHandler'
 import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import { IDesign } from '@/models/design'
 
-
 const ImageInput = ({ design }: { design: IDesign }) => {
    const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
    const [backPreview, setBackPreview] = useState<FileList | null>(null)

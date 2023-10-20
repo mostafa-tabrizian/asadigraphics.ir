@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react'
 
-const Collapse = dynamic(() => import('@mui/material/Collapse'), {ssr: false})
+const Collapse = dynamic(() => import('@mui/material/Collapse'), { ssr: false })
 
 const FAQ = () => {
    const previousCollapse = useRef(null) as unknown as

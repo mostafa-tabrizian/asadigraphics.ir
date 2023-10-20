@@ -11,8 +11,7 @@ export async function GET(request: NextRequest) {
       const designs = await Design.find({ category: categoryId })
 
       return NextResponse.json(designs)
-   }
-   catch (error) {
+   } catch (error) {
       return NextResponse.json({ status: 500, message: error })
    }
 }

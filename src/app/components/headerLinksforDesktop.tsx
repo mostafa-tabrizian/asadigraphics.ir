@@ -4,7 +4,6 @@ import { useEffect, useState, memo } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
-
 import hyphen from '@/lib/hyphen'
 import { ICategory } from '@/models/category'
 
