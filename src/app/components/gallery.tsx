@@ -7,7 +7,7 @@ import PhotoAlbum from 'react-photo-album'
 
 import { IDesign } from '@/models/design'
 import { useEffect, useState } from 'react'
-const UseLightbox = dynamic(() => import('./useLightbox'))
+const UseLightbox = dynamic(() => import('./useLightbox'), { ssr: false })
 
 export interface IPhoto {
    src: string
@@ -37,7 +37,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
             alt: name,
          })
       })
-      
+
       setDesignsList(designsListBeta)
 
       return () => {

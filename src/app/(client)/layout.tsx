@@ -1,8 +1,8 @@
 import { Metadata } from 'next'
-import { ToastContainer } from 'react-toastify'
+import dynamic from 'next/dynamic'
 
-import Footer from '../components/footer'
-import Header from '../components/header'
+const Footer = dynamic(() => import('../components/footer'))
+const Header = dynamic(() => import('../components/header'))
 
 import dbConnect from '@/lib/dbConnect'
 import Category from '@/models/category'
@@ -26,19 +26,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
    return (
       <>
-         <ToastContainer
-            position='top-center'
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme='light'
-         />
-
          <Header params={{ categories }} />
 
          <main className='mb-24 md:mt-24 max-w-screen-lg overflow-x-hidden mx-auto'>

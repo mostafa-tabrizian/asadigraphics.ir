@@ -1,16 +1,18 @@
+import dynamic from 'next/dynamic'
+import Script from 'next/script'
+
 import dbConnect from '@/lib/dbConnect'
 import limiter from '@/lib/limiter'
+
 import Slide from '@/models/slide'
 import Category from '@/models/category'
 import Design from '@/models/design'
 
-import Slides from '@/components/slides'
-import Script from 'next/script'
-import Categories from './components/categories'
-import SampleDesigns from './components/sampleDesigns'
-import FAQ from './components/faq'
-// import About from './components/about'
-import SocialMedia from './components/socialMedia'
+const Categories = dynamic(() => import('./components/categories'))
+const FAQ = dynamic(() => import('./components/faq'), { ssr: false })
+const SocialMedia = dynamic(() => import('./components/socialMedia'))
+const Slides = dynamic(() => import('@/components/slides'))
+const SampleDesigns = dynamic(() => import('./components/sampleDesigns'))
 
 export const metadata = {
    title: 'اسدی گرافیک | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',
@@ -118,6 +120,7 @@ async function Home() {
             type='application/ld+json'
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
          />
+         
          <Script
             id='corporation-jsonld'
             type='application/ld+json'
@@ -129,7 +132,7 @@ async function Home() {
 
             <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
 
-            {designs.length ? <SampleDesigns designs={designs} /> : ''}
+            {designs.length ? <SampleDesigns designs={JSON.parse(JSON.stringify(designs))} /> : ''}
 
             <FAQ />
 

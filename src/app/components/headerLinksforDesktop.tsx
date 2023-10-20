@@ -1,11 +1,14 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useState, memo } from 'react'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
 
-import Menu from '@mui/material/Menu'
+
 import hyphen from '@/lib/hyphen'
 import { ICategory } from '@/models/category'
+
+const Menu = dynamic(() => import('@mui/material/Menu'))
 
 const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
    const [categories, setCategories] = useState<null | HTMLElement>(null)

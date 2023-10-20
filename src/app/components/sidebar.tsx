@@ -1,11 +1,14 @@
 'use client'
 
-import Drawer from '@mui/material/Drawer'
-import Link from 'next/link'
 import { useState, useEffect, memo } from 'react'
-import Collapse from '@mui/material/Collapse'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
+
+const Drawer = dynamic(() => import('@mui/material/Drawer'))
+const Collapse = dynamic(() => import('@mui/material/Collapse'))
+
 import { ICategory } from '@/models/category'
 import hyphen from '@/lib/hyphen'
 

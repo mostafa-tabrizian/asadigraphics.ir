@@ -1,10 +1,12 @@
 import { memo } from 'react'
 import Link from 'next/link'
-import Sidebar from './sidebar'
-import SearchInput from '@/components/searchInput'
 import Image from 'next/image'
-import LinksForDesktop from './headerLinksforDesktop'
 import { ICategory } from '@/models/category'
+import dynamic from 'next/dynamic'
+
+const SearchInput = dynamic(() => import('@/components/searchInput'), { ssr: false })
+const Sidebar = dynamic(() => import('./sidebar'), { ssr: false })
+const LinksForDesktop = dynamic(() => import('./headerLinksforDesktop'), { ssr: false })
 
 const Header = memo(({ params: { categories } }: { params: { categories: ICategory[] } }) => {
    return (
