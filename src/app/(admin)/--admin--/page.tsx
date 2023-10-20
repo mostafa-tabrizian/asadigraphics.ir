@@ -1,7 +1,11 @@
-import User from '@/lib/user'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
+
+import User from '@/lib/user'
+
 import LogoutButton from './components/logoutButton'
+
+const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
 
 export const metadata = {
    title: 'اسدی گرافیک | پنل ادمین',

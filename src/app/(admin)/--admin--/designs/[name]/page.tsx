@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
 import dbConnect from '@/lib/dbConnect'
-import Breadcrumbs from '@mui/material/Breadcrumbs'
+import dynamic from 'next/dynamic'
+const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
 import Design from '@/models/design'
 import Category from '@/models/category'
 import DetailDesign from '../components/detailForm'

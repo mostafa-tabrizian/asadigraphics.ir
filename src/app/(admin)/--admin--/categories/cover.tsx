@@ -7,9 +7,6 @@ import { useState, useRef } from 'react'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 
-// import CircularProgress from '@mui/material/CircularProgress'
-// import Dialog from '@mui/material/Dialog'
-
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 const Dialog = dynamic(() => import('@mui/material/Dialog'), { ssr: false })
 

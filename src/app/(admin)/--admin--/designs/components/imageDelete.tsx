@@ -8,8 +8,7 @@ import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
-import Dialog from '@mui/material/Dialog'
-
+const Dialog = dynamic(() => import('@mui/material/Dialog'), { ssr: false })
 
 const ImageDelete = ({ type, imageKey, design }: { type: string; imageKey: string; design: string }) => {
    const [loading, setLoading] = useState(false)

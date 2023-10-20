@@ -1,18 +1,20 @@
 'use client'
 
 import { memo } from 'react'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/navigation'
+
 import { Formik, Form } from 'formik'
 import { toast } from 'react-toastify'
-import { useRouter } from 'next/navigation'
 
 import { IDesign } from '@/models/design'
 import { ICategory } from '@/models/category'
 
-import { Switch } from '@mui/material'
-import TextField from '@mui/material/TextField'
-import dynamic from 'next/dynamic'
+
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
-import Autocomplete from '@mui/material/Autocomplete'
+const Switch = dynamic(() => import('@mui/material/Switch'), { ssr: false })
+const TextField = dynamic(() => import('@mui/material/TextField'), { ssr: false })
+const Autocomplete = dynamic(() => import('@mui/material/Autocomplete'), { ssr: false })
 
 import ImageInput from './imageInput'
 import { DesignEditForm } from '@/formik/schema/validation'
@@ -167,8 +169,10 @@ const DetailForm = memo(
                         value={values.category as unknown as ICategory}
                         options={categories}
                         isOptionEqualToValue={(option, value) =>
+                           // @ts-ignore
                            option === value || option._id === value._id
                         }
+                        // @ts-ignore
                         getOptionLabel={(option: ICategory) => option.name}
                         onChange={(_e, value) => {
                            if (value) {

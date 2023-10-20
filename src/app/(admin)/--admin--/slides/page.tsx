@@ -4,7 +4,8 @@ import Image from 'next/image'
 import dbConnect from '@/lib/dbConnect'
 import Slide from '@/models/slide'
 
-import Breadcrumbs from '@mui/material/Breadcrumbs'
+import dynamic from 'next/dynamic'
+const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
 import NewSlide from './components/newSlide'
 import Delete from './components/delete'
 import ActiveStatus from './components/activeStatus'

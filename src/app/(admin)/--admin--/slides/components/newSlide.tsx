@@ -10,8 +10,8 @@ import { SlideValidation } from '@/formik/schema/validation'
 
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
-import Button from '@mui/material/Button'
-import { Switch } from '@mui/material'
+const Button = dynamic(() => import('@mui/material/Button'), { ssr: false })
+const Switch = dynamic(() => import('@mui/material/Switch'), { ssr: false })
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import imageUploadHandler from '@/lib/imageUploadHandler'
@@ -146,6 +146,7 @@ const NewSlide = () => {
                            }}
                            onDragOver={dragOverHandler}
                         >
+                           {/* @ts-ignore */}
                            <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
                               <span>انتخاب تصویر اسلاید</span>
                               <input

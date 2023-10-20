@@ -3,8 +3,13 @@ import Link from 'next/link'
 import dbConnect from '@/lib/dbConnect'
 import Design from '@/models/design'
 
-import Breadcrumbs from '@mui/material/Breadcrumbs'
-import DesignsTable from './components/designsTable'
+const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
+import dynamic from 'next/dynamic'
+
+const DesignsTable = dynamic(() => import('./components/designsTable'), {
+   ssr: false,
+   loading: () => <p>loading...</p>,
+})
 
 export const revalidate = 0
 

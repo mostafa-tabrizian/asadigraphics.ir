@@ -6,9 +6,9 @@ import { toast } from 'react-toastify'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-import Button from '@mui/material/Button'
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
+const Button = dynamic(() => import('@mui/material/Button'), { ssr: false })
 
 import ImageDelete from './imageDelete'
 import filesSizeValidation from '@/lib/filesSizeValidation'
@@ -266,6 +266,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   onDragOver={dragOverHandler}
                   className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
                >
+                  {/* @ts-ignore */}
                   <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
                      <span className='yekan text-sm'>انتخاب جلو طرح</span>
                      <input
@@ -312,6 +313,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   onDragOver={dragOverHandler}
                   className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
                >
+                  {/* @ts-ignore */}
                   <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
                      <span className='yekan text-sm'>انتخاب پشت طرح</span>
                      <input
@@ -358,6 +360,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                onDragOver={dragOverHandler}
                className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
             >
+               {/* @ts-ignore */}
                <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
                   <span className='yekan text-sm'>انتخاب تصاویر</span>
                   <input

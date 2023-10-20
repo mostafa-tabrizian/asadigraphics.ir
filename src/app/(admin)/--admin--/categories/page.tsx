@@ -7,7 +7,8 @@ import NameAndSlug from './nameAndSlug'
 import Category from '@/models/category'
 import Design from '@/models/design'
 
-import Breadcrumbs from '@mui/material/Breadcrumbs'
+import dynamic from 'next/dynamic'
+const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
 
 import dbConnect from '@/lib/dbConnect'
 import hyphen from '@/lib/hyphen'
@@ -83,7 +84,11 @@ const AdminCategories = async () => {
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...category }))} />
                               <Cover
                                  params={JSON.parse(
-                                    JSON.stringify({ _id: category._id, name: category.name, cover: category?.cover }),
+                                    JSON.stringify({
+                                       _id: category._id,
+                                       name: category.name,
+                                       cover: category?.cover,
+                                    }),
                                  )}
                               />
                               <Link
