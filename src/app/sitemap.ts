@@ -17,12 +17,23 @@ export default async function sitemap() {
    const categories = categoriesData.map(({ name, slug, updatedAt }) => ({
       url: `${URL}/search/${hyphen(slug)}?type=category&amp;name=${name}`,
       lastModified: updatedAt,
+      changeFrequency: 'weekly',
+      priority: 0.8,
    }))
+   
+   const home = {
+      url: `${URL}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 1,
+   }
 
-   const routes = ['', '/search/all?type=all&name=تمامی+طرح+ها'].map((route) => ({
-      url: `${URL}${route}`,
-      lastModified: new Date().toISOString(),
-   }))
+   const allDesigns = {
+      url: `${URL}/search/all?type=all&amp;name=تمامی+طرح+ها`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: .8,
+   }
 
-   return [...routes, ...categories]
+   return [home, allDesigns, ...categories]
 }
