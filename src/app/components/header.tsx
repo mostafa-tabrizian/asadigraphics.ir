@@ -10,7 +10,7 @@ const LinksForDesktop = dynamic(() => import('./headerLinksforDesktop'), { ssr: 
 
 const Header = memo(({ params: { categories } }: { params: { categories: ICategory[] } }) => {
    return (
-      <header className='bg-white py-3 px-5 md:fixed w-full z-20 rounded-b-xl border border-black/25'>
+      <header className='bg-white w-screen py-3 px-5 md:fixed z-20 rounded-b-xl border border-black/25'>
          <div className='flex md:grid md:grid-cols-8 md:max-w-screen-2xl mx-auto justify-between items-center'>
             <div className='md:col-span-2 mb-auto md:w-3/4 hidden md:block'>
                <SearchInput />

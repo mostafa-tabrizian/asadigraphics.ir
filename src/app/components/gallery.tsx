@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
-import PhotoAlbum from 'react-photo-album'
+const PhotoAlbum = dynamic(() => import('react-photo-album'), { ssr: false })
 
 import { IDesign } from '@/models/design'
 import { useEffect, useState } from 'react'
@@ -54,7 +54,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                return 3
             }}
             onClick={({ photo }) => {
-               setDesignData(photo)
+               setDesignData(photo as IPhoto)
                // @ts-ignore
                window.dataLayer = window.dataLayer || []
 
@@ -74,6 +74,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                   >
                      <Image
                         className={`rounded-xl border ${
+                           // @ts-ignore
                            photo.backSrc ? 'hover:opacity-0 active:opacity-0' : ''
                         } transition-opacity duration-300`}
                         src={photo}
@@ -81,6 +82,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                         height={photo.height}
                         {...{ alt, title, sizes, onClick }}
                      />
+                     {/* @ts-ignore */}
                      {photo.backSrc ? (
                         <div>
                            <svg
@@ -101,6 +103,7 @@ const Gallery = ({ designs }: { designs: IDesign[] }) => {
                            </svg>
                            <Image
                               className='rounded-xl absolute top-0 left-0 opacity-0 transition-opacity duration-300 hover:opacity-100 active:opacity-100'
+                              // @ts-ignore
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${photo.backSrc}`}
                               width={photo.width}
                               height={photo.height}

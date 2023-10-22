@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
 import Category, { ICategory } from '@/models/category'
 import Design, { IDesign } from '@/models/design'
@@ -10,7 +11,21 @@ import SearchTitle from './components/title'
 
 import GTMSearch from './GTM/GTMSearch'
 import limiter from '@/lib/limiter'
-import Gallery from '@/app/components/gallery'
+const Gallery = dynamic(() => import('@/app/components/gallery'), {
+   ssr: false,
+   loading: () => (
+      <div className='mx-6 md:mx-auto my-16 animate-pulse max-w-screen-lg space-y-8'>
+         <div className='grid grid-cols-2 md:col-span-3 md:grid-cols-3 gap-3'>
+            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
+            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
+            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
+            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
+            <div className='h-80 hidden md:block rounded bg-gray-200'></div>
+            <div className='h-80 hidden md:block rounded bg-gray-200'></div>
+         </div>
+      </div>
+   ),
+})
 import Script from 'next/script'
 import hyphen from '@/lib/hyphen'
 
