@@ -12,7 +12,6 @@ import { ICategory } from '@/models/category'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 const Switch = dynamic(() => import('@mui/material/Switch'), { ssr: false })
-const TextField = dynamic(() => import('@mui/material/TextField'), { ssr: false })
 const Autocomplete = dynamic(() => import('@mui/material/Autocomplete'), { ssr: false })
 
 import ImageInput from './imageInput'
@@ -133,7 +132,12 @@ const DetailForm = memo(
                            name='name'
                            onChange={(e) => setFieldValue('name', e.target.value)}
                            value={values.name}
-                           className='mr-3 rtl w-full text-sm yekan bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                           style={{
+                              border: '1px solid #cccccc',
+                              padding: '10px',
+                              width: '100%',
+                           }}
+                           className='rounded-lg rtl'
                            type='text'
                         />
                         <div className='flex items-center justify-end'>
@@ -178,7 +182,30 @@ const DetailForm = memo(
                               setFieldValue('category', value)
                            }
                         }}
-                        renderInput={(params) => <TextField {...params} label='دسته بندی' />}
+                        renderInput={(params) => {
+                           return (
+                              <div ref={params.InputProps.ref}>
+                                 <label
+                                    htmlFor='categoryList'
+                                    className='text-xs yekan1 text-slate-400'
+                                 >
+                                    دسته بندی
+                                 </label>
+                                 <input
+                                    id='categoryList'
+                                    type='text'
+                                    placeholder='عنوان دسته بندی را بنویسید...'
+                                    style={{
+                                       border: '1px solid #cccccc',
+                                       borderRadius: '10px',
+                                       padding: '10px',
+                                       width: '100%',
+                                    }}
+                                    {...params.inputProps}
+                                 />
+                              </div>
+                           )
+                        }}
                         sx={{ width: '100%' }}
                      />
 
