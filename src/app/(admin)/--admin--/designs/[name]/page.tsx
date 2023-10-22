@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
 import Design from '@/models/design'
 import Category from '@/models/category'
-import DetailDesign from '../components/detailForm'
+const DetailDesign = dynamic(() => import('../components/detailForm'), { ssr: false })
 import dehyphen from '@/lib/dehyphen'
 
 export const metadata = {

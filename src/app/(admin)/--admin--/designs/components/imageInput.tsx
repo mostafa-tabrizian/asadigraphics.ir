@@ -21,7 +21,8 @@ const ImageInput = ({ design }: { design: IDesign }) => {
    const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
    const [backPreview, setBackPreview] = useState<FileList | null>(null)
    const [galleryPreview, setGalleryPreview] = useState<FileList | null>(null)
-   const [imageDimention, setImageDimention] = useState([0, 0])
+   const [frontImageDimention, setFrontImageDimention] = useState([0, 0])
+   const [backImageDimention, setBackImageDimention] = useState([0, 0])
    const [loading, setLoading] = useState(false)
 
    const frontPrevMemo = useMemo(() => {
@@ -42,7 +43,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       const payload = {
          type,
          imageKey,
-         imageDimention,
+         imageDimention: type == 'front' ? frontImageDimention : backImageDimention,
          _id: design._id,
       }
 
@@ -53,6 +54,10 @@ const ImageInput = ({ design }: { design: IDesign }) => {
          })
 
          if (!res.ok) throw new Error()
+
+         const resData = await res.json()
+
+         if (resData.message) throw new Error(resData.message)
 
          if (type == 'front') setFrontPreview(null)
          else if (type == 'back') setBackPreview(null)
@@ -65,8 +70,16 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
          router.refresh()
       } catch (err) {
-         toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
-         console.error(err)
+         if (String(err).includes('please upload front design first')) {
+            toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')
+            return console.warn(err)
+         } else if (String(err).includes('dimention not equal to front design')) {
+            toast.warning('ابعاد تصویر جلو طرح و پشت طرح یکسان نمی‌باشد')
+            console.warn(err)
+         } else {
+            toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
+            console.error(err)
+         }
 
          await deleteLeftOvers(imageKey)
       }
@@ -114,6 +127,24 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       }
    }
 
+   const dimentionCalculate = (file: File, type: string) => {
+      const reader = new FileReader()
+
+      reader.onload = (e) => {
+         const img = new Image()
+         // @ts-ignore
+         img.src = e.target.result as string
+
+         img.onload = () => {
+            const dimention = [img.width, img.height]
+            if (type == 'front') setFrontImageDimention(dimention)
+            else if (type == 'back') setBackImageDimention(dimention)
+         }
+      }
+
+      reader.readAsDataURL(file)
+   }
+
    const onFileSelected = (files: FileList | null, type: string) => {
       if (!files) return
 
@@ -125,26 +156,13 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       const sizeCheckRes = filesSizeValidation(filesList)
       if (!sizeCheckRes) return
 
+      dimentionCalculate(filesList[0], type)
+
       if (type == 'front') {
          setFrontPreview(files)
-         for (const imageFile of filesList) {
-            // calculate and set image dimention
-            const reader = new FileReader()
-
-            reader.onload = (e) => {
-               const img = new Image()
-               // @ts-ignore
-               img.src = e.target.result as string
-
-               img.onload = () => {
-                  if (type == 'front') setImageDimention([img.width, img.height])
-               }
-            }
-
-            reader.readAsDataURL(imageFile)
-         }
-      } else if (type == 'back') setBackPreview(files)
-      else if (type == 'gallery') setGalleryPreview(files)
+      } else if (type == 'back') {
+         setBackPreview(files)
+      } else if (type == 'gallery') setGalleryPreview(files)
    }
 
    const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()

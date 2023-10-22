@@ -15,10 +15,10 @@ export async function POST(req: Request) {
 
    await dbConnect()
 
-   let res
+   let design
 
    if (type == 'front') {
-      res = await Design.findOneAndUpdate(
+      design = await Design.findOneAndUpdate(
          {
             _id: _id,
          },
@@ -29,21 +29,30 @@ export async function POST(req: Request) {
          },
       ).exec()
    } else if (type == 'back') {
-      res = await Design.findOneAndUpdate(
-         {
-            _id: _id,
-         },
-         {
-            backSrc: imageKey,
-         },
-      ).exec()
+      design = await Design.findOne({ _id: _id }).exec()
+
+      if (!design.frontSrc.length) {
+         return NextResponse.json({ message: 'please upload front design first' })
+      }
+
+      if (
+         Math.round((design.width / design.height) * 10) / 10
+         !==
+         Math.round((imageDimention[0] / imageDimention[1]) * 10) / 10
+      ) {
+         return NextResponse.json({ message: 'dimention not equal to front design' })
+      }
+
+      design.backSrc = imageKey
+      design.save()
+
    } else if (type == 'gallery') {
-      res = await Design.findOne({ _id: _id }).exec()
-      res.gallery.push(imageKey)
-      res.save()
+      design = await Design.findOne({ _id: _id }).exec()
+      design.gallery.push(imageKey)
+      design.save()
    }
 
-   return NextResponse.json({ res })
+   return NextResponse.json({ design })
 }
 
 export async function DELETE(req: Request) {

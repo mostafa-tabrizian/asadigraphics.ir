@@ -40,7 +40,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                   >
                      {value ? (
                         <Image
-                           className='rounded-md object-cover'
+                           className='rounded-md object-cover w-auto max-w-full h-auto'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${value}`}
                            alt={String(value)}
                            height={50}
@@ -65,7 +65,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                   >
                      {value ? (
                         <Image
-                           className='rounded-md object-cover'
+                           className='rounded-md object-cover w-auto max-w-full h-auto'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${value}`}
                            alt={String(value)}
                            height={50}
@@ -194,22 +194,19 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                ))}
             </thead>
             <tbody className=''>
-               {table
-                  .getRowModel()
-                  .rows
-                  .map((row) => {
-                     return (
-                        <tr key={row.id} className='bg-white border-b border-slate-300'>
-                           {row.getVisibleCells().map((cell) => {
-                              return (
-                                 <td key={cell.id} className='px-6 py-4'>
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                 </td>
-                              )
-                           })}
-                        </tr>
-                     )
-                  })}
+               {table.getRowModel().rows.map((row) => {
+                  return (
+                     <tr key={row.id} className='bg-white border-b border-slate-300'>
+                        {row.getVisibleCells().map((cell) => {
+                           return (
+                              <td key={cell.id} className='px-6 py-4'>
+                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                              </td>
+                           )
+                        })}
+                     </tr>
+                  )
+               })}
             </tbody>
          </table>
 

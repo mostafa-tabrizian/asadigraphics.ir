@@ -8,7 +8,16 @@ import dynamic from 'next/dynamic'
 
 const DesignsTable = dynamic(() => import('./components/designsTable'), {
    ssr: false,
-   loading: () => <p>loading...</p>,
+   loading: () => (
+      <div className='mx-auto my-16 animate-pulse max-w-screen-lg space-y-2'>
+         <div className='h-32 rounded bg-slate-50'></div>
+         <div className='h-32 rounded bg-slate-50'></div>
+         <div className='h-32 rounded bg-slate-50'></div>
+         <div className='h-32 rounded bg-slate-50'></div>
+         <div className='h-32 rounded bg-slate-50'></div>
+         <div className='h-32 rounded bg-slate-50'></div>
+      </div>
+   ),
 })
 
 export const revalidate = 0
