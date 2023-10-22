@@ -164,76 +164,6 @@ const ImageInput = ({ design }: { design: IDesign }) => {
 
    return (
       <div className='text-right space-y-4'>
-         {frontPrevMemo?.length ? (
-            <div>
-               <span className='text-slate-400 yekan'>پیش نمایش تصویر جلو برای آپلود</span>
-
-               {frontPrevMemo.map((imageData: File) => {
-                  return (
-                     <NextImage
-                        key={imageData.name}
-                        className='object-contain rounded-xl'
-                        src={URL.createObjectURL(imageData)}
-                        alt={imageData.name}
-                        width='250'
-                        height='250'
-                        quality={100}
-                        loading='lazy'
-                     />
-                  )
-               })}
-            </div>
-         ) : (
-            ''
-         )}
-
-         {backPrevMemo?.length ? (
-            <div>
-               <span className='text-slate-400 yekan'>پیش نمایش تصویر پشت برای آپلود</span>
-
-               {backPrevMemo.map((imageData: File) => {
-                  return (
-                     <NextImage
-                        key={imageData.name}
-                        className='object-contain rounded-xl'
-                        src={URL.createObjectURL(imageData)}
-                        alt={imageData.name}
-                        width='250'
-                        height='250'
-                        quality={100}
-                        loading='lazy'
-                     />
-                  )
-               })}
-            </div>
-         ) : (
-            ''
-         )}
-
-         {galleryPrevMemo?.length ? (
-            <div>
-               <span className='text-slate-400 yekan'>پیش نمایش تصاویر گالری برای آپلود</span>
-               <div className='space-y-3'>
-                  {galleryPrevMemo.map((imageData: File) => {
-                     return (
-                        <NextImage
-                           key={imageData.name}
-                           className='object-contain rounded-xl'
-                           src={URL.createObjectURL(imageData)}
-                           alt={imageData.name}
-                           width='250'
-                           height='250'
-                           quality={100}
-                           loading='lazy'
-                        />
-                     )
-                  })}
-               </div>
-            </div>
-         ) : (
-            ''
-         )}
-
          <div className='space-y-6'>
             {design.frontSrc ? (
                <div>
@@ -260,26 +190,53 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   </div>
                </div>
             ) : (
-               <div
-                  onDrop={(e) => dropHandlerDesign(e, 'front')}
-                  onDragOver={dragOverHandler}
-                  className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-               >
-                  {/* @ts-ignore */}
-                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                     <span className='yekan text-sm'>انتخاب جلو طرح</span>
-                     <input
-                        hidden
-                        accept='image/*'
-                        type='file'
-                        name='frontPreview'
-                        onChange={(e) => onFileSelected(e?.target?.files, 'front')}
-                        disabled={loading}
-                     />
-                  </Button>
-               </div>
+               <>
+                  {frontPrevMemo?.length ? (
+                     <div>
+                        <span className='text-slate-400 yekan'>پیش نمایش تصویر جلو برای آپلود</span>
+
+                        {frontPrevMemo.map((imageData: File) => {
+                           return (
+                              <NextImage
+                                 key={imageData.name}
+                                 className='object-contain rounded-xl'
+                                 src={URL.createObjectURL(imageData)}
+                                 alt={imageData.name}
+                                 width='250'
+                                 height='250'
+                                 quality={100}
+                                 loading='lazy'
+                              />
+                           )
+                        })}
+                     </div>
+                  ) : (
+                     ''
+                  )}
+
+                  <div
+                     onDrop={(e) => dropHandlerDesign(e, 'front')}
+                     onDragOver={dragOverHandler}
+                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+                  >
+                     {/* @ts-ignore */}
+                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                        <span className='yekan text-sm'>انتخاب جلو طرح</span>
+                        <input
+                           hidden
+                           accept='image/*'
+                           type='file'
+                           name='frontPreview'
+                           onChange={(e) => onFileSelected(e?.target?.files, 'front')}
+                           disabled={loading}
+                        />
+                     </Button>
+                  </div>
+               </>
             )}
          </div>
+
+         <hr />
 
          <div className='space-y-3'>
             {design.backSrc ? (
@@ -307,28 +264,59 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   </div>
                </div>
             ) : (
-               <div
-                  onDrop={(e) => dropHandlerDesign(e, 'back')}
-                  onDragOver={dragOverHandler}
-                  className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-               >
-                  {/* @ts-ignore */}
-                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                     <span className='yekan text-sm'>انتخاب پشت طرح</span>
-                     <input
-                        hidden
-                        accept='image/*'
-                        type='file'
-                        name='backPreview'
-                        onChange={(e) => onFileSelected(e?.target?.files, 'back')}
-                        disabled={loading}
-                     />
-                  </Button>
-               </div>
+               <>
+                  {backPrevMemo?.length ? (
+                     <div>
+                        <span className='text-slate-400 yekan'>پیش نمایش تصویر پشت برای آپلود</span>
+
+                        {backPrevMemo.map((imageData: File) => {
+                           return (
+                              <NextImage
+                                 key={imageData.name}
+                                 className='object-contain rounded-xl'
+                                 src={URL.createObjectURL(imageData)}
+                                 alt={imageData.name}
+                                 width='250'
+                                 height='250'
+                                 quality={100}
+                                 loading='lazy'
+                              />
+                           )
+                        })}
+                     </div>
+                  ) : (
+                     ''
+                  )}
+
+                  <div
+                     onDrop={(e) => dropHandlerDesign(e, 'back')}
+                     onDragOver={dragOverHandler}
+                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+                  >
+                     {/* @ts-ignore */}
+                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                        <span className='yekan text-sm'>انتخاب پشت طرح</span>
+                        <input
+                           hidden
+                           accept='image/*'
+                           type='file'
+                           name='backPreview'
+                           onChange={(e) => onFileSelected(e?.target?.files, 'back')}
+                           disabled={loading}
+                        />
+                     </Button>
+                  </div>
+               </>
             )}
 
+            <hr />
+
             <div>
-               <span className='text-slate-400 yekan'>گالری طرح</span>
+               {design.gallery.length ? (
+                  <span className='text-slate-400 yekan'>تصاویر گالری</span>
+               ) : (
+                  ''
+               )}
                {design.gallery.map((image: string, idx: number) => {
                   return (
                      <div key={idx} className='relative'>
@@ -354,6 +342,30 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                })}
             </div>
 
+            {galleryPrevMemo?.length ? (
+               <div>
+                  <span className='text-slate-400 yekan'>پیش نمایش تصاویر گالری برای آپلود</span>
+                  <div className='space-y-3'>
+                     {galleryPrevMemo.map((imageData: File) => {
+                        return (
+                           <NextImage
+                              key={imageData.name}
+                              className='object-contain rounded-xl'
+                              src={URL.createObjectURL(imageData)}
+                              alt={imageData.name}
+                              width='250'
+                              height='250'
+                              quality={100}
+                              loading='lazy'
+                           />
+                        )
+                     })}
+                  </div>
+               </div>
+            ) : (
+               ''
+            )}
+
             <div
                onDrop={(e) => dropHandlerDesign(e, 'gallery')}
                onDragOver={dragOverHandler}
@@ -361,7 +373,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             >
                {/* @ts-ignore */}
                <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                  <span className='yekan text-sm'>انتخاب تصاویر</span>
+                  <span className='yekan text-sm'>انتخاب تصاویر گالری</span>
                   <input
                      hidden
                      accept='image/*'
@@ -373,6 +385,8 @@ const ImageInput = ({ design }: { design: IDesign }) => {
                   />
                </Button>
             </div>
+
+            <hr />
 
             <div className='flex justify-center items-center bg-slate-100 border-2 border-slate-200 rounded-lg'>
                {loading ? (
