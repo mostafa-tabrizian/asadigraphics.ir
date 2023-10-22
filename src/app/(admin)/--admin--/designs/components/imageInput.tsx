@@ -72,7 +72,7 @@ const ImageInput = ({ design }: { design: IDesign }) => {
       } catch (err) {
          if (String(err).includes('please upload front design first')) {
             toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')
-            return console.warn(err)
+            console.warn(err)
          } else if (String(err).includes('dimention not equal to front design')) {
             toast.warning('ابعاد تصویر جلو طرح و پشت طرح یکسان نمی‌باشد')
             console.warn(err)

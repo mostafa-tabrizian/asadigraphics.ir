@@ -277,6 +277,9 @@ table {
       min-width: 80px !important;
       width: auto !important;
    }
+   &__thumbnails_container {
+      background: rgba(0, 0, 0, 0.93) !important;
+   }
    &__slide_image {
       border-radius: 5px;
    }

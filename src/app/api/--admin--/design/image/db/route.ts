@@ -31,7 +31,7 @@ export async function POST(req: Request) {
    } else if (type == 'back') {
       design = await Design.findOne({ _id: _id }).exec()
 
-      if (!design.frontSrc.length) {
+      if (!design.frontSrc?.length) {
          return NextResponse.json({ message: 'please upload front design first' })
       }
 
@@ -48,6 +48,11 @@ export async function POST(req: Request) {
 
    } else if (type == 'gallery') {
       design = await Design.findOne({ _id: _id }).exec()
+
+      if (!design.frontSrc?.length) {
+         return NextResponse.json({ message: 'please upload front design first' })
+      }
+
       design.gallery.push(imageKey)
       design.save()
    }
