@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic'
 
 import hyphen from '@/lib/hyphen'
 import { ICategory } from '@/models/category'
+import { usePathname } from 'next/navigation'
 
 const Menu = dynamic(() => import('@mui/material/Menu'))
 
@@ -13,12 +14,20 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
    const [categories, setCategories] = useState<null | HTMLElement>(null)
    const [contactUsOptions, setContactUsOptions] = useState<null | HTMLElement>(null)
 
+   const pathname = usePathname()
+
    useEffect(() => {
+      closeMenus()
+
       return () => {
-         setCategories(null)
-         setContactUsOptions(null)
+         closeMenus()
       }
-   }, [])
+   }, [pathname])
+
+   const closeMenus = () => {
+      setCategories(null)
+      setContactUsOptions(null)
+   }
 
    return (
       <ul className='rtl md:col-span-4 hidden md:flex items-center justify-center space-x-10 space-x-reverse text-gray-700'>

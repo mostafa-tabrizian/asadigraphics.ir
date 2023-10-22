@@ -51,7 +51,14 @@ const nextConfig = {
       hideSourceMaps: true,
 
       // Automatically tree-shake Sentry logger statements to reduce bundle size
-      disableLogger: true
+      disableLogger: true,
+   },
+   webpack: (config) => {
+      config.externals.push({
+         '@aws-sdk/signature-v4-multi-region': 'commonjs @aws-sdk/signature-v4-multi-region',
+      })
+
+      return config
    },
 }
 
@@ -62,7 +69,7 @@ const sentryWebpackPluginOptions = {
    // Suppresses source map uploading logs during build
    silent: true,
    org: 'tabriziancodes',
-   project: 'asadigraphics'
+   project: 'asadigraphics',
 }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
