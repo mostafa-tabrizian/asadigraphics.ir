@@ -16,8 +16,3 @@ export const NameSlugValidation = yup.object().shape({
       .required('عنوان را وارد کنید')
       .matches(/^[^-]*$/, { message: 'نباید علامت - در نام طرح باشد' }),
 })
-
-export const SlideValidation = yup.object().shape({
-   alt: yup.string().min(3, 'حداقل ۳ کارکتر').required('عنوان جایگزین را وارد کنید'),
-   link: yup.string().required('لینک را وارد کنید'),
-})

@@ -61,43 +61,6 @@
    border-radius: 25px;
 }
 
-.MuiStepConnector-root {
-   transform: translateX(8rem);
-   margin: 0 0.5rem;
-}
-
-.MuiSlider-thumb {
-   color: #2495ff !important;
-}
-
-.MuiSlider-valueLabel {
-   display: none;
-}
-
-.MuiSlider-track {
-   background-color: #0066ff !important;
-   border: none !important;
-}
-
-.MuiSlider-rail {
-   background-color: #71aaff !important;
-}
-
-.MuiSlider-mark {
-   background-color: #0084ff !important;
-   width: 6px !important;
-   height: 6px !important;
-   border-radius: 15px !important;
-}
-
-.MuiSlider-valueLabel {
-   background: #0084ff !important;
-
-   &Label {
-      color: white !important;
-   }
-}
-
 .MuiChip-root {
    border-radius: 5px !important;
 }

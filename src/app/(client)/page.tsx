@@ -4,14 +4,12 @@ import Script from 'next/script'
 import dbConnect from '@/lib/dbConnect'
 import limiter from '@/lib/limiter'
 
-import Slide from '@/models/slide'
 import Category from '@/models/category'
 import Design from '@/models/design'
 
 const Categories = dynamic(() => import('./components/categories'))
 const FAQ = dynamic(() => import('./components/faq'), { ssr: false })
 const SocialMedia = dynamic(() => import('./components/socialMedia'))
-const Slides = dynamic(() => import('@/components/slides'))
 const SampleDesigns = dynamic(() => import('./components/sampleDesigns'))
 
 export const metadata = {
@@ -21,11 +19,6 @@ export const metadata = {
    alternates: {
       canonical: 'https://asadigraphics.ir',
    },
-}
-
-const getSlides = async () => {
-   await dbConnect()
-   return await Slide.find({ active: true }).sort({ createdAt: -1 })
 }
 
 const getCategories = async () => {
@@ -111,7 +104,6 @@ async function Home() {
 
    const designs = await getDesigns()
    const categoriesData = await getCategories()
-   const slides = await getSlides()
 
    return (
       <>
@@ -128,8 +120,6 @@ async function Home() {
          />
 
          <div className='space-y-16 my-6 px-2'>
-            {slides.length ? <Slides slides={JSON.parse(JSON.stringify(slides))} /> : ''}
-
             <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
 
             {designs.length ? <SampleDesigns designs={JSON.parse(JSON.stringify(designs))} /> : ''}
