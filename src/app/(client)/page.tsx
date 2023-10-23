@@ -54,7 +54,7 @@ const corporationJsonLd = {
    alternateName: ['اسدی گرافیک'],
    legalName: 'اسدی گرافیک',
    url: 'https://asadigraphics.ir',
-   logo: 'https://asadigraphics.ir/_next/image?url=%2Flogo%2Flogo.jpg&w=96&q=100',
+   logo: 'https://asadigraphics.ir/android-chrome-192x192.png',
    email: '',
    sameAs: [
       'https://www.instagram.com/aliasadi_graphics',

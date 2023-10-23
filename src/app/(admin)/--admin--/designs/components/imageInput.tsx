@@ -13,9 +13,10 @@ const Button = dynamic(() => import('@mui/material/Button'), { ssr: false })
 import ImageDelete from './imageDelete'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
-import imageUploadHandler from '@/lib/imageUploadHandler'
-import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 import { IDesign } from '@/models/design'
+import createS3Presign from '@/lib/createS3Presign'
+import putInS3Bucket from '@/lib/PutInS3Bucket'
+import uploadErrorDeleteData from '@/lib/uploadErrorDeleteData'
 
 const ImageInput = ({ design }: { design: IDesign }) => {
    const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
@@ -58,17 +59,6 @@ const ImageInput = ({ design }: { design: IDesign }) => {
          const resData = await res.json()
 
          if (resData.message) throw new Error(resData.message)
-
-         if (type == 'front') setFrontPreview(null)
-         else if (type == 'back') setBackPreview(null)
-         else if (type == 'gallery') setGalleryPreview(null)
-
-         toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
-
-         fetch('/api/--admin--/revalidate?path=/')
-         fetch('/api/--admin--/revalidate?path=/search/[query]')
-
-         router.refresh()
       } catch (err) {
          if (String(err).includes('please upload front design first')) {
             toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')
@@ -80,17 +70,21 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
             console.error(err)
          }
-
-         await deleteLeftOvers(imageKey)
+         return false
       }
    }
 
-   const deleteLeftOvers = async (imageKey: string) => {
-      try {
-         await deleteFromS3Bucket(imageKey, 'designs')
-      } catch (err) {
-         console.error('deleteLeftOvers', err)
-      }
+   const successUpload = (type: string, name: string) => {
+      if (type == 'front') setFrontPreview(null)
+      else if (type == 'back') setBackPreview(null)
+      else if (type == 'gallery') setGalleryPreview(null)
+
+      toast.success(`تصویر ${name} با موفقیت آپلود شد.`)
+
+      fetch('/api/--admin--/revalidate?path=/')
+      fetch('/api/--admin--/revalidate?path=/search/[query]')
+
+      router.refresh()
    }
 
    const onSubmit = async () => {
@@ -113,15 +107,33 @@ const ImageInput = ({ design }: { design: IDesign }) => {
             if (!imageData.design) continue
 
             for (const image of imageData.design) {
-               const res = await imageUploadHandler(image, 'designs')
+               // first
+               const imageName = image.name.replace(' ', '-')
 
-               if (res) await createDbData(imageData.type, res.imageKey, res.imageName)
-               else throw new Error('imageUploadHandler')
+               // presign
+               const s3SignedUrl = await createS3Presign(imageName, 'designs')
+               if (!s3SignedUrl) return
+
+               // middle
+               const { imageKey, uploadUrl } = await s3SignedUrl.json()
+
+               // db
+               const createDataResult = await createDbData(imageData.type, imageKey, imageName)
+               if (!createDataResult) return
+
+               // put
+               const fileUploadResult = await putInS3Bucket(uploadUrl, image)
+               if (!fileUploadResult)
+                  await uploadErrorDeleteData(imageData.type, imageKey, design._id)
+
+               successUpload(imageData.type, image.name)
             }
          }
-         return
-      } catch (error) {
-         return
+      } catch (err) {
+         toast.error(
+            'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
+         )
+         console.error(err)
       } finally {
          setLoading(false)
       }

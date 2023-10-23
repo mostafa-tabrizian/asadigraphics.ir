@@ -100,7 +100,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
          name: 'اسدی دیزاینس',
          description:
             'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
-         image: ['https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'],
+         image: ['https://asadigraphics.ir/android-chrome-192x192.png'],
          creator: {
             '@type': 'Person',
             name: 'علی اسدی',
