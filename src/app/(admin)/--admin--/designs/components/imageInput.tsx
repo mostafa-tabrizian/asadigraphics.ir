@@ -57,8 +57,10 @@ const ImageInput = ({ design }: { design: IDesign }) => {
          if (!res.ok) throw new Error()
 
          const resData = await res.json()
-
          if (resData.message) throw new Error(resData.message)
+         
+         return res
+
       } catch (err) {
          if (String(err).includes('please upload front design first')) {
             toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')

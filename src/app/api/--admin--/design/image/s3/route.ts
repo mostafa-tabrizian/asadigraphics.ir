@@ -15,8 +15,10 @@ export async function POST(req: Request) {
    const { imageName, folder } = await req.json()
 
    const uniqueId = Math.random().toString(36).substring(2, 7)
-   const imageKey = `${uniqueId}-${imageName}`
-   const Key = `/asadi_designs/${folder}/${imageKey}`
+   const date = new Date()
+   const yearMonth = `${date.getFullYear()}/${date.getMonth() + 1}`
+   const imageKey = `${yearMonth}/${uniqueId}-${imageName}`
+   const Key = `asadi_designs/${folder}/${imageKey}`
 
    const params = {
       Bucket: process.env.LIARA_BUCKET_NAME,
