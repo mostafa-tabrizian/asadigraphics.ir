@@ -126,7 +126,7 @@ const DesignDetail = async ({ params: { name } }: { params: { name: string } }) 
                         ''
                      )}
                   </div>
-                  <div className='rtl absolute top-[27rem] mx-2 grid justify-center md:relative md:top-0'>
+                  <div className='rtl relative -top-12 mx-2 grid justify-center md:relative md:top-0'>
                      <div
                         className='mb-5 w-[96vw] space-y-6 rounded-3xl bg-white px-6 py-8 md:w-full'
                         style={{ boxShadow: '0px 4px 19px 0px rgba(0, 0, 0, 0.25)' }}
