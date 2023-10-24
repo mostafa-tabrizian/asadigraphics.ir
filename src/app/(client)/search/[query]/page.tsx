@@ -14,14 +14,14 @@ import limiter from '@/lib/limiter'
 const Gallery = dynamic(() => import('@/app/components/gallery'), {
    ssr: false,
    loading: () => (
-      <div className='mx-6 md:mx-auto my-16 animate-pulse max-w-screen-lg space-y-8'>
-         <div className='grid grid-cols-2 md:col-span-3 md:grid-cols-3 gap-3'>
-            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
-            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
-            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
-            <div className='h-60 md:h-80 rounded bg-gray-200'></div>
-            <div className='h-80 hidden md:block rounded bg-gray-200'></div>
-            <div className='h-80 hidden md:block rounded bg-gray-200'></div>
+      <div className='mx-6 my-16 max-w-screen-lg animate-pulse space-y-8 md:mx-auto'>
+         <div className='grid grid-cols-2 gap-3 md:col-span-3 md:grid-cols-3'>
+            <div className='h-60 rounded bg-gray-200 md:h-80'></div>
+            <div className='h-60 rounded bg-gray-200 md:h-80'></div>
+            <div className='h-60 rounded bg-gray-200 md:h-80'></div>
+            <div className='h-60 rounded bg-gray-200 md:h-80'></div>
+            <div className='hidden h-80 rounded bg-gray-200 md:block'></div>
+            <div className='hidden h-80 rounded bg-gray-200 md:block'></div>
          </div>
       </div>
    ),
@@ -82,7 +82,7 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
 
    if (remaining < 0) {
       return (
-         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>
+         <h1 className='mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
             متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
             امتحان کنید
          </h1>
@@ -162,21 +162,21 @@ const Search = async ({ params: { query } }: { params: { query: string } }) => {
 
          <GTMSearch query={query} />
 
-         <div className='px-3 md:px-0 md:max-w-screen-2xl md:mx-auto space-y-8 my-6'>
+         <div className='my-6 space-y-8 px-3 md:mx-auto md:max-w-screen-2xl md:px-0'>
             <SearchTitle />
 
-            <div className='mb-20 text-center space-y-6'>
+            <div className='mb-20 space-y-6 text-center'>
                {uniqueMergedDesigns.length ? (
                   <Gallery designs={JSON.parse(JSON.stringify(uniqueMergedDesigns))} />
                ) : (
                   <div>
-                     <span className='font-semibold text-3xl Doran'>!هیچ طرحی یافت نشد</span>
-                     <span className='text-sm block yekanBold mt-3'>
+                     <span className='Doran text-3xl font-semibold'>!هیچ طرحی یافت نشد</span>
+                     <span className='yekanBold mt-3 block text-sm'>
                         عبارت دیگری را امتحان کنید
                      </span>
-                     <div className='w-[20rem] mx-auto aspect-square relative'>
+                     <div className='relative mx-auto aspect-square w-[20rem]'>
                         <Image
-                           className='mix-blend-darken object-contain'
+                           className='object-contain mix-blend-darken'
                            src={
                               'https://tabrizian.storage.iran.liara.space/asadi_designs/noSearchResult.jpg'
                            }

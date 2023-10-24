@@ -126,8 +126,6 @@ async function Home() {
 
             <FAQ />
 
-            {/* <About /> */}
-
             <SocialMedia />
          </div>
       </>

@@ -1,24 +1,26 @@
-import Category from '@/models/category'
 import dbConnect from '@/lib/dbConnect'
+import Category from '@/models/category'
+import Design from '@/models/design'
 import hyphen from '@/lib/hyphen'
 
 const URL = 'https://asadigraphics.ir'
 
-async function getAllPages() {
+async function fetchData() {
    await dbConnect()
    const categoriesData = await Category.find()
+   const designsData = await Design.find()
 
-   return { categoriesData }
+   return { categoriesData, designsData }
 }
 
 export default async function sitemap() {
-   const { categoriesData } = await getAllPages()
+   const { categoriesData, designsData } = await fetchData()
 
    const categories = categoriesData.map(({ name, slug, updatedAt }) => ({
       url: `${URL}/search/${hyphen(slug)}?type=category&amp;name=${name}`,
       lastModified: updatedAt,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.7,
    }))
 
    const home = {
@@ -35,5 +37,12 @@ export default async function sitemap() {
       priority: 0.8,
    }
 
-   return [home, allDesigns, ...categories]
+   const designsDetail = designsData.map(({ name, updatedAt }) => ({
+      url: `${URL}/design/${hyphen(name)}`,
+      lastModified: updatedAt,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+   }))
+
+   return [home, allDesigns, ...categories, ...designsDetail]
 }

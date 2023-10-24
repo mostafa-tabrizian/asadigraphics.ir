@@ -11,7 +11,7 @@ import Analytics from './GTM'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
    useEffect(() => {
-      console.log(
+      console.info(
          `%c
             _______    _          _     _             
            |__   __|  | |        (_)   (_)            

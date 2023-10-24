@@ -21,10 +21,18 @@ export async function POST(request: Request) {
       name,
       category,
       active,
+      client,
+      description,
+      designedAt,
+      colorPalettes,
    }: {
       name: string
       category: object
       active: boolean
+      client: string
+      description: string
+      designedAt: string
+      colorPalettes: string
    } = await request.json()
 
    try {
@@ -33,7 +41,11 @@ export async function POST(request: Request) {
          name,
          category,
          gallery: [],
-         active: active,
+         active,
+         client,
+         description,
+         designedAt,
+         colorPalettes,
       })
 
       return NextResponse.json(design)
@@ -48,11 +60,19 @@ export async function PATCH(request: Request) {
       name,
       category,
       active,
+      client,
+      description,
+      designedAt,
+      colorPalettes,
    }: {
       _id: string
       name: string
       category: object
       active: boolean
+      client: string
+      description: string
+      designedAt: string
+      colorPalettes: string
    } = await request.json()
 
    try {
@@ -64,7 +84,11 @@ export async function PATCH(request: Request) {
          {
             name,
             category,
-            active: active,
+            active,
+            client,
+            description,
+            designedAt,
+            colorPalettes,
          },
       )
 

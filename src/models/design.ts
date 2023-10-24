@@ -10,6 +10,10 @@ export interface IDesign {
    gallery: [string]
    width: number
    height: number
+   client: string,
+   designedAt: string,
+   description: string,
+   colorPalettes: string,
    createdAt: Date
    updatedAt: Date
 }
@@ -30,6 +34,10 @@ const DesignSchema = new mongoose.Schema({
    gallery: [String],
    width: Number,
    height: Number,
+   client: String,
+   designedAt: String,
+   description: String,
+   colorPalettes: String,
 })
 
 DesignSchema.set('timestamps', true)

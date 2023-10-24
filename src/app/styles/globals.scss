@@ -149,7 +149,7 @@ label {
 }
 
 hr {
-   border: solid 1px rgb(224, 224, 224);
+   border: dashed 2px rgb(224, 224, 224);
    margin: 1rem 0;
 }
 
@@ -169,7 +169,6 @@ table {
    font-size: 0.8rem;
    color: rgb(43, 45, 83);
 }
-
 
 .rtl {
    direction: rtl;
@@ -198,21 +197,23 @@ table {
 /* Hide scrollbar for IE, Edge and Firefox */
 .styled-scrollbars {
    /* Foreground, Background */
-   scrollbar-color: #60a5fa transparent;
+   scrollbar-color: rgb(75, 75, 75) transparent;
 
    &::-webkit-scrollbar {
       width: 3px; /* Mostly for vertical scrollbars */
-      height: 3px; /* Mostly for horizontal scrollbars */
+      height: 8px; /* Mostly for horizontal scrollbars */
    }
 
    &::-webkit-scrollbar-thumb {
       /* Foreground */
-      background: #60a5fa;
+      background: rgb(75, 75, 75);
+      border-radius: 15px;
    }
 
    &::-webkit-scrollbar-track {
       /* Background */
-      background: transparent;
+      background: rgba(211, 218, 226, 0.57);
+      border-radius: 15px;
    }
 }
 

@@ -96,10 +96,10 @@ const Footer = () => {
                         </li>
                      </ul>
                   </div>
-                  <h4 className='text-slate-600 font-bold yekan text-sm mb-6 text-center'>
+                  <span className='text-slate-600 font-bold yekan text-sm mb-6 text-center'>
                      دید خود را بالا ببرید، <br /> با اطمینان سفارش دهید، <br /> طرح را در آغوش
                      بگیرید.
-                  </h4>
+                  </span>
                   <div id='about-us' className='space-y-5'>
                      <p className='yekan rtl text-justify text-sm text-slate-600 leading-7'>
                         <span className='yekanBold text-base text-slate-700'>با سلام</span> 👋{' '}

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, memo } from 'react'
 import NextImage from 'next/image'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
@@ -13,467 +13,371 @@ const Button = dynamic(() => import('@mui/material/Button'), { ssr: false })
 import ImageDelete from './imageDelete'
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
-import { IDesign } from '@/models/design'
 import createS3Presign from '@/lib/createS3Presign'
 import putInS3Bucket from '@/lib/PutInS3Bucket'
 import uploadErrorDeleteData from '@/lib/uploadErrorDeleteData'
+import GalleryInput from './galleryInput'
+import FrontImageInput from './frontImageInput'
 
-const ImageInput = ({ design }: { design: IDesign }) => {
-   const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
-   const [backPreview, setBackPreview] = useState<FileList | null>(null)
-   const [galleryPreview, setGalleryPreview] = useState<FileList | null>(null)
-   const [frontImageDimention, setFrontImageDimention] = useState([0, 0])
-   const [backImageDimention, setBackImageDimention] = useState([0, 0])
-   const [loading, setLoading] = useState(false)
-
-   const frontPrevMemo = useMemo(() => {
-      return frontPreview && Object.values(frontPreview)
-   }, [frontPreview])
-
-   const backPrevMemo = useMemo(() => {
-      return backPreview && Object.values(backPreview)
-   }, [backPreview])
-
-   const galleryPrevMemo = useMemo(() => {
-      return galleryPreview && Object.values(galleryPreview)
-   }, [galleryPreview])
-
-   const router = useRouter()
-
-   const createDbData = async (type: string, imageKey: string, imageName: string) => {
-      const payload = {
-         type,
-         imageKey,
-         imageDimention: type == 'front' ? frontImageDimention : backImageDimention,
-         _id: design._id,
+const ImageInput = memo(
+   ({
+      design,
+   }: {
+      design: {
+         _id: string
+         gallery: string[]
+         frontSrc: string
+         backSrc: string
+         width: number
+         height: number
       }
+   }) => {
+      const [frontPreview, setFrontPreview] = useState<FileList | null>(null)
+      const [backPreview, setBackPreview] = useState<FileList | null>(null)
+      const [galleryPreview, setGalleryPreview] = useState<FileList | null>(null)
+      const [frontImageDimention, setFrontImageDimention] = useState([0, 0])
+      const [backImageDimention, setBackImageDimention] = useState([0, 0])
+      const [loading, setLoading] = useState(false)
 
-      try {
-         const res = await fetch('/api/--admin--/design/image/db', {
-            method: 'POST',
-            body: JSON.stringify(payload),
-         })
+      const designMemo = useMemo(() => design, [design])
 
-         if (!res.ok) throw new Error()
+      const frontPrevMemo = useMemo(() => {
+         return frontPreview && Object.values(frontPreview)
+      }, [frontPreview])
 
-         const resData = await res.json()
-         if (resData.message) throw new Error(resData.message)
-         
-         return res
+      const backPrevMemo = useMemo(() => {
+         return backPreview && Object.values(backPreview)
+      }, [backPreview])
 
-      } catch (err) {
-         if (String(err).includes('please upload front design first')) {
-            toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')
-            console.warn(err)
-         } else if (String(err).includes('dimention not equal to front design')) {
-            toast.warning('ابعاد تصویر جلو طرح و پشت طرح یکسان نمی‌باشد')
-            console.warn(err)
-         } else {
-            toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
-            console.error(err)
+      const galleryPrevMemo = useMemo(() => {
+         return galleryPreview && Object.values(galleryPreview)
+      }, [galleryPreview])
+
+      const router = useRouter()
+
+      const createDbData = async (type: string, imageKey: string, imageName: string) => {
+         const payload = {
+            type,
+            imageKey,
+            imageDimention: type == 'front' ? frontImageDimention : backImageDimention,
+            _id: designMemo._id,
          }
-         return false
+
+         try {
+            const res = await fetch('/api/--admin--/design/image/db', {
+               method: 'POST',
+               body: JSON.stringify(payload),
+            })
+
+            if (!res.ok) throw new Error()
+
+            const resData = await res.json()
+            if (resData.message) throw new Error(resData.message)
+
+            return res
+         } catch (err) {
+            if (String(err).includes('please upload front design first')) {
+               toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')
+               console.warn(err)
+            } else if (String(err).includes('dimention not equal to front design')) {
+               toast.warning('ابعاد تصویر جلو طرح و پشت طرح یکسان نمی‌باشد')
+               console.warn(err)
+            } else {
+               toast.error(`در آپلود تصویر ${imageName} به دیتابیس خطایی رخ داد!`)
+               console.error(err)
+            }
+            return false
+         }
       }
-   }
 
-   const successUpload = (type: string, name: string) => {
-      if (type == 'front') setFrontPreview(null)
-      else if (type == 'back') setBackPreview(null)
-      else if (type == 'gallery') setGalleryPreview(null)
+      const successUpload = (type: string, name: string) => {
+         if (type == 'front') setFrontPreview(null)
+         else if (type == 'back') setBackPreview(null)
+         else if (type == 'gallery') setGalleryPreview(null)
 
-      toast.success(`تصویر ${name} با موفقیت آپلود شد.`)
+         toast.success(`تصویر ${name} با موفقیت آپلود شد.`)
 
-      fetch('/api/--admin--/revalidate?path=/')
-      fetch('/api/--admin--/revalidate?path=/search/[query]')
+         fetch('/api/--admin--/revalidate?path=/')
+         fetch('/api/--admin--/revalidate?path=/search/[query]')
 
-      router.refresh()
-   }
-
-   const onSubmit = async () => {
-      if (!frontPrevMemo && !backPrevMemo && !galleryPrevMemo) {
-         return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
-      }
-      if (!design._id) {
-         return toast.error('در تعیین طرح خطایی رخ داده است!')
+         router.refresh()
       }
 
-      toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
-      setLoading(true)
+      const onSubmit = async () => {
+         if (!frontPrevMemo && !backPrevMemo && !galleryPrevMemo) {
+            return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
+         }
+         if (!designMemo._id) {
+            return toast.error('در تعیین طرح خطایی رخ داده است!')
+         }
 
-      try {
-         for (const imageData of [
-            { design: frontPrevMemo, type: 'front' },
-            { design: backPrevMemo, type: 'back' },
-            { design: galleryPrevMemo, type: 'gallery' },
-         ]) {
-            if (!imageData.design) continue
+         toast.info('در حال آپلود و ثبت اطلاعات تصویر...')
+         setLoading(true)
 
-            for (const image of imageData.design) {
-               // first
-               const imageName = image.name.replace(' ', '-')
+         try {
+            for (const imageData of [
+               { design: frontPrevMemo, type: 'front' },
+               { design: backPrevMemo, type: 'back' },
+               { design: galleryPrevMemo, type: 'gallery' },
+            ]) {
+               if (!imageData.design) continue
 
-               // presign
-               const s3SignedUrl = await createS3Presign(imageName, 'designs')
-               if (!s3SignedUrl) return
+               for (const image of imageData.design) {
+                  // first
+                  const imageName = image.name.replace(' ', '-')
 
-               // middle
-               const { imageKey, uploadUrl } = await s3SignedUrl.json()
+                  // presign
+                  const s3SignedUrl = await createS3Presign(imageName, 'designs')
+                  if (!s3SignedUrl) return
 
-               // db
-               const createDataResult = await createDbData(imageData.type, imageKey, imageName)
-               if (!createDataResult) return
+                  // middle
+                  const { imageKey, uploadUrl } = await s3SignedUrl.json()
 
-               // put
-               const fileUploadResult = await putInS3Bucket(uploadUrl, image)
-               if (!fileUploadResult)
-                  await uploadErrorDeleteData(imageData.type, imageKey, design._id)
+                  // db
+                  const createDataResult = await createDbData(imageData.type, imageKey, imageName)
+                  if (!createDataResult) return
 
-               successUpload(imageData.type, image.name)
+                  // put
+                  const fileUploadResult = await putInS3Bucket(uploadUrl, image)
+                  if (!fileUploadResult)
+                     await uploadErrorDeleteData(imageData.type, imageKey, designMemo._id)
+
+                  successUpload(imageData.type, image.name)
+               }
+            }
+         } catch (err) {
+            toast.error(
+               'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
+            )
+            console.error(err)
+         } finally {
+            setLoading(false)
+         }
+      }
+
+      const dimentionCalculate = (file: File, type: string) => {
+         const reader = new FileReader()
+
+         reader.onload = (e) => {
+            const img = new Image()
+            // @ts-ignore
+            img.src = e.target.result as string
+
+            img.onload = () => {
+               const dimention = [img.width, img.height]
+               if (type == 'front') setFrontImageDimention(dimention)
+               else if (type == 'back') setBackImageDimention(dimention)
             }
          }
-      } catch (err) {
-         toast.error(
-            'در آپلود تصویر خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
-         )
-         console.error(err)
-      } finally {
-         setLoading(false)
-      }
-   }
 
-   const dimentionCalculate = (file: File, type: string) => {
-      const reader = new FileReader()
-
-      reader.onload = (e) => {
-         const img = new Image()
-         // @ts-ignore
-         img.src = e.target.result as string
-
-         img.onload = () => {
-            const dimention = [img.width, img.height]
-            if (type == 'front') setFrontImageDimention(dimention)
-            else if (type == 'back') setBackImageDimention(dimention)
-         }
+         reader.readAsDataURL(file)
       }
 
-      reader.readAsDataURL(file)
-   }
+      const onFileSelected = (files: FileList | null, type: string) => {
+         if (!files) return
 
-   const onFileSelected = (files: FileList | null, type: string) => {
-      if (!files) return
+         const filesList: File[] = Object.values(files)
 
-      const filesList: File[] = Object.values(files)
+         const typeCheckRes = filesTypeValidation(filesList)
+         if (!typeCheckRes) return
 
-      const typeCheckRes = filesTypeValidation(filesList)
-      if (!typeCheckRes) return
+         const sizeCheckRes = filesSizeValidation(filesList)
+         if (!sizeCheckRes) return
 
-      const sizeCheckRes = filesSizeValidation(filesList)
-      if (!sizeCheckRes) return
+         dimentionCalculate(filesList[0], type)
 
-      dimentionCalculate(filesList[0], type)
+         if (type == 'front') {
+            setFrontPreview(files)
+         } else if (type == 'back') {
+            setBackPreview(files)
+         } else if (type == 'gallery') setGalleryPreview(files)
+      }
 
-      if (type == 'front') {
-         setFrontPreview(files)
-      } else if (type == 'back') {
-         setBackPreview(files)
-      } else if (type == 'gallery') setGalleryPreview(files)
-   }
+      const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
 
-   const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
+      const dropHandlerDesign = (event: React.DragEvent<HTMLDivElement>, type: string) => {
+         event.preventDefault()
+         const files = event.dataTransfer.files
 
-   const dropHandlerDesign = (event: React.DragEvent<HTMLDivElement>, type: string) => {
-      event.preventDefault()
-      const files = event.dataTransfer.files
+         if (!files) return toast.warning('در دریافت فایل ها خطایی رخ داد')
+         else if (files.length !== 1 && type !== 'gallery')
+            return toast.warning(
+               'تعداد تصاویر انتخاب شده بیشتر از یک عدد می‌باشد. تصویر طرح می‌بایست یک عدد باشد',
+            )
 
-      if (!files) return toast.warning('در دریافت فایل ها خطایی رخ داد')
-      else if (files.length !== 1 && type !== 'gallery')
-         return toast.warning(
-            'تعداد تصاویر انتخاب شده بیشتر از یک عدد می‌باشد. تصویر طرح می‌بایست یک عدد باشد',
-         )
+         onFileSelected(files, type)
+      }
 
-      onFileSelected(files, type)
-   }
-
-   return (
-      <div className='text-right space-y-4'>
-         <div className='space-y-6'>
-            {design.frontSrc ? (
-               <div>
-                  <span className='text-slate-400 yekan'>تصویر جلو طرح</span>
-
-                  <div className='relative'>
-                     <Link
-                        target='_blank'
-                        href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`}
-                     >
-                        <div className='flex justify-center mx-auto'>
-                           <NextImage
-                              className='rounded-lg p-1'
-                              src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.frontSrc}`}
-                              alt={design._id}
-                              width={design.width}
-                              height={design.height}
-                              loading='lazy'
-                           />
-                        </div>
-                     </Link>
-
-                     <ImageDelete type='front' design={design._id} imageKey={design.frontSrc} />
-                  </div>
-               </div>
-            ) : (
-               <>
-                  {frontPrevMemo?.length ? (
-                     <div>
-                        <span className='text-slate-400 yekan'>پیش نمایش تصویر جلو برای آپلود</span>
-
-                        {frontPrevMemo.map((imageData: File) => {
-                           return (
-                              <NextImage
-                                 key={imageData.name}
-                                 className='object-contain rounded-xl'
-                                 src={URL.createObjectURL(imageData)}
-                                 alt={imageData.name}
-                                 width='250'
-                                 height='250'
-                                 quality={100}
-                                 loading='lazy'
-                              />
-                           )
-                        })}
-                     </div>
-                  ) : (
-                     ''
-                  )}
-
-                  <div
-                     onDrop={(e) => dropHandlerDesign(e, 'front')}
-                     onDragOver={dragOverHandler}
-                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-                  >
-                     {/* @ts-ignore */}
-                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                        <span className='yekan text-sm'>انتخاب جلو طرح</span>
-                        <input
-                           hidden
-                           accept='image/*'
-                           type='file'
-                           name='frontPreview'
-                           onChange={(e) => onFileSelected(e?.target?.files, 'front')}
-                           disabled={loading}
-                        />
-                     </Button>
-                  </div>
-               </>
-            )}
-         </div>
-
-         <hr />
-
-         <div className='space-y-3'>
-            {design.backSrc ? (
-               <div>
-                  <span className='text-slate-400 yekan'>تصویر پشت طرح</span>
-
-                  <div className='relative'>
-                     <Link
-                        target='_blank'
-                        href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.backSrc}`}
-                     >
-                        <div className='flex justify-center mx-auto'>
-                           <NextImage
-                              className='rounded-lg p-1'
-                              src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${design.backSrc}`}
-                              alt={design._id}
-                              width={design.width}
-                              height={design.height}
-                              loading='lazy'
-                           />
-                        </div>
-                     </Link>
-
-                     <ImageDelete type='back' design={design._id} imageKey={design.backSrc} />
-                  </div>
-               </div>
-            ) : (
-               <>
-                  {backPrevMemo?.length ? (
-                     <div>
-                        <span className='text-slate-400 yekan'>پیش نمایش تصویر پشت برای آپلود</span>
-
-                        {backPrevMemo.map((imageData: File) => {
-                           return (
-                              <NextImage
-                                 key={imageData.name}
-                                 className='object-contain rounded-xl'
-                                 src={URL.createObjectURL(imageData)}
-                                 alt={imageData.name}
-                                 width='250'
-                                 height='250'
-                                 quality={100}
-                                 loading='lazy'
-                              />
-                           )
-                        })}
-                     </div>
-                  ) : (
-                     ''
-                  )}
-
-                  <div
-                     onDrop={(e) => dropHandlerDesign(e, 'back')}
-                     onDragOver={dragOverHandler}
-                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-                  >
-                     {/* @ts-ignore */}
-                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                        <span className='yekan text-sm'>انتخاب پشت طرح</span>
-                        <input
-                           hidden
-                           accept='image/*'
-                           type='file'
-                           name='backPreview'
-                           onChange={(e) => onFileSelected(e?.target?.files, 'back')}
-                           disabled={loading}
-                        />
-                     </Button>
-                  </div>
-               </>
-            )}
+      return (
+         <div className='text-right space-y-4'>
+            <FrontImageInput
+               design={{
+                  frontSrc: designMemo.frontSrc,
+                  _id: designMemo._id,
+                  width: designMemo.width,
+                  height: designMemo.height,
+               }}
+               frontPrevMemo={frontPrevMemo}
+               dragOverHandler={dragOverHandler}
+               dropHandlerDesign={dropHandlerDesign}
+               onFileSelected={onFileSelected}
+               loading={loading}
+            />
 
             <hr />
 
-            <div>
-               {design.gallery.length ? (
-                  <span className='text-slate-400 yekan'>تصاویر گالری</span>
-               ) : (
-                  ''
-               )}
-               {design.gallery.map((image: string, idx: number) => {
-                  return (
-                     <div key={idx} className='relative'>
+            <div className='space-y-3'>
+               {designMemo.backSrc ? (
+                  <div>
+                     <span className='text-slate-400 yekan'>تصویر پشت طرح</span>
+
+                     <div className='relative'>
                         <Link
                            target='_blank'
-                           href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${image}`}
+                           href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${designMemo.backSrc}`}
                         >
                            <div className='flex justify-center mx-auto'>
                               <NextImage
                                  className='rounded-lg p-1'
-                                 src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${image}`}
-                                 alt={design._id}
-                                 width={design.width}
-                                 height={design.height}
+                                 src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${designMemo.backSrc}`}
+                                 alt={designMemo._id}
+                                 width={designMemo.width}
+                                 height={designMemo.height}
                                  loading='lazy'
                               />
                            </div>
                         </Link>
 
-                        <ImageDelete type='gallery' design={design._id} imageKey={image} />
+                        <ImageDelete
+                           type='back'
+                           design={designMemo._id}
+                           imageKey={designMemo.backSrc}
+                        />
                      </div>
-                  )
-               })}
-            </div>
-
-            {galleryPrevMemo?.length ? (
-               <div>
-                  <span className='text-slate-400 yekan'>پیش نمایش تصاویر گالری برای آپلود</span>
-                  <div className='space-y-3'>
-                     {galleryPrevMemo.map((imageData: File) => {
-                        return (
-                           <NextImage
-                              key={imageData.name}
-                              className='object-contain rounded-xl'
-                              src={URL.createObjectURL(imageData)}
-                              alt={imageData.name}
-                              width='250'
-                              height='250'
-                              quality={100}
-                              loading='lazy'
-                           />
-                        )
-                     })}
-                  </div>
-               </div>
-            ) : (
-               ''
-            )}
-
-            <div
-               onDrop={(e) => dropHandlerDesign(e, 'gallery')}
-               onDragOver={dragOverHandler}
-               className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
-            >
-               {/* @ts-ignore */}
-               <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
-                  <span className='yekan text-sm'>انتخاب تصاویر گالری</span>
-                  <input
-                     hidden
-                     accept='image/*'
-                     type='file'
-                     name='galleryPreview'
-                     multiple
-                     onChange={(e) => onFileSelected(e?.target?.files, 'gallery')}
-                     disabled={loading}
-                  />
-               </Button>
-            </div>
-
-            <hr />
-
-            <div className='flex justify-center items-center bg-slate-100 border-2 border-slate-200 rounded-lg'>
-               {loading ? (
-                  <div className='p-1.5'>
-                     <CircularProgress color='success' size={20} />
                   </div>
                ) : (
-                  <button
-                     className='flex gap-5'
-                     disabled={loading}
-                     onClick={() => onSubmit()}
-                     type='button'
-                  >
-                     <svg
-                        className='h-5 w-5'
-                        width='24'
-                        height='24'
-                        viewBox='0 0 24 24'
-                        strokeWidth='2'
-                        stroke='currentColor'
-                        fill='none'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
+                  <>
+                     {backPrevMemo?.length ? (
+                        <div>
+                           <span className='text-slate-400 yekan'>
+                              پیش نمایش تصویر پشت برای آپلود
+                           </span>
+
+                           {backPrevMemo.map((imageData: File) => {
+                              return (
+                                 <NextImage
+                                    key={imageData.name}
+                                    className='object-contain rounded-xl'
+                                    src={URL.createObjectURL(imageData)}
+                                    alt={imageData.name}
+                                    width='250'
+                                    height='250'
+                                    quality={100}
+                                    loading='lazy'
+                                 />
+                              )
+                           })}
+                        </div>
+                     ) : (
+                        ''
+                     )}
+
+                     <div
+                        onDrop={(e) => dropHandlerDesign(e, 'back')}
+                        onDragOver={dragOverHandler}
+                        className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
                      >
-                        {' '}
-                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
-                        <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
-                        <polyline points='9 15 12 12 15 15' />{' '}
-                        <line x1='12' y1='12' x2='12' y2='21' />
-                     </svg>
-                     <span className='yekan text-sm'>آپلود تصاویر</span>
-                  </button>
+                        {/* @ts-ignore */}
+                        <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                           <span className='yekan text-sm'>انتخاب پشت طرح</span>
+                           <input
+                              hidden
+                              accept='image/*'
+                              type='file'
+                              name='backPreview'
+                              onChange={(e) => onFileSelected(e?.target?.files, 'back')}
+                              disabled={loading}
+                           />
+                        </Button>
+                     </div>
+                  </>
                )}
-            </div>
 
-            <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-               <span className='text-xs text-green-600/70 yekan'>
-                  تصویر کم حجم تر برابر با <br /> امکان ذخیره سازی تصاویر بیشتر
-               </span>
-            </div>
+               <hr />
 
-            <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-               <span className='text-xs text-green-600/70 yekan'>
-                  حجم ایده آل تا ۱۵۰ کیلوبایت می‌باشد
-               </span>
-            </div>
+               <GalleryInput
+                  design={{
+                     gallery: designMemo.gallery,
+                     _id: designMemo._id,
+                     width: designMemo.width,
+                     height: designMemo.height,
+                  }}
+                  galleryPrevMemo={galleryPrevMemo}
+                  dragOverHandler={dragOverHandler}
+                  dropHandlerDesign={dropHandlerDesign}
+                  onFileSelected={onFileSelected}
+                  loading={loading}
+               />
 
-            <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-               <span className='text-xs text-green-600/70 yekan'>
-                  حجم عکس تاثیر قابل توجهی بر کاربر نمی‌گذارد
-               </span>
+               <hr />
+
+               <div className='flex justify-center items-center bg-slate-100 border-2 border-slate-200 rounded-lg'>
+                  {loading ? (
+                     <div className='p-1.5'>
+                        <CircularProgress color='success' size={20} />
+                     </div>
+                  ) : (
+                     <button
+                        className='flex gap-5'
+                        disabled={loading}
+                        onClick={() => onSubmit()}
+                        type='button'
+                     >
+                        <svg
+                           className='h-5 w-5'
+                           width='24'
+                           height='24'
+                           viewBox='0 0 24 24'
+                           strokeWidth='2'
+                           stroke='currentColor'
+                           fill='none'
+                           strokeLinecap='round'
+                           strokeLinejoin='round'
+                        >
+                           {' '}
+                           <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                           <path d='M7 18a4.6 4.4 0 0 1 0 -9h0a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1' />{' '}
+                           <polyline points='9 15 12 12 15 15' />{' '}
+                           <line x1='12' y1='12' x2='12' y2='21' />
+                        </svg>
+                        <span className='yekan text-sm'>آپلود تصاویر</span>
+                     </button>
+                  )}
+               </div>
+
+               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+                  <span className='text-xs text-green-600/70 yekan'>
+                     تصویر کم حجم تر برابر با <br /> امکان ذخیره سازی تصاویر بیشتر
+                  </span>
+               </div>
+
+               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+                  <span className='text-xs text-green-600/70 yekan'>
+                     حجم ایده آل تا ۱۵۰ کیلوبایت می‌باشد
+                  </span>
+               </div>
+
+               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
+                  <span className='text-xs text-green-600/70 yekan'>
+                     حجم عکس تاثیر قابل توجهی بر کاربر نمی‌گذارد
+                  </span>
+               </div>
             </div>
          </div>
-      </div>
-   )
-}
+      )
+   },
+)
+
+ImageInput.displayName = 'ImageInput'
 
 export default ImageInput

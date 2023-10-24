@@ -1,6 +1,6 @@
 'use client'
 
-import { memo } from 'react'
+import { memo, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 
@@ -11,12 +11,18 @@ import { IDesign } from '@/models/design'
 import { ICategory } from '@/models/category'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
-const Switch = dynamic(() => import('@mui/material/Switch'), { ssr: false })
-const Autocomplete = dynamic(() => import('@mui/material/Autocomplete'), { ssr: false })
 
 import ImageInput from './imageInput'
 import { DesignEditForm } from '@/formik/schema/validation'
 import hyphen from '@/lib/hyphen'
+
+import DesignNameInput from './designNameInput'
+import ClientInput from './clientInput'
+import DesignedAtInput from './designedAtInput'
+import DescriptionInput from './descriptionInput'
+import PalettesColorInput from './palettesColorInput'
+import ActiveInput from './activeInput'
+import CategoryInput from './categoryInput'
 
 const DetailForm = memo(
    ({
@@ -30,12 +36,22 @@ const DetailForm = memo(
    }) => {
       const router = useRouter()
 
-      const handleSubmit = async (values: { name: string; category: object; active: boolean }) => {
+      const designMemo = useMemo(() => design, [design])
+
+      const handleSubmit = async (values: {
+         name: string
+         category: object
+         active: boolean
+         client: string
+         description: string
+         designedAt: string
+         colorPalettes: string
+      }) => {
          try {
             toast.info('در حال ثبت اطلاعات طرح...')
 
             const payload = {
-               _id: addingNewDesign ? null : design._id,
+               _id: addingNewDesign ? null : designMemo._id,
                ...values,
             }
 
@@ -68,14 +84,14 @@ const DetailForm = memo(
 
       const handleDeleteDesign = async () => {
          try {
-            if (design.frontSrc || design.backSrc) {
+            if (designMemo.frontSrc || designMemo.backSrc) {
                return toast.warning('برای حذف طرح ابتدا می‌بایست تصاویر مربوطه حذف گردد')
             }
 
             toast.info('در حال حذف طرح...')
 
             const payload = {
-               _id: design._id,
+               _id: designMemo._id,
             }
 
             const res = await fetch('/api/--admin--/design', {
@@ -106,10 +122,14 @@ const DetailForm = memo(
       return (
          <Formik
             initialValues={{
-               name: addingNewDesign ? '' : design.name,
+               name: addingNewDesign ? '' : designMemo.name,
                // @ts-ignore
-               category: addingNewDesign ? categories[0] : design.category[0],
-               active: addingNewDesign ? true : design.active,
+               category: addingNewDesign ? categories[0] : designMemo.category[0],
+               active: addingNewDesign ? true : designMemo.active,
+               client: addingNewDesign ? '' : designMemo.client,
+               description: addingNewDesign ? '' : designMemo.description,
+               designedAt: addingNewDesign ? '' : designMemo.designedAt,
+               colorPalettes: addingNewDesign ? '' : designMemo.colorPalettes,
             }}
             validationSchema={DesignEditForm}
             onSubmit={handleSubmit}
@@ -120,112 +140,69 @@ const DetailForm = memo(
                      {addingNewDesign ? (
                         ''
                      ) : (
-                        <ImageInput design={JSON.parse(JSON.stringify(design))} />
+                        <ImageInput
+                           design={{
+                              _id: designMemo._id,
+                              gallery: designMemo.gallery,
+                              frontSrc: designMemo.frontSrc,
+                              backSrc: designMemo.backSrc,
+                              width: designMemo.width,
+                              height: designMemo.height,
+                           }}
+                        />
                      )}
                   </div>
                   <div className='space-y-5 col-span-2'>
-                     <div className='text-right space-y-1'>
-                        <label htmlFor='name'>
-                           <span className='text-slate-400'>عنوان طرح</span>
-                        </label>
-                        <input
-                           name='name'
-                           onChange={(e) => setFieldValue('name', e.target.value)}
-                           value={values.name}
-                           style={{
-                              border: '1px solid #cccccc',
-                              padding: '10px',
-                              width: '100%',
-                           }}
-                           className='rounded-lg rtl'
-                           type='text'
-                        />
-                        <div className='flex items-center justify-end'>
-                           <p className='text-xs text-yellow-500'>
-                              ترجیحا عنوان طرح نباید تغییر کند
-                           </p>
-                           <svg
-                              className='h-5 w-5 text-yellow-500'
-                              fill='none'
-                              viewBox='0 0 24 24'
-                              stroke='currentColor'
-                           >
-                              <path
-                                 strokeLinecap='round'
-                                 strokeLinejoin='round'
-                                 strokeWidth='2'
-                                 d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
-                              />
-                           </svg>
-                        </div>
-                     </div>
-
-                     {errors.name && touched.name ? (
-                        <p className='text-sm text-red-500'>{errors.name}</p>
-                     ) : (
-                        ''
-                     )}
-
-                     <Autocomplete
-                        className='rtl'
-                        id='category'
-                        value={values.category as unknown as ICategory}
-                        options={categories}
-                        isOptionEqualToValue={(option, value) =>
-                           // @ts-ignore
-                           option === value || option._id === value._id
-                        }
-                        // @ts-ignore
-                        getOptionLabel={(option: ICategory) => option.name}
-                        onChange={(_e, value) => {
-                           if (value) {
-                              setFieldValue('category', value)
-                           }
-                        }}
-                        renderInput={(params) => {
-                           return (
-                              <div ref={params.InputProps.ref}>
-                                 <label
-                                    htmlFor='categoryList'
-                                    className='text-xs yekan1 text-slate-400'
-                                 >
-                                    دسته بندی
-                                 </label>
-                                 <input
-                                    id='categoryList'
-                                    type='text'
-                                    placeholder='عنوان دسته بندی را بنویسید...'
-                                    style={{
-                                       border: '1px solid #cccccc',
-                                       borderRadius: '10px',
-                                       padding: '10px',
-                                       width: '100%',
-                                    }}
-                                    {...params.inputProps}
-                                 />
-                              </div>
-                           )
-                        }}
-                        sx={{ width: '100%' }}
+                     <CategoryInput
+                        categories={categories}
+                        value={values.category}
+                        setFieldValue={setFieldValue}
                      />
 
-                     {errors.category && touched.category ? (
-                        // @ts-ignore
-                        <p className='text-sm text-red-500'>{errors.category}</p>
-                     ) : (
-                        ''
-                     )}
+                     <hr />
 
-                     <div className='flex items-center gap-5 rtl'>
-                        <span className='text-slate-400 yekan'>طرح نمایش داده شود</span>
+                     <DesignNameInput
+                        value={values.name}
+                        setFieldValue={setFieldValue}
+                        error={errors.name}
+                        touch={touched.name}
+                     />
 
-                        <Switch
-                           checked={values.active}
-                           name='active'
-                           color='success'
-                           onChange={() => setFieldValue('active', !values.active)}
-                        />
-                     </div>
+                     <ClientInput
+                        value={values.client}
+                        setFieldValue={setFieldValue}
+                        error={errors.client}
+                        touch={touched.client}
+                     />
+
+                     <DesignedAtInput
+                        value={values.designedAt}
+                        setFieldValue={setFieldValue}
+                        error={errors.designedAt}
+                        touch={touched.designedAt}
+                     />
+
+                     <hr />
+
+                     <DescriptionInput
+                        value={values.description}
+                        setFieldValue={setFieldValue}
+                        error={errors.description}
+                        touch={touched.description}
+                     />
+
+                     <hr />
+
+                     <PalettesColorInput
+                        value={values.colorPalettes}
+                        setFieldValue={setFieldValue}
+                        error={errors.colorPalettes}
+                        touch={touched.colorPalettes}
+                     />
+
+                     <hr />
+
+                     <ActiveInput value={values.active} setFieldValue={setFieldValue} />
 
                      <button
                         type='submit'
