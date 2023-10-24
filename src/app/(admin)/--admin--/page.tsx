@@ -78,6 +78,35 @@ const AdminPanel = async () => {
                </Link>
             </div>
 
+            <div className='rounded-lg bg-white px-2 py-2 transition-all hover:border-orange-600 hover:shadow-lg hover:shadow-orange-100'>
+               <Link href='/--admin--/slides'>
+                  <div className='flex items-center justify-end space-x-3'>
+                     <span className='text-base text-black'>اسلاید ها</span>
+                     <svg
+                        className='h-6 w-6 text-black'
+                        width='24'
+                        height='24'
+                        viewBox='0 0 24 24'
+                        strokeWidth='2'
+                        stroke='currentColor'
+                        fill='none'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                     >
+                        {' '}
+                        <path stroke='none' d='M0 0h24v24H0z' />{' '}
+                        <line x1='15' y1='6' x2='15.01' y2='6' />{' '}
+                        <rect x='3' y='3' width='18' height='14' rx='3' />{' '}
+                        <path d='M3 13l4 -4a3 5 0 0 1 3 0l 4 4' />{' '}
+                        <path d='M13 12l2 -2a3 5 0 0 1 3 0l 3 3' />{' '}
+                        <line x1='8' y1='21' x2='8.01' y2='21' />{' '}
+                        <line x1='12' y1='21' x2='12.01' y2='21' />{' '}
+                        <line x1='16' y1='21' x2='16.01' y2='21' />
+                     </svg>
+                  </div>
+               </Link>
+            </div>
+
             {/* <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-orange-100 transition-all hover:border-orange-600'>
                   <Link href='/--admin--/statistic'>
                      <div className='flex justify-end space-x-3 items-center'>

@@ -15,7 +15,7 @@ import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
 import createS3Presign from '@/lib/createS3Presign'
 import putInS3Bucket from '@/lib/PutInS3Bucket'
-import uploadErrorDeleteData from '@/lib/uploadErrorDeleteData'
+import uploadErrorDeleteData from './uploadErrorDeleteData'
 import GalleryInput from './galleryInput'
 import FrontImageInput from './frontImageInput'
 
@@ -139,8 +139,10 @@ const ImageInput = memo(
 
                   // put
                   const fileUploadResult = await putInS3Bucket(uploadUrl, image)
-                  if (!fileUploadResult)
-                     await uploadErrorDeleteData(imageData.type, imageKey, designMemo._id)
+                  
+                  if (!fileUploadResult) {
+                     return await uploadErrorDeleteData(imageData.type, imageKey, designMemo._id)
+                  }
 
                   successUpload(imageData.type, image.name)
                }
