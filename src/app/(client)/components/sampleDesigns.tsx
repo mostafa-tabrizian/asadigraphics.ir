@@ -6,10 +6,10 @@ const SampleDesigns = ({ designs }: { designs: IDesign[] }) => {
    return (
       // border-t-2 border-black/25 rounded-2xl bg-gradient-to-b from-orange-200 to-transparent
       <div>
-         <div className='relative max-w-screen-sm mx-auto'>
+         <div className='relative mx-auto max-w-screen-sm'>
             <svg
                xmlns='http://www.w3.org/2000/svg'
-               className='absolute right-16 md:right-40 top-1 w-14 h-14 text-black/10'
+               className='absolute right-16 top-1 h-14 w-14 text-black/10 md:right-40'
                viewBox='0 0 1024 1024'
                version='1.1'
             >
@@ -18,18 +18,18 @@ const SampleDesigns = ({ designs }: { designs: IDesign[] }) => {
                   fill='currentColor'
                />
             </svg>
-            <h2 className='my-10 text-center border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 shadow-[0_6px_10px_0_#00000040] py-5 mx-5 rounded-2xl'>
+            <h2 className='mx-5 my-10 rounded-2xl border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 py-5 text-center shadow-[0_6px_10px_0_#00000040]'>
                نمونه طراحی ها
             </h2>
          </div>
-         <div className='mx-5 relative min-h-[50vh]'>
+         <div className='relative mx-5 min-h-[50vh]'>
             <Gallery designs={JSON.parse(JSON.stringify(designs))} />
-            <span className='pointer-events-none bg-gradient-to-t from-[#F2F2F2] rounded-xl to-transparent absolute bottom-0 min-h-[50vh] w-full'></span>
+            <span className='pointer-events-none absolute bottom-0 min-h-[50vh] w-full rounded-xl bg-gradient-to-t from-[#F2F2F2] to-transparent'></span>
             <Link
                href='/search/all?type=all&name=تمامی+طرح+ها'
                className='flex w-full justify-center'
             >
-               <span className='border-2 border-black rounded-full yekanBold px-3 py-1 absolute bottom-0  bg-[#F2F2F2]'>
+               <span className='yekanBold absolute bottom-0 rounded-full border-2 border-black bg-[#F2F2F2] px-3  py-1'>
                   نمایش بیشتر
                </span>
             </Link>

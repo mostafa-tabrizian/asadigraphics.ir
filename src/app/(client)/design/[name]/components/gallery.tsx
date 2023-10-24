@@ -24,8 +24,8 @@ const Gallery = ({ detail, images }: { detail: IDesign; images: string[] }) => {
          {designData ? <UseLightbox designData={designData} setDesignData={setDesignData} /> : ''}
 
          <div>
-            <h2 className='text-sm yekan mb-4'>گالری تصاویر:</h2>
-            <div className='flex gap-2 pb-2 overflow-x-scroll items-center styled-scrollbars'>
+            <h2 className='yekan mb-4 text-sm'>گالری تصاویر:</h2>
+            <div className='styled-scrollbars flex items-center gap-2 overflow-x-scroll pb-2'>
                {images?.map((image, idx) => {
                   const photo = {
                      src: `https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${image}`,
@@ -44,7 +44,7 @@ const Gallery = ({ detail, images }: { detail: IDesign; images: string[] }) => {
                         alt={detail.name}
                         width={76}
                         height={76}
-                        className='rounded-lg w-auto max-w-full h-full'
+                        className='h-full w-auto max-w-full rounded-lg'
                      />
                   )
                })}

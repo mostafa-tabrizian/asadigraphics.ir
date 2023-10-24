@@ -27,7 +27,7 @@ const DesignNameInput = memo(
    }) => {
       return (
          <>
-            <div className='text-right space-y-1'>
+            <div className='space-y-1 text-right'>
                <label htmlFor='name'>
                   <span className='text-slate-400'>عنوان طرح</span>
                </label>
@@ -40,7 +40,7 @@ const DesignNameInput = memo(
                      padding: '10px',
                      width: '100%',
                   }}
-                  className='rounded-lg rtl placeholder:text-slate-400'
+                  className='rtl rounded-lg placeholder:text-slate-400'
                   type='text'
                   placeholder='برای مثال: لوگو ماه فروشگاه آسمان'
                />

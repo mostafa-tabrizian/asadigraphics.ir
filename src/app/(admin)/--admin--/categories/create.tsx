@@ -63,41 +63,41 @@ const CategoryNewInput = () => {
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-            <Form className='flex justify-center rtl items-start space-x-3 space-x-reverse w-full'>
+            <Form className='rtl flex w-full items-start justify-center space-x-3 space-x-reverse'>
                <div>
-                  <div className='text-right mr-3 space-y-1'>
+                  <div className='mr-3 space-y-1 text-right'>
                      <input
                         placeholder='نام'
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         value={values.name}
-                        className='rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                        className='rtl w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
                         type='text'
                      />
 
                      {errors.name && touched.name ? (
-                        <p className='text-sm text-red-500 text-right'>{errors.name}</p>
+                        <p className='text-right text-sm text-red-500'>{errors.name}</p>
                      ) : (
                         ''
                      )}
                   </div>
                </div>
-               <div className='text-right mr-3 space-y-1'>
+               <div className='mr-3 space-y-1 text-right'>
                   <input
                      placeholder='اسلاگ'
                      name='slug'
                      onChange={(e) => setFieldValue('slug', e.target.value)}
                      value={values.slug}
-                     className='rtl w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg p-2'
+                     className='rtl w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
                      type='text'
                   />
 
-                  <p className='text-[.6rem] text-yellow-600 text-right'>
+                  <p className='text-right text-[.6rem] text-yellow-600'>
                      اسلاگ غیر قابل تغییر خواهد بود
                   </p>
 
                   {errors.slug && touched.slug ? (
-                     <p className='text-sm text-red-500 text-right'>{errors.slug}</p>
+                     <p className='text-right text-sm text-red-500'>{errors.slug}</p>
                   ) : (
                      ''
                   )}

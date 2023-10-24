@@ -36,8 +36,7 @@ export async function POST(req: Request) {
       }
 
       if (
-         Math.round((design.width / design.height) * 10) / 10
-         !==
+         Math.round((design.width / design.height) * 10) / 10 !==
          Math.round((imageDimention[0] / imageDimention[1]) * 10) / 10
       ) {
          return NextResponse.json({ message: 'dimention not equal to front design' })
@@ -45,7 +44,6 @@ export async function POST(req: Request) {
 
       design.backSrc = imageKey
       design.save()
-
    } else if (type == 'gallery') {
       design = await Design.findOne({ _id: _id }).exec()
 

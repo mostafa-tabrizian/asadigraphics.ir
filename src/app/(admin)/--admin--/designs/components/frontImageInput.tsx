@@ -30,14 +30,14 @@ const FrontImageInput = memo(
          <div className='space-y-6'>
             {frontSrc ? (
                <div>
-                  <span className='text-slate-400 yekan'>تصویر جلو طرح</span>
+                  <span className='yekan text-slate-400'>تصویر جلو طرح</span>
 
                   <div className='relative'>
                      <Link
                         target='_blank'
                         href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`}
                      >
-                        <div className='flex justify-center mx-auto'>
+                        <div className='mx-auto flex justify-center'>
                            <Image
                               className='rounded-lg p-1'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${frontSrc}`}
@@ -56,13 +56,13 @@ const FrontImageInput = memo(
                <>
                   {frontPrevMemo?.length ? (
                      <div>
-                        <span className='text-slate-400 yekan'>پیش نمایش تصویر جلو برای آپلود</span>
+                        <span className='yekan text-slate-400'>پیش نمایش تصویر جلو برای آپلود</span>
 
                         {frontPrevMemo.map((imageData: File) => {
                            return (
                               <Image
                                  key={imageData.name}
-                                 className='object-contain rounded-xl'
+                                 className='rounded-xl object-contain'
                                  src={URL.createObjectURL(imageData)}
                                  alt={imageData.name}
                                  width='250'
@@ -80,7 +80,7 @@ const FrontImageInput = memo(
                   <div
                      onDrop={(e) => dropHandlerDesign(e, 'front')}
                      onDragOver={dragOverHandler}
-                     className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+                     className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 text-sm'
                   >
                      {/* @ts-ignore */}
                      <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>

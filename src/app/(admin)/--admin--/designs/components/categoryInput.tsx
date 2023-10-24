@@ -47,7 +47,7 @@ const CategoryInput = memo(
                renderInput={(params) => {
                   return (
                      <div ref={params.InputProps.ref}>
-                        <label htmlFor='categoryList' className='text-xs yekan1 text-slate-400'>
+                        <label htmlFor='categoryList' className='yekan1 text-xs text-slate-400'>
                            دسته بندی
                         </label>
                         <input

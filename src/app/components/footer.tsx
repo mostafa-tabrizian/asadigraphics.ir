@@ -3,11 +3,11 @@ import Image from 'next/image'
 
 const Footer = () => {
    return (
-      <footer className='py-3 md:py-8 text-slate-600 rtl mt-10 pb-40 border-t-2 border-t-gray-200 bg-gray-200 px-4 rounded-t-3xl'>
-         <div className='grid gap-10 max-w-screen-lg grid-cols-5 grid-row-2 container mx-auto'>
+      <footer className='rtl mt-10 rounded-t-3xl border-t-2 border-t-gray-200 bg-gray-200 px-4 py-3 pb-40 text-slate-600 md:py-8'>
+         <div className='grid-row-2 container mx-auto grid max-w-screen-lg grid-cols-5 gap-10'>
             <div className='col-span-5 flex flex-col justify-start'>
                <div className='text-center'>
-                  <div className='mb-7 w-full justify-center grid'>
+                  <div className='mb-7 grid w-full justify-center'>
                      <Link aria-label='صفحه اصلی' href='/'>
                         <Image
                            className='mix-blend-multiply'
@@ -22,8 +22,8 @@ const Footer = () => {
                      </Link>
                   </div>
 
-                  <div className='flex justify-around mb-5 items-center'>
-                     <ul className='flex gap-10 items-center'>
+                  <div className='mb-5 flex items-center justify-around'>
+                     <ul className='flex items-center gap-10'>
                         <li className='block'>
                            <a
                               aria-label='ایتا'
@@ -33,7 +33,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='h-6 w-6 hover:text-orange-600 transition'
+                                 className='h-6 w-6 transition hover:text-orange-600'
                                  viewBox='0 0 24 24'
                                  fill='none'
                                  stroke='currentColor'
@@ -59,7 +59,7 @@ const Footer = () => {
                                  strokeWidth='0'
                                  role='img'
                                  viewBox='0 0 24 24'
-                                 className='w-6 h-6 hover:text-orange-600 transition'
+                                 className='h-6 w-6 transition hover:text-orange-600'
                                  height='1em'
                                  width='1em'
                                  xmlns='http://www.w3.org/2000/svg'
@@ -78,7 +78,7 @@ const Footer = () => {
                               target='_blank'
                            >
                               <svg
-                                 className='w-6 h-6 hover:text-orange-600 transition'
+                                 className='h-6 w-6 transition hover:text-orange-600'
                                  width='24'
                                  height='24'
                                  viewBox='0 0 24 24'
@@ -96,12 +96,12 @@ const Footer = () => {
                         </li>
                      </ul>
                   </div>
-                  <span className='text-slate-600 font-bold yekan text-sm mb-6 text-center'>
+                  <span className='yekan mb-6 text-center text-sm font-bold text-slate-600'>
                      دید خود را بالا ببرید، <br /> با اطمینان سفارش دهید، <br /> طرح را در آغوش
                      بگیرید.
                   </span>
                   <div id='about-us' className='space-y-5'>
-                     <p className='yekan rtl text-justify text-sm text-slate-600 leading-7'>
+                     <p className='yekan rtl text-justify text-sm leading-7 text-slate-600'>
                         <span className='yekanBold text-base text-slate-700'>با سلام</span> 👋{' '}
                         <br />
                         من <span className='yekanBold text-base text-slate-700'>علی اسدی</span>{' '}
@@ -169,11 +169,11 @@ const Footer = () => {
                </nav>
             </div> */}
             <div className='col-span-5'>
-               <p className='text-center text-orange-600 text-xs mb-2'>
+               <p className='mb-2 text-center text-xs text-orange-600'>
                   © تمامی حقوق این وب سایت برای اسدی گرافیک محفوظ است
                </p>
                <a href='https://t.me/Tabrizian_dev' target='_blank' rel='noreferrer'>
-                  <p className='text-center text-purple-400 text-xs'>
+                  <p className='text-center text-xs text-purple-400'>
                      ساخته شده با 💜 توسط Tabrizian Dev
                   </p>
                </a>

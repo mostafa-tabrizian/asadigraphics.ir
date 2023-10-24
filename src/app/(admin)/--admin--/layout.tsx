@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             pauseOnHover
             theme='light'
          />
-         <main className='mb-24 max-w-screen-lg overflow-x-hidden mx-auto'>{children}</main>
+         <main className='mx-auto mb-24 max-w-screen-lg overflow-x-hidden'>{children}</main>
       </>
    )
 }

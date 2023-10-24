@@ -1,9 +1,9 @@
 const SocialMedia = () => {
    return (
       <div>
-         <h2 className='text-2xl mx-5 text-center'>ما را در فضای مجازی دنبال کنید</h2>
+         <h2 className='mx-5 text-center text-2xl'>ما را در فضای مجازی دنبال کنید</h2>
 
-         <div className="bg-[url('https://tabrizian.storage.iran.liara.space/asadi_designs/dots.jpg')] bg-repeat flex py-4 m-5 justify-center gap-x-7">
+         <div className="m-5 flex justify-center gap-x-7 bg-[url('https://tabrizian.storage.iran.liara.space/asadi_designs/dots.jpg')] bg-repeat py-4">
             <a
                aria-label='اینستاگرام'
                id='instagram'
@@ -12,7 +12,7 @@ const SocialMedia = () => {
                href='https://www.instagram.com/aliasadi_graphics'
                target='_blank'
             >
-               <div className='bg-gradient-to-t from-black to-black/40 p-2 rounded-xl'>
+               <div className='rounded-xl bg-gradient-to-t from-black to-black/40 p-2'>
                   <svg
                      className='h-8 w-8 text-orange-200'
                      viewBox='0 0 24 24'
@@ -37,7 +37,7 @@ const SocialMedia = () => {
                href='https://t.me/aliasadi_graphics'
                target='_blank'
             >
-               <div className='bg-gradient-to-t from-black to-black/40 p-2 rounded-xl'>
+               <div className='rounded-xl bg-gradient-to-t from-black to-black/40 p-2'>
                   <svg
                      className='h-8 w-8 text-orange-200'
                      width='24'
@@ -63,7 +63,7 @@ const SocialMedia = () => {
                href='https://eitaa.com/aliasadi_graphics'
                target='_blank'
             >
-               <div className='bg-gradient-to-t from-black to-black/40 p-2 rounded-xl'>
+               <div className='rounded-xl bg-gradient-to-t from-black to-black/40 p-2'>
                   <svg
                      className='h-8 w-8 text-orange-200'
                      viewBox='0 0 24 24'

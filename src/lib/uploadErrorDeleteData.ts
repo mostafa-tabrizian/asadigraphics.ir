@@ -7,7 +7,7 @@ const uploadErrorDeleteData = async (type: string, imageKey: string, _id: string
          body: JSON.stringify({
             type,
             imageKey,
-            _id
+            _id,
          }),
       })
 

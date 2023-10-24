@@ -46,7 +46,7 @@ const DeleteButton = ({
          {ableToDelete ? (
             <>
                {loading ? (
-                  <div className='flex justify-end my-1'>
+                  <div className='my-1 flex justify-end'>
                      <CircularProgress color='error' size={20} />
                   </div>
                ) : (

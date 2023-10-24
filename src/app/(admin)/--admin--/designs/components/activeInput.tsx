@@ -23,8 +23,8 @@ const ActiveInput = memo(
       }>>
    }) => {
       return (
-         <div className='flex items-center gap-5 rtl'>
-            <span className='text-slate-400 yekan'>طرح نمایش داده شود</span>
+         <div className='rtl flex items-center gap-5'>
+            <span className='yekan text-slate-400'>طرح نمایش داده شود</span>
 
             <Switch
                checked={value}

@@ -30,24 +30,24 @@ const SearchInput = () => {
    }, [])
 
    return (
-      <div className='flex justify-center md:w-auto items-center relative mt-2'>
+      <div className='relative mt-2 flex items-center justify-center md:w-auto'>
          <form
             onSubmit={handleFormSubmit}
-            className='border relative justify-between border-slate-300 rounded-lg bg-slate-100 w-full '
+            className='relative w-full justify-between rounded-lg border border-slate-300 bg-slate-100 '
          >
             <input
                onChange={(e) => setSearchQuery(e.target.value)}
-               className='text-sm rtl w-full py-2 outline-none yekanBold text-center placeholder:text-center text-slate-800 placeholder:text-slate-500'
+               className='rtl yekanBold w-full py-2 text-center text-sm text-slate-800 outline-none placeholder:text-center placeholder:text-slate-500'
                type='text'
                placeholder='جستجو میان طرح ها ...'
             />
             {loading ? (
-               <div className='h-7 w-7 m-auto absolute right-5 top-1'>
+               <div className='absolute right-5 top-1 m-auto h-7 w-7'>
                   <CircularProgress size={25} />
                </div>
             ) : (
                <svg
-                  className='h-7 w-7 m-auto absolute right-5 top-1 text-orange-400 hover:cursor-pointer'
+                  className='absolute right-5 top-1 m-auto h-7 w-7 text-orange-400 hover:cursor-pointer'
                   width='24'
                   height='24'
                   viewBox='0 0 24 24'

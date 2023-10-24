@@ -75,7 +75,7 @@ const ImageDelete = memo(
 
       return (
          <>
-            <div className='flex items-center justify-end space-x-3 absolute -left-5 top-0'>
+            <div className='absolute -left-5 top-0 flex items-center justify-end space-x-3'>
                {loading ? (
                   <div className='py-2'>
                      <CircularProgress color='success' size={15} />
@@ -103,9 +103,9 @@ const ImageDelete = memo(
             </div>
 
             <Dialog onClose={() => setConfirmation(false)} open={confirmation}>
-               <div className='p-5 text-center space-y-5'>
+               <div className='space-y-5 p-5 text-center'>
                   <svg
-                     className='h-16 w-16 mx-auto text-rose-500'
+                     className='mx-auto h-16 w-16 text-rose-500'
                      viewBox='0 0 24 24'
                      fill='none'
                      stroke='currentColor'
@@ -122,16 +122,16 @@ const ImageDelete = memo(
                      .پس از حذف هیچ راه بازگرداندی وجود ندارد <br /> آیا از حذف کردن خود مطمئن
                      هستید؟
                   </span>
-                  <div className='flex space-x-5 justify-around'>
+                  <div className='flex justify-around space-x-5'>
                      <button
                         onClick={() => setConfirmation(false)}
-                        className='w-full py-1 rounded bg-slate-300'
+                        className='w-full rounded bg-slate-300 py-1'
                      >
                         لغو
                      </button>
                      <button
                         onClick={handleDelete}
-                        className='w-full py-1 rounded bg-rose-500 text-white'
+                        className='w-full rounded bg-rose-500 py-1 text-white'
                      >
                         حذف
                      </button>

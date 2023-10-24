@@ -1,10 +1,10 @@
 const About = () => {
    return (
       <div>
-         <div className='relative max-w-screen-sm mx-auto'>
+         <div className='relative mx-auto max-w-screen-sm'>
             <svg
                xmlns='http://www.w3.org/2000/svg'
-               className='absolute right-20 md:right-40 top-2 w-14 h-14 text-black/10'
+               className='absolute right-20 top-2 h-14 w-14 text-black/10 md:right-40'
                viewBox='0 0 1024 1024'
                version='1.1'
             >
@@ -13,12 +13,12 @@ const About = () => {
                   fill='currentColor'
                />
             </svg>
-            <h2 className='my-10 text-center border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 shadow-[0_6px_10px_0_#00000040] py-5 mx-5 rounded-2xl'>
+            <h2 className='mx-5 my-10 rounded-2xl border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 py-5 text-center shadow-[0_6px_10px_0_#00000040]'>
                من کی هستم <br /> و چیکار می‌کنم؟
             </h2>
          </div>
 
-         <p className='yekan rtl text-justify leading-7 mx-5'>
+         <p className='yekan rtl mx-5 text-justify leading-7'>
             با سلام 👋 <br />
             من <span className='yekanBold text-base'>علی اسدی</span> هستم، یک طراح با تجربه در زمینه
             گرافیک و طراحی. تجربه‌ی چندین ساله‌ام در این حوزه به من این امکان را داده تا به عنوان{' '}

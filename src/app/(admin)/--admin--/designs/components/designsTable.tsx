@@ -40,7 +40,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                   >
                      {value ? (
                         <Image
-                           className='rounded-md object-cover w-auto max-w-full h-auto'
+                           className='h-auto w-auto max-w-full rounded-md object-cover'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${value}`}
                            alt={String(value)}
                            height={50}
@@ -65,7 +65,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                   >
                      {value ? (
                         <Image
-                           className='rounded-md object-cover w-auto max-w-full h-auto'
+                           className='h-auto w-auto max-w-full rounded-md object-cover'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${value}`}
                            alt={String(value)}
                            height={50}
@@ -129,7 +129,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                const value = info.getValue() as string
                return (
                   <Link href={`/--admin--/designs/${value.replaceAll(' ', '-')}`}>
-                     <span className='text-slate-500 text-sm'>{value}</span>
+                     <span className='text-sm text-slate-500'>{value}</span>
                   </Link>
                )
             },
@@ -161,8 +161,8 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
 
    return (
       <div className='rtl relative overflow-x-auto'>
-         <table className='table-auto w-full text-sm text-left text-slate-500'>
-            <thead className='text-xs text-slate-700 uppercase bg-slate-50'>
+         <table className='w-full table-auto text-left text-sm text-slate-500'>
+            <thead className='bg-slate-50 text-xs uppercase text-slate-700'>
                {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                      {headerGroup.headers.map((header) => {
@@ -196,7 +196,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
             <tbody className=''>
                {table.getRowModel().rows.map((row) => {
                   return (
-                     <tr key={row.id} className='bg-white border-b border-slate-300'>
+                     <tr key={row.id} className='border-b border-slate-300 bg-white'>
                         {row.getVisibleCells().map((cell) => {
                            return (
                               <td key={cell.id} className='px-6 py-4'>
@@ -210,30 +210,30 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
             </tbody>
          </table>
 
-         <div className='flex items-center gap-5 mt-5'>
+         <div className='mt-5 flex items-center gap-5'>
             <button
-               className='border rounded-lg p-1 px-2 bg-white'
+               className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                disabled={!table.getCanNextPage()}
             >
                رفتن به صفحه آخر
             </button>
             <button
-               className='border rounded-lg p-1 px-2 bg-white'
+               className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.nextPage()}
                disabled={!table.getCanNextPage()}
             >
                صفحه بعد
             </button>
             <button
-               className='border rounded-lg p-1 px-2 bg-white'
+               className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.previousPage()}
                disabled={!table.getCanPreviousPage()}
             >
                صفحه قبل
             </button>
             <button
-               className='border rounded-lg p-1 px-2 bg-white'
+               className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.setPageIndex(0)}
                disabled={!table.getCanPreviousPage()}
             >
@@ -256,7 +256,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                      const page = e.target.value ? Number(e.target.value) - 1 : 0
                      table.setPageIndex(page)
                   }}
-                  className='border p-1 rounded w-16'
+                  className='w-16 rounded border p-1'
                />
             </span>
             <select

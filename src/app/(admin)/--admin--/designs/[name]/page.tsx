@@ -42,8 +42,8 @@ const DesignPage = async ({ params: { name } }: { params: { name: string } }) =>
       }
 
       return (
-         <div className='mx-6 my-16 relative'>
-            <div className='mx-6 md:mx-auto max-w-screen-xl space-y-10 my-16'>
+         <div className='relative mx-6 my-16'>
+            <div className='mx-6 my-16 max-w-screen-xl space-y-10 md:mx-auto'>
                {addingNewDesign || design ? (
                   <>
                      <Breadcrumbs aria-label='breadcrumb'>
@@ -56,14 +56,14 @@ const DesignPage = async ({ params: { name } }: { params: { name: string } }) =>
                         <Link className='text-gray-400' href='/--admin--/designs'>
                            طرح ها
                         </Link>
-                        <h5 className='font-semibold rtl'>
+                        <h5 className='rtl font-semibold'>
                            {addingNewDesign ? 'افزودن طرح جدید' : design.name}
                         </h5>
                      </Breadcrumbs>
 
-                     <div className='max-w-xl mx-auto'>
+                     <div className='mx-auto max-w-xl'>
                         <Link href='/--admin--/designs/new'>
-                           <button className='bg-white z-10 border-2 border-orange-500 rounded-full p-3 fixed bottom-10 right-5'>
+                           <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-orange-500 bg-white p-3'>
                               <svg
                                  className='h-6 w-6 text-orange-500'
                                  fill='none'

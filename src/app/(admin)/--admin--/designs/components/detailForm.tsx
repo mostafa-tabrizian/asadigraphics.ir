@@ -135,7 +135,7 @@ const DetailForm = memo(
             onSubmit={handleSubmit}
          >
             {({ values, setFieldValue, isSubmitting, errors, touched }) => (
-               <Form className='grid grid-cols-3 gap-5 mt-6 '>
+               <Form className='mt-6 grid grid-cols-3 gap-5 '>
                   <div className='col-span-1'>
                      {addingNewDesign ? (
                         ''
@@ -152,7 +152,7 @@ const DetailForm = memo(
                         />
                      )}
                   </div>
-                  <div className='space-y-5 col-span-2'>
+                  <div className='col-span-2 space-y-5'>
                      <CategoryInput
                         categories={categories}
                         value={values.category}
@@ -207,7 +207,7 @@ const DetailForm = memo(
                      <button
                         type='submit'
                         disabled={isSubmitting}
-                        className='border-2 border-green-600 hover:shadow-md hover:shadow-green-600/40 w-full rounded-lg'
+                        className='w-full rounded-lg border-2 border-green-600 hover:shadow-md hover:shadow-green-600/40'
                      >
                         {isSubmitting ? <CircularProgress color='success' size={25} /> : 'ذخیره'}
                      </button>
@@ -219,7 +219,7 @@ const DetailForm = memo(
                            type='button'
                            disabled={isSubmitting}
                            onClick={handleDeleteDesign}
-                           className='border-2 border-rose-300 hover:shadow-md hover:shadow-rose-300/40 w-full rounded-lg'
+                           className='w-full rounded-lg border-2 border-rose-300 hover:shadow-md hover:shadow-rose-300/40'
                         >
                            {isSubmitting ? <CircularProgress color='error' size={25} /> : 'حذف'}
                         </button>

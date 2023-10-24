@@ -14,15 +14,15 @@ const LogoutButton = () => {
    }
 
    return (
-      <div className='bg-white hover:shadow-lg hover:shadow-rose-100 px-2 transition-all hover:border-rose-600 rounded-xl flex items-center justify-end hover:cursor-pointer'>
+      <div className='flex items-center justify-end rounded-xl bg-white px-2 transition-all hover:cursor-pointer hover:border-rose-600 hover:shadow-lg hover:shadow-rose-100'>
          {loading ? (
-            <div className='py-3 mx-auto flex'>
+            <div className='mx-auto flex py-3'>
                <CircularProgress className='text-rose-600' color='inherit' size={24} />
             </div>
          ) : (
             <button disabled={loading} onClick={handleLogout}>
-               <div className='flex justify-end space-x-3 items-center'>
-                  <span className='text-base yekan'>خروج</span>
+               <div className='flex items-center justify-end space-x-3'>
+                  <span className='yekan text-base'>خروج</span>
                   <svg
                      className='h-7 w-7'
                      width='24'

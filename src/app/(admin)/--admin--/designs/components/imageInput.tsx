@@ -209,7 +209,7 @@ const ImageInput = memo(
       }
 
       return (
-         <div className='text-right space-y-4'>
+         <div className='space-y-4 text-right'>
             <FrontImageInput
                design={{
                   frontSrc: designMemo.frontSrc,
@@ -229,14 +229,14 @@ const ImageInput = memo(
             <div className='space-y-3'>
                {designMemo.backSrc ? (
                   <div>
-                     <span className='text-slate-400 yekan'>تصویر پشت طرح</span>
+                     <span className='yekan text-slate-400'>تصویر پشت طرح</span>
 
                      <div className='relative'>
                         <Link
                            target='_blank'
                            href={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${designMemo.backSrc}`}
                         >
-                           <div className='flex justify-center mx-auto'>
+                           <div className='mx-auto flex justify-center'>
                               <NextImage
                                  className='rounded-lg p-1'
                                  src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${designMemo.backSrc}`}
@@ -259,7 +259,7 @@ const ImageInput = memo(
                   <>
                      {backPrevMemo?.length ? (
                         <div>
-                           <span className='text-slate-400 yekan'>
+                           <span className='yekan text-slate-400'>
                               پیش نمایش تصویر پشت برای آپلود
                            </span>
 
@@ -267,7 +267,7 @@ const ImageInput = memo(
                               return (
                                  <NextImage
                                     key={imageData.name}
-                                    className='object-contain rounded-xl'
+                                    className='rounded-xl object-contain'
                                     src={URL.createObjectURL(imageData)}
                                     alt={imageData.name}
                                     width='250'
@@ -285,7 +285,7 @@ const ImageInput = memo(
                      <div
                         onDrop={(e) => dropHandlerDesign(e, 'back')}
                         onDragOver={dragOverHandler}
-                        className='w-full text-sm bg-slate-100 border-2 border-slate-200 rounded-lg'
+                        className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 text-sm'
                      >
                         {/* @ts-ignore */}
                         <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
@@ -321,7 +321,7 @@ const ImageInput = memo(
 
                <hr />
 
-               <div className='flex justify-center items-center bg-slate-100 border-2 border-slate-200 rounded-lg'>
+               <div className='flex items-center justify-center rounded-lg border-2 border-slate-200 bg-slate-100'>
                   {loading ? (
                      <div className='p-1.5'>
                         <CircularProgress color='success' size={20} />
@@ -355,20 +355,20 @@ const ImageInput = memo(
                   )}
                </div>
 
-               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-                  <span className='text-xs text-green-600/70 yekan'>
+               <div className=' mt-2 rounded-lg border border-green-600/50 p-2 text-right'>
+                  <span className='yekan text-xs text-green-600/70'>
                      تصویر کم حجم تر برابر با <br /> امکان ذخیره سازی تصاویر بیشتر
                   </span>
                </div>
 
-               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-                  <span className='text-xs text-green-600/70 yekan'>
+               <div className=' mt-2 rounded-lg border border-green-600/50 p-2 text-right'>
+                  <span className='yekan text-xs text-green-600/70'>
                      حجم ایده آل تا ۱۵۰ کیلوبایت می‌باشد
                   </span>
                </div>
 
-               <div className=' border border-green-600/50 p-2 mt-2 rounded-lg text-right'>
-                  <span className='text-xs text-green-600/70 yekan'>
+               <div className=' mt-2 rounded-lg border border-green-600/50 p-2 text-right'>
+                  <span className='yekan text-xs text-green-600/70'>
                      حجم عکس تاثیر قابل توجهی بر کاربر نمی‌گذارد
                   </span>
                </div>

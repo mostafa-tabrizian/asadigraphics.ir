@@ -26,14 +26,14 @@ const AdminPanel = async () => {
          </Breadcrumbs>
 
          <div className='text-center'>
-            <h1 className='font-semibold yekan'> {user.username} </h1>
+            <h1 className='yekan font-semibold'> {user.username} </h1>
             <h2 className='ext-zinc-400 text-base'> به پنل ادمین خوش آمدید </h2>
          </div>
 
-         <div className='px-4 py-10 space-y-4 from-gray-50 to-gray-100 bg-gradient-to-b rounded-lg max-w-sm mx-auto'>
-            <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-orange-100 transition-all hover:border-orange-600'>
+         <div className='mx-auto max-w-sm space-y-4 rounded-lg bg-gradient-to-b from-gray-50 to-gray-100 px-4 py-10'>
+            <div className='rounded-lg bg-white px-2 py-2 transition-all hover:border-orange-600 hover:shadow-lg hover:shadow-orange-100'>
                <Link href='/--admin--/designs'>
-                  <div className='flex justify-end space-x-3 items-center'>
+                  <div className='flex items-center justify-end space-x-3'>
                      <span className='text-base text-black'>طرح ها</span>
                      <svg
                         className='h-6 w-6 text-black'
@@ -52,9 +52,9 @@ const AdminPanel = async () => {
                </Link>
             </div>
 
-            <div className='bg-white rounded-lg py-2 px-2 hover:shadow-lg hover:shadow-orange-100 transition-all hover:border-orange-600'>
+            <div className='rounded-lg bg-white px-2 py-2 transition-all hover:border-orange-600 hover:shadow-lg hover:shadow-orange-100'>
                <Link href='/--admin--/categories'>
-                  <div className='flex justify-end space-x-3 items-center'>
+                  <div className='flex items-center justify-end space-x-3'>
                      <span className='text-base text-black'>دسته بندی ها</span>
                      <svg
                         className='h-6 w-6'

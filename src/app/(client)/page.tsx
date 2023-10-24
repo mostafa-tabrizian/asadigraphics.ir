@@ -95,7 +95,7 @@ async function Home() {
 
    if (remaining < 0) {
       return (
-         <h1 className='text-center mx-10 md:mx-auto my-20 max-w-screen-sm'>
+         <h1 className='mx-10 my-20 max-w-screen-sm text-center md:mx-auto'>
             متاسفانه تعداد درخواست‌های شما به حداکثر مجاز رسیده است. لطفاً کمی صبر کنید و سپس دوباره
             امتحان کنید
          </h1>
@@ -119,7 +119,7 @@ async function Home() {
             dangerouslySetInnerHTML={{ __html: JSON.stringify(corporationJsonLd) }}
          />
 
-         <div className='space-y-16 my-6 px-2'>
+         <div className='my-6 space-y-16 px-2'>
             <Categories categoriesData={JSON.parse(JSON.stringify(categoriesData))} />
 
             {designs.length ? <SampleDesigns designs={JSON.parse(JSON.stringify(designs))} /> : ''}

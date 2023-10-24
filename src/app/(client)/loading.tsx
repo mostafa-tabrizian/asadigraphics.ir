@@ -1,24 +1,24 @@
 const LoadingHome = () => {
    return (
-      <div className='mx-6 my-16 md:mx-auto animate-pulse max-w-screen-md space-y-4'>
+      <div className='mx-6 my-16 max-w-screen-md animate-pulse space-y-4 md:mx-auto'>
          {/* <div className='w-full md:w-5/6 md:mx-auto h-80 bg-gray-200 rounded'></div> */}
 
-         <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
-            <div className='w-full h-32 bg-gray-200 rounded'></div>
-            <div className='w-full h-32 bg-gray-200 rounded'></div>
-            <div className='w-full h-32 bg-gray-200 rounded'></div>
-            <div className='w-full h-32 bg-gray-200 rounded'></div>
-            <div className='w-full h-32 bg-gray-200 rounded'></div>
-            <div className='w-full h-32 bg-gray-200 rounded'></div>
+         <div className='grid grid-cols-1 gap-3 md:grid-cols-2'>
+            <div className='h-32 w-full rounded bg-gray-200'></div>
+            <div className='h-32 w-full rounded bg-gray-200'></div>
+            <div className='h-32 w-full rounded bg-gray-200'></div>
+            <div className='h-32 w-full rounded bg-gray-200'></div>
+            <div className='h-32 w-full rounded bg-gray-200'></div>
+            <div className='h-32 w-full rounded bg-gray-200'></div>
          </div>
 
-         <div className='w-4/6 mx-auto h-20 bg-gray-200 rounded'></div>
+         <div className='mx-auto h-20 w-4/6 rounded bg-gray-200'></div>
 
          <div className='grid grid-cols-2'>
-            <div className='w-45 h-40 bg-gray-200 mr-3 mb-3 rounded'></div>
-            <div className='w-45 h-40 bg-gray-200 mb-3 rounded'></div>
-            <div className='w-45 h-40 bg-gray-200 mr-3 rounded'></div>
-            <div className='w-45 h-40 bg-gray-200 rounded'></div>
+            <div className='w-45 mb-3 mr-3 h-40 rounded bg-gray-200'></div>
+            <div className='w-45 mb-3 h-40 rounded bg-gray-200'></div>
+            <div className='w-45 mr-3 h-40 rounded bg-gray-200'></div>
+            <div className='w-45 h-40 rounded bg-gray-200'></div>
          </div>
       </div>
    )

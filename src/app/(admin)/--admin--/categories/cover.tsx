@@ -90,7 +90,7 @@ const Cover = ({
    return (
       <>
          <div
-            className='col-span-1 hover:cursor-pointer flex justify-center'
+            className='col-span-1 flex justify-center hover:cursor-pointer'
             onClick={() => {
                if (!importDialog.current) {
                   dialogImportedFetchDesignsImages()
@@ -102,7 +102,7 @@ const Cover = ({
          >
             {cover ? (
                <Image
-                  className='rounded-md object-cover w-40 h-10'
+                  className='h-10 w-40 rounded-md object-cover'
                   src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${cover}`}
                   alt={_id}
                   height={50}
@@ -110,7 +110,7 @@ const Cover = ({
                />
             ) : (
                <svg
-                  className='h-6 w-6 text-slate-700 mx-auto'
+                  className='mx-auto h-6 w-6 text-slate-700'
                   width='24'
                   height='24'
                   viewBox='0 0 24 24'
@@ -131,20 +131,20 @@ const Cover = ({
 
          {importDialog.current && (
             <Dialog onClose={() => openSettingPanel(false)} open={settingPanel}>
-               <div className='p-5 relative text-center space-y-5'>
+               <div className='relative space-y-5 p-5 text-center'>
                   <div
-                     className='overflow-hiddenrelative rounded-xl mx-auto flex justify-center border'
+                     className='overflow-hiddenrelative mx-auto flex justify-center rounded-xl border'
                      style={{ width: '484px', height: '138px' }}
                   >
                      {preview ? (
-                        <div className='w-full rounded-xl relative py-8 px-3 items-center shadow-[0_6px_10px_0_#00000040]'>
-                           <div className='grid justify-center relative z-10'>
+                        <div className='relative w-full items-center rounded-xl px-3 py-8 shadow-[0_6px_10px_0_#00000040]'>
+                           <div className='relative z-10 grid justify-center'>
                               <h2 className='text-white' style={{ textShadow: '0 0 5px black' }}>
                                  {name}
                               </h2>
-                              <div className='flex items-center gap-3 p-1 justify-center'>
+                              <div className='flex items-center justify-center gap-3 p-1'>
                                  <svg
-                                    className='h-3 w-3 bg-white rounded-full text-black'
+                                    className='h-3 w-3 rounded-full bg-white text-black'
                                     fill='none'
                                     viewBox='0 0 24 24'
                                     stroke='currentColor'
@@ -157,7 +157,7 @@ const Cover = ({
                                     />
                                  </svg>
                                  <span
-                                    className='text-white yekan'
+                                    className='yekan text-white'
                                     style={{ textShadow: '0 0 5px black' }}
                                  >
                                     مشاهده طرح ها
@@ -166,28 +166,28 @@ const Cover = ({
                            </div>
                            <div className='rounded-xl'>
                               <Image
-                                 className='object-cover rounded-xl border border-gray-600 blur-[2px]'
+                                 className='rounded-xl border border-gray-600 object-cover blur-[2px]'
                                  src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${preview}`}
                                  fill
                                  alt={name}
                                  sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
                               />
-                              <span className='absolute rounded-xl top-0 left-0 h-full w-full bg-gradient-to-t from-black/50 to-black/30'></span>
+                              <span className='absolute left-0 top-0 h-full w-full rounded-xl bg-gradient-to-t from-black/50 to-black/30'></span>
                            </div>
                         </div>
                      ) : (
-                        <span className='font-semibold flex items-center'>پیش نمایش</span>
+                        <span className='flex items-center font-semibold'>پیش نمایش</span>
                      )}
                   </div>
 
                   {designsImages.length ? (
-                     <div className='grid grid-cols-8 gap-1 mb-5'>
+                     <div className='mb-5 grid grid-cols-8 gap-1'>
                         {designsImages.map((image) => {
                            return (
                               <Image
                                  onClick={() => setPreview(image)}
                                  key={image}
-                                 className='object-cover rounded-md aspect-square hover:cursor-pointer'
+                                 className='aspect-square rounded-md object-cover hover:cursor-pointer'
                                  src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${image}`}
                                  loading='lazy'
                                  width={100}
@@ -201,16 +201,16 @@ const Cover = ({
                      <CircularProgress color='info' size={30} />
                   )}
 
-                  <div className='flex space-x-5 justify-around'>
+                  <div className='flex justify-around space-x-5'>
                      <button
                         onClick={() => openSettingPanel(false)}
-                        className='w-full py-1 rounded bg-slate-300'
+                        className='w-full rounded bg-slate-300 py-1'
                      >
                         لغو
                      </button>
                      <button
                         onClick={handleSubmit}
-                        className='w-full py-2 flex justify-center items-center rounded bg-green-600 text-white'
+                        className='flex w-full items-center justify-center rounded bg-green-600 py-2 text-white'
                      >
                         {loading ? <CircularProgress color='inherit' size={25} /> : 'دخیره'}
                      </button>

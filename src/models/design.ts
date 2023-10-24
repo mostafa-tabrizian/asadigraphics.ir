@@ -10,10 +10,10 @@ export interface IDesign {
    gallery: [string]
    width: number
    height: number
-   client: string,
-   designedAt: string,
-   description: string,
-   colorPalettes: string,
+   client: string
+   designedAt: string
+   description: string
+   colorPalettes: string
    createdAt: Date
    updatedAt: Date
 }

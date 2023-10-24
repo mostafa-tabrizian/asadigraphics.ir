@@ -55,16 +55,16 @@ const NameAndSlug = ({
          onSubmit={handleSubmit}
       >
          {({ values, setFieldValue, isSubmitting, errors, touched, submitForm }) => (
-            <Form className='grid grid-cols-4 col-span-4 rtl items-start w-full'>
+            <Form className='rtl col-span-4 grid w-full grid-cols-4 items-start'>
                <div className='col-span-2'>
-                  <div className='text-right space-y-1 ml-2'>
+                  <div className='ml-2 space-y-1 text-right'>
                      <input
                         disabled={isSubmitting}
                         placeholder='نام'
                         name='name'
                         onChange={(e) => setFieldValue('name', e.target.value)}
                         value={values.name}
-                        className='w-full text-sm bg-transparent'
+                        className='w-full bg-transparent text-sm'
                         type='text'
                         onKeyDown={(e) => {
                            if (e.key == 'Enter') submitForm()
@@ -73,17 +73,17 @@ const NameAndSlug = ({
                   </div>
 
                   {errors.name && touched.name ? (
-                     <p className='text-sm text-red-500 text-right'>{errors.name}</p>
+                     <p className='text-right text-sm text-red-500'>{errors.name}</p>
                   ) : (
                      ''
                   )}
                </div>
                <div className='col-span-2'>
-                  <div className='text-right space-y-1'>
+                  <div className='space-y-1 text-right'>
                      <input
                         name='slug'
                         value={slug}
-                        className='w-full text-sm bg-transparent'
+                        className='w-full bg-transparent text-sm'
                         readOnly
                      />
                   </div>

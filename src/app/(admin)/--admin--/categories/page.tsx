@@ -48,7 +48,7 @@ const AdminCategories = async () => {
    const categoriesDesignCount = await getCategoriesDesignsCount()
 
    return (
-      <div className='mx-6 md:mx-auto my-16 max-w-screen-md space-y-10'>
+      <div className='mx-6 my-16 max-w-screen-md space-y-10 md:mx-auto'>
          <>
             <Breadcrumbs aria-label='breadcrumb'>
                <Link className='text-gray-400' href='/'>
@@ -63,8 +63,8 @@ const AdminCategories = async () => {
             <CategoryNewInput />
 
             <div className='rtl'>
-               <div className='bg-white grid grid-cols-7 mb-3 justify-between rounded-lg p-5 py-2 text-center items-center'>
-                  <div className='grid grid-cols-2 col-span-4'>
+               <div className='mb-3 grid grid-cols-7 items-center justify-between rounded-lg bg-white p-5 py-2 text-center'>
+                  <div className='col-span-4 grid grid-cols-2'>
                      <p className='flex'>نام</p>
                      <p className='flex'>اسلاگ</p>
                   </div>
@@ -79,7 +79,7 @@ const AdminCategories = async () => {
                         return (
                            <div
                               key={category._id}
-                              className='bg-white grid grid-cols-7 justify-between rounded-lg p-2 text-center items-center'
+                              className='grid grid-cols-7 items-center justify-between rounded-lg bg-white p-2 text-center'
                            >
                               <NameAndSlug params={JSON.parse(JSON.stringify({ ...category }))} />
                               <Cover

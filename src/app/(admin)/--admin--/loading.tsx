@@ -1,8 +1,8 @@
 const LoadingAdmin = () => {
    return (
-      <div className='h-screen grid justify-center items-center mx-auto'>
+      <div className='mx-auto grid h-screen items-center justify-center'>
          <svg
-            className='h-32 w-32 text-orange-400 animate-spin-slower'
+            className='animate-spin-slower h-32 w-32 text-orange-400'
             viewBox='0 0 24 24'
             fill='none'
             stroke='currentColor'

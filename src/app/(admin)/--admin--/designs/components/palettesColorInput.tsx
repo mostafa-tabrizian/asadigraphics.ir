@@ -27,7 +27,7 @@ const PalettesColorInput = memo(
    }) => {
       return (
          <>
-            <div className='text-right space-y-1'>
+            <div className='space-y-1 text-right'>
                <label htmlFor='colorPalettes' className='flex justify-between'>
                   <span className='text-yellow-500'>تفکیک رنگ ها با علامت , می‌باشد</span>
                   <span className='text-slate-400'>پالت های رنگی</span>
@@ -41,7 +41,7 @@ const PalettesColorInput = memo(
                      padding: '10px',
                      width: '100%',
                   }}
-                  className='rounded-lg placeholder:text-slate-400 font-mono'
+                  className='rounded-lg font-mono placeholder:text-slate-400'
                   type='text'
                   placeholder='#111111,#222222'
                />
@@ -53,7 +53,7 @@ const PalettesColorInput = memo(
                         <span
                            title={color}
                            key={idx}
-                           className='w-7 h-7 rounded-full'
+                           className='h-7 w-7 rounded-full'
                            style={{
                               background: color,
                               boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',

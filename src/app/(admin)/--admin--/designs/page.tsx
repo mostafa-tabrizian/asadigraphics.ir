@@ -9,7 +9,7 @@ import dynamic from 'next/dynamic'
 const DesignsTable = dynamic(() => import('./components/designsTable'), {
    ssr: false,
    loading: () => (
-      <div className='mx-auto my-16 animate-pulse max-w-screen-lg space-y-2'>
+      <div className='mx-auto my-16 max-w-screen-lg animate-pulse space-y-2'>
          <div className='h-32 rounded bg-slate-50'></div>
          <div className='h-32 rounded bg-slate-50'></div>
          <div className='h-32 rounded bg-slate-50'></div>
@@ -51,7 +51,7 @@ const AdminDesigns = async () => {
    const designs = await getDesigns()
 
    return (
-      <div className='md:mx-auto mx-6 max-w-screen-lg space-y-10 my-16 relative'>
+      <div className='relative mx-6 my-16 max-w-screen-lg space-y-10 md:mx-auto'>
          <>
             <Breadcrumbs aria-label='breadcrumb'>
                <Link className='text-gray-400' href='/'>
@@ -64,7 +64,7 @@ const AdminDesigns = async () => {
             </Breadcrumbs>
 
             <Link href='/--admin--/designs/new'>
-               <button className='bg-white z-10 border-2 border-orange-500 rounded-full p-3 fixed bottom-10 right-5'>
+               <button className='fixed bottom-10 right-5 z-10 rounded-full border-2 border-orange-500 bg-white p-3'>
                   <svg
                      className='h-6 w-6 text-orange-500'
                      fill='none'
