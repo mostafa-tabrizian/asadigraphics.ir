@@ -34,6 +34,8 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
       },
       [
          (slider) => {
+            if (slides.length == 1) return
+
             let timeout: ReturnType<typeof setTimeout>
             let mouseOver = false
             function clearNextTimeout() {
@@ -65,8 +67,8 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
    )
 
    return (
-      <div className='mx-auto w-full px-3 md:w-5/6 rtl relative space-y-3'>
-         <div ref={sliderRef} className='h-full aspect-video relative'>
+      <div className='rtl relative mx-auto w-full space-y-3 px-3 md:w-5/6'>
+         <div ref={sliderRef} className='relative aspect-video h-full'>
             {slides.map((slide, idx) => {
                return (
                   <div
