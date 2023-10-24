@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 const DesignNotFound = () => {
    return (
-      <div className='mx-5 h-screen px-3 text-center md:mx-auto md:max-w-screen-lg'>
-         <div className='grid h-screen items-center'>
+      <div className='mx-5 h-[50rem] px-3 text-center md:mx-auto md:max-w-screen-lg'>
+         <div className='grid h-[50rem] items-center'>
             <div className='relative'>
                <h2 className='text-center text-[3rem] font-bold md:text-[6rem]'>
                   خطای{' '}

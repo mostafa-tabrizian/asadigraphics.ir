@@ -44,7 +44,7 @@ const Gallery = ({ detail, images }: { detail: IDesign; images: string[] }) => {
                         alt={detail.name}
                         width={76}
                         height={76}
-                        className='h-full w-auto max-w-full rounded-lg'
+                        className='h-full w-auto max-w-full rounded-lg hover:cursor-pointer'
                      />
                   )
                })}

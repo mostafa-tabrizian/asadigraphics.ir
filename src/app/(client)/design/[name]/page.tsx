@@ -8,7 +8,7 @@ import Image from 'next/image'
 import Script from 'next/script'
 
 import Back from './components/back'
-import Gallery from './components/gallery'
+const Gallery = dynamic(() => import('./components/gallery'))
 
 const DesignNotFound = dynamic(() => import('./components/designNotFound'))
 
@@ -18,6 +18,7 @@ const getDesignDetailDate = async (name: string) => {
    await dbConnect()
    return await Design.findOne({
       name,
+      active: true,
    }).exec()
 }
 
@@ -25,12 +26,12 @@ export const generateMetadata = async ({ params: { name } }: { params: { name: s
    const detail: IDesign = await getDesignDetailDate(name)
 
    return {
-      title: detail.name + ' | اسدی گرافیک',
+      title: (detail?.name || '404') + ' | اسدی گرافیک',
       description:
-         detail.description ||
+         detail?.description ||
          'ما در اسدی گرافیک با ارائه طرح‌هایی قبیل لوگو، پوستر، بنر و کارت ویزیت با دیزاین منحصر به فرد و اختصاصی برای شما که بازتابی از شخصیت و سلیقه‌ی شما خواهد بود تحویل میدهیم',
       alternates: {
-         canonical: `https://asadigraphics.ir/design/${detail.name}`,
+         canonical: `https://asadigraphics.ir/design/${detail?.name || '404'}`,
       },
    }
 }
@@ -112,14 +113,18 @@ const DesignDetail = async ({ params: { name } }: { params: { name: string } }) 
                <Back />
                <div className='ltr grid-cols-2 md:grid md:gap-16 md:p-4'>
                   <div className='relative h-[363px] w-screen md:h-auto md:w-full md:rounded-3xl'>
-                     <Image
-                        priority
-                        className='object-cover md:!h-auto md:rounded-3xl md:shadow-[0px_4px_19px_0px_#00000040]'
-                        src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${detail.frontSrc}`}
-                        alt={detail.name}
-                        sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
-                        fill
-                     />
+                     {detail?.frontSrc ? (
+                        <Image
+                           priority
+                           className='object-cover md:!h-auto md:rounded-3xl md:shadow-[0px_4px_19px_0px_#00000040]'
+                           src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${detail.frontSrc}`}
+                           alt={detail.name}
+                           sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw'
+                           fill
+                        />
+                     ) : (
+                        ''
+                     )}
                   </div>
                   <div className='rtl absolute top-[27rem] mx-2 grid justify-center md:relative md:top-0'>
                      <div
@@ -157,10 +162,15 @@ const DesignDetail = async ({ params: { name } }: { params: { name: string } }) 
                               })}
                            </div>
                         </div>
-                        <Gallery
-                           detail={JSON.parse(JSON.stringify(detail))}
-                           images={[detail.frontSrc, detail.backSrc, ...detail.gallery]}
-                        />
+
+                        {[detail?.frontSrc, detail?.backSrc, ...detail.gallery].length ? (
+                           <Gallery
+                              detail={JSON.parse(JSON.stringify(detail))}
+                              images={[detail?.frontSrc, detail?.backSrc, ...detail.gallery]}
+                           />
+                        ) : (
+                           ''
+                        )}
                      </div>
                   </div>
                </div>
