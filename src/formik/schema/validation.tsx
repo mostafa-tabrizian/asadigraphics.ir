@@ -35,5 +35,5 @@ export const NameSlugValidation = yup.object().shape({
 
 export const SlideValidation = yup.object().shape({
    alt: yup.string().min(3, 'حداقل ۳ کارکتر').required('عنوان جایگزین را وارد کنید'),
-   link: yup.string().required('لینک را وارد کنید'),
+   link: yup.string().required('لینک را وارد کنید').matches(/^\//, { message: 'لینک می‌بایست با / شروع شود' }),
 })

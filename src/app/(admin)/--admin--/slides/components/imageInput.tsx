@@ -1,6 +1,9 @@
 import NextImage from 'next/image'
 
-const Button = dynamic(() => import('@mui/material/Button'), { ssr: false })
+const Button = dynamic(() => import('@mui/material/Button'), {
+   ssr: false,
+   loading: () => <span className='px-4'>لطفا صبر کنید...</span>,
+})
 
 import filesSizeValidation from '@/lib/filesSizeValidation'
 import filesTypeValidation from '@/lib/filesTypeValidation'
@@ -59,7 +62,7 @@ const ImageInput = memo(
                   onDragOver={dragOverHandler}
                >
                   {/* @ts-ignore */}
-                  <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                  <Button type='button' component='label' sx={{ width: '100%', padding: '.5rem' }}>
                      <span className='yekan text-sm'>انتخاب تصویر اسلاید</span>
                      <input
                         hidden

@@ -15,6 +15,7 @@ const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'),
 import ImageInput from './imageInput'
 import { DesignEditForm } from '@/formik/schema/validation'
 import hyphen from '@/lib/hyphen'
+import OnSubmittingPreventExit from '@/lib/onSubmittingPreventExit'
 
 import DesignNameInput from './designNameInput'
 import ClientInput from './clientInput'
@@ -225,6 +226,7 @@ const DetailForm = memo(
                         </button>
                      )}
                   </div>
+                  <OnSubmittingPreventExit isSubmitting={isSubmitting} />
                </Form>
             )}
          </Formik>

@@ -16,6 +16,7 @@ import uploadErrorDeleteData from './uploadErrorDeleteData'
 import NameInput from './nameInput'
 import ImageInput from './imageInput'
 import ActiveInput from './activeInput'
+import OnSubmittingPreventExit from '@/lib/onSubmittingPreventExit'
 
 const NewSlide = memo(() => {
    const router = useRouter()
@@ -116,7 +117,7 @@ const NewSlide = memo(() => {
          <Formik
             initialValues={{
                alt: '',
-               link: '#',
+               link: '/#',
                active: false,
             }}
             validationSchema={SlideValidation}
@@ -142,7 +143,13 @@ const NewSlide = memo(() => {
 
                      <div className='space-y-1 text-right'>
                         <label htmlFor='link'>
-                           <span className='text-slate-400'>لینک صفحه</span>
+                           <span className='text-slate-400'>
+                              {' '}
+                              لینک صفحه{' '}
+                              <span className='text-yellow-500'>
+                                 (می‌بایست بدون &apos;asadigraphics.ir&apos; باشد)
+                              </span>
+                           </span>
                         </label>
                         {errors.link && touched.link ? (
                            <p className='text-sm text-red-500'>{errors.link}</p>
@@ -153,8 +160,9 @@ const NewSlide = memo(() => {
                            name='link'
                            onChange={(e) => setFieldValue('link', e.target.value)}
                            value={values.link}
-                           className='ltr mr-3 w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm'
+                           className='ltr mr-3 w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm placeholder:text-slate-400'
                            type='text'
+                           placeholder='/design/طرح-شماره-یک'
                         />
                      </div>
 
@@ -189,6 +197,7 @@ const NewSlide = memo(() => {
                         </button>
                      )}
                   </div>
+                  <OnSubmittingPreventExit isSubmitting={isSubmitting} />
                </Form>
             )}
          </Formik>
