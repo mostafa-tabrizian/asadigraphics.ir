@@ -17,7 +17,7 @@ const CategoryNewInput = () => {
       { resetForm }: { resetForm: () => void },
    ) => {
       const toast = await import('react-toastify').then((mod) => mod.toast)
-      
+
       toast.info('در حال ثبت دسته بندی جدید...')
 
       const payload = {

@@ -13,7 +13,7 @@ const filesSizeValidation = async (files: File[]) => {
    })
 
    if (invalidFile) {
-      const toast = await import('react-toastify').then(mod => mod.toast)
+      const toast = await import('react-toastify').then((mod) => mod.toast)
       toast.warning(
          `سایز فایل ${invalidFile.name} برابر با ${invalidFile.size} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 1000 کیلوبایت معادل 1 مگابایت باشد`,
       )

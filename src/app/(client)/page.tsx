@@ -8,11 +8,11 @@ import Slide from '@/models/slide'
 import Category from '@/models/category'
 import Design from '@/models/design'
 
-const Slides = dynamic(() => import('@/components/slides'), { ssr: false})
-const Categories = dynamic(() => import('./components/categories'), { ssr: false})
+const Slides = dynamic(() => import('@/components/slides'), { ssr: false })
+const Categories = dynamic(() => import('./components/categories'), { ssr: false })
 const FAQ = dynamic(() => import('./components/faq'), { ssr: false })
-const SocialMedia = dynamic(() => import('./components/socialMedia'), { ssr: false})
-const SampleDesigns = dynamic(() => import('./components/sampleDesigns'), { ssr: false})
+const SocialMedia = dynamic(() => import('./components/socialMedia'), { ssr: false })
+const SampleDesigns = dynamic(() => import('./components/sampleDesigns'), { ssr: false })
 
 export const metadata = {
    title: 'اسدی گرافیک | طراحی لوگو، طراحی پوستر، طراحی بنر و طراحی کارت ویزیت',

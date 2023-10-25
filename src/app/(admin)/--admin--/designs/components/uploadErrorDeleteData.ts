@@ -13,7 +13,7 @@ const uploadErrorDeleteData = async (type: string, imageKey: string, _id: string
 
       return res
    } catch (err) {
-      const toast = await import('react-toastify').then(mod => mod.toast)
+      const toast = await import('react-toastify').then((mod) => mod.toast)
       toast.error('در حذف عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
       return console.error(err)
    }

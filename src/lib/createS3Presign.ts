@@ -12,7 +12,7 @@ const createS3Presign = async (imageName: string, folder: string) => {
 
       return res
    } catch (err) {
-      const toast = await import('react-toastify').then(mod => mod.toast)
+      const toast = await import('react-toastify').then((mod) => mod.toast)
       toast.error('در ایجاد لینک باکِت خطایی رخ داد. لطفا مجدد تلاش کنید.')
       console.error(err)
       return false

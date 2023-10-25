@@ -28,7 +28,13 @@ export default function Analytics() {
                `,
             }}
          />
-         <Script id='umami-script' strategy='afterInteractive' async src="https://analytics.eu.umami.is/script.js" data-website-id="f1b0226f-3196-4b5b-bc72-8445225ea3ea" />
+         <Script
+            id='umami-script'
+            strategy='afterInteractive'
+            async
+            src='https://analytics.eu.umami.is/script.js'
+            data-website-id='f1b0226f-3196-4b5b-bc72-8445225ea3ea'
+         />
       </>
    )
 }

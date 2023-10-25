@@ -109,7 +109,7 @@ const DesignDetail = async ({ params: { name } }: { params: { name: string } }) 
          )}
 
          {detail ? (
-            <div className='rtl min-h-screen md:relative md:mt-20 md:min-h-[80vh]'>
+            <div className='rtl min-h-screen md:relative md:mt-20'>
                <Back />
                <div className='ltr grid-cols-2 md:grid md:gap-16 md:p-4'>
                   <div className='relative h-[363px] w-screen md:h-auto md:w-full md:rounded-3xl'>

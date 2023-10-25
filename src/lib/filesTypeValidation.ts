@@ -8,7 +8,7 @@ const filesTypeValidation = async (files: File[]) => {
    })
 
    if (invalidFile) {
-      const toast = await import('react-toastify').then(mod => mod.toast)
+      const toast = await import('react-toastify').then((mod) => mod.toast)
       toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg webp یا avif باشد`)
       return false
    } else return true

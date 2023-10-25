@@ -75,7 +75,7 @@ const DetailForm = memo(
             fetch('/api/--admin--/revalidate?path=/search/[query]')
 
             if (addingNewDesign) {
-               const hyphen = await import('@/lib/hyphen').then(mod => mod.default)
+               const hyphen = await import('@/lib/hyphen').then((mod) => mod.default)
                router.push(`/--admin--/designs/${hyphen(values.name)}`)
             }
          } catch (err) {

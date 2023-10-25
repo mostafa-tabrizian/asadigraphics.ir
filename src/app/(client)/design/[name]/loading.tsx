@@ -4,7 +4,7 @@ const DesignLoading = () => {
          <div className='md:m-l-8 mx-auto h-[408px] w-screen rounded-lg bg-gray-200 md:w-full'></div>
 
          <div>
-            <div className='w-[96vw] md:ml-4 space-y-6 bg-gray-200 p-4 md:w-full'>
+            <div className='w-[96vw] space-y-6 bg-gray-200 p-4 md:ml-4 md:w-full'>
                <div className='mb-3 mr-3 h-10 w-full rounded-lg bg-gray-300'></div>
                <div className='flex justify-between'>
                   <div className='h-4 w-40 rounded-lg bg-gray-300'></div>

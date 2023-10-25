@@ -18,7 +18,11 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
 
             <LinksForDesktop categoriesList={JSON.parse(JSON.stringify(categories))} />
 
-            <Link aria-label='صفحه اصلی' href='/' className='col-span-1 flex lg:hidden xl:flex justify-end'>
+            <Link
+               aria-label='صفحه اصلی'
+               href='/'
+               className='col-span-1 flex justify-end lg:hidden xl:flex'
+            >
                <Image
                   className='object-contain'
                   src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
