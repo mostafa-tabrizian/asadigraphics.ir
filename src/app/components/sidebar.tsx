@@ -30,7 +30,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
    }, [])
 
    return (
-      <div className='md:hidden'>
+      <div className='xl:hidden'>
          <button onClick={() => setSidebar(true)} aria-label='open sidebar'>
             <svg
                xmlns='http://www.w3.org/2000/svg'

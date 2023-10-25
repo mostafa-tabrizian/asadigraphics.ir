@@ -10,15 +10,15 @@ const LinksForDesktop = dynamic(() => import('./headerLinksforDesktop'), { ssr: 
 
 const Header = memo(({ params: { categories } }: { params: { categories: ICategory[] } }) => {
    return (
-      <header className='z-20 w-screen rounded-b-xl border border-black/25 bg-white px-5 py-3 md:fixed md:left-0 md:top-0'>
-         <div className='mx-auto flex items-center justify-between md:grid md:max-w-screen-2xl md:grid-cols-8'>
-            <div className='mb-auto hidden md:col-span-2 md:block md:w-3/4'>
+      <header className='z-20 w-screen rounded-b-xl border border-black/25 bg-white px-5 py-3 xl:fixed xl:left-0 xl:top-0'>
+         <div className='mx-auto flex items-center justify-between xl:grid xl:max-w-screen-2xl xl:grid-cols-8'>
+            <div className='mb-auto hidden md:col-span-2 md:block md:w-80 xl:w-3/4'>
                <SearchInput />
             </div>
 
             <LinksForDesktop categoriesList={JSON.parse(JSON.stringify(categories))} />
 
-            <Link aria-label='صفحه اصلی' href='/' className='col-span-1 flex justify-end'>
+            <Link aria-label='صفحه اصلی' href='/' className='col-span-1 flex lg:hidden xl:flex justify-end'>
                <Image
                   className='object-contain'
                   src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
@@ -41,13 +41,13 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             aria-label='ایتا'
             id='eitaa'
             href='https://eitaa.com/aliasadi_graphics'
-            className='fixed bottom-16 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-orange-400 to-orange-200 py-1 pl-9 pr-1 shadow-lg shadow-orange-300 md:bottom-[4.3rem] md:rounded-xl md:py-2 md:pl-12 md:pr-2'
+            className='fixed bottom-16 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-orange-400 to-orange-200 py-1 pl-9 pr-1 shadow-lg shadow-orange-300 xl:bottom-[4.3rem] xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
             title='ایتا با پشتیبانی'
             target='_blank'
             rel='noreferrer'
          >
             <svg
-               className='top-.5 absolute left-1 h-6 w-6 text-black md:h-8 md:w-8'
+               className='top-.5 absolute left-1 h-6 w-6 text-black xl:h-8 xl:w-8'
                viewBox='0 0 24 24'
                fill='none'
                stroke='currentColor'
@@ -65,13 +65,13 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             aria-label='تلگرام'
             id='telegram'
             href='https://t.me/aliasadi_graphics'
-            className='fixed bottom-5 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-sky-500 to-sky-200 py-1 pl-9 pr-1 shadow-lg shadow-sky-300 md:rounded-xl md:py-2 md:pl-12 md:pr-2'
+            className='fixed bottom-5 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-sky-500 to-sky-200 py-1 pl-9 pr-1 shadow-lg shadow-sky-300 xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
             title='تلگرام با پشتیبانی'
             target='_blank'
             rel='noreferrer'
          >
             <svg
-               className='absolute -top-1 left-0 h-8 w-8 md:h-10 md:w-10'
+               className='absolute -top-1 left-0 h-8 w-8 xl:h-10 xl:w-10'
                viewBox='0 0 45 45'
                fill='none'
                xmlns='http://www.w3.org/2000/svg'

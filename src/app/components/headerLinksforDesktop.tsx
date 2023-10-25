@@ -30,7 +30,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
    }
 
    return (
-      <ul className='rtl hidden items-center justify-center space-x-10 space-x-reverse text-gray-700 md:col-span-4 md:flex'>
+      <ul className='rtl hidden items-center justify-center space-x-10 space-x-reverse text-gray-700 md:col-span-4 xl:flex'>
          <li className='block'>
             <div className='text-gray-700'>
                <Link href='/'>
