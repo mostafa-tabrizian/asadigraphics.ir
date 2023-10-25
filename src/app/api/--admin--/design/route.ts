@@ -50,7 +50,12 @@ export async function POST(request: Request) {
 
       return NextResponse.json(design)
    } catch (error) {
-      return NextResponse.json({ status: 500, message: error })
+      // @ts-ignore
+      if (error.code == 11000) {
+         return NextResponse.json({ message: 'notUnique' })
+      } else {
+         return NextResponse.json({ status: 500, message: error })
+      }
    }
 }
 

@@ -64,6 +64,8 @@ const DetailForm = memo(
             const resData = await res.json()
 
             if (!res.ok) throw new Error()
+            else if (resData.message == 'notUnique')
+               return toast.warning('این عنوان از قبل ثبت شده است')
             else if (resData.status == 500) {
                console.error(resData.message)
                return toast.error('خطا در برقراری ارتباط')

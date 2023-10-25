@@ -23,7 +23,10 @@ const DesignSchema = new mongoose.Schema({
       type: Boolean,
       default: true,
    },
-   name: String,
+   name: {
+      type: String,
+      unique: true,
+   },
    category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Category',
@@ -42,6 +45,6 @@ const DesignSchema = new mongoose.Schema({
 
 DesignSchema.set('timestamps', true)
 
-DesignSchema.index({ name: 'text' })
+DesignSchema.index({ name: 'text' }, { unique: true })
 
 export default mongoose.models.Design || mongoose.model('Design', DesignSchema)
