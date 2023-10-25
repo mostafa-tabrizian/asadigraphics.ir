@@ -2,7 +2,7 @@
 // The config you add here will be used whenever a users loads a page in their browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
-import { init, Replay } from '@sentry/nextjs';
+import { init } from '@sentry/nextjs';
 
 init({
   dsn: 'https://281e5ed4cddd50d26ffaa735e6bb499a@o4506054884786176.ingest.sentry.io/4506054887800832',
@@ -13,20 +13,20 @@ init({
   // Setting this option to true will print useful information to the console while you're setting up Sentry.
   debug: false,
 
-  replaysOnErrorSampleRate: 1.0,
+  // replaysOnErrorSampleRate: 1.0,
 
   // This sets the sample rate to be 10%. You may want this to be 100% while
   // in development and sample at a lower rate in production
-  replaysSessionSampleRate: 0.1,
+  // replaysSessionSampleRate: 0.1,
 
   // You can remove this option if you're not planning to use the Sentry Session Replay feature:
-  integrations: [
-    new Replay({
+  // integrations: [
+  //   new Replay({
       // Additional Replay configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
-    })
-  ],
+  //     maskAllText: true,
+  //     blockAllMedia: true,
+  //   })
+  // ],
 
 
 });
