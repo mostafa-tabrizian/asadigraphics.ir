@@ -1,22 +1,18 @@
 'use client'
 
-import { useState, useMemo, memo } from 'react'
-import { useRouter } from 'next/navigation'
-import { Formik, Form } from 'formik'
-import { toast } from 'react-toastify'
-
 import { SlideValidation } from '@/formik/schema/validation'
-
-import dynamic from 'next/dynamic'
-const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
-
-import putInS3Bucket from '@/lib/PutInS3Bucket'
-import createS3Presign from '@/lib/createS3Presign'
-import uploadErrorDeleteData from './uploadErrorDeleteData'
-import NameInput from './nameInput'
-import ImageInput from './imageInput'
-import ActiveInput from './activeInput'
 import OnSubmittingPreventExit from '@/lib/onSubmittingPreventExit'
+
+import { Form, Formik } from 'formik'
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/navigation'
+import { memo, useMemo, useState } from 'react'
+
+import ActiveInput from './activeInput'
+import ImageInput from './imageInput'
+import NameInput from './nameInput'
+
+const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 
 const NewSlide = memo(() => {
    const router = useRouter()
@@ -27,8 +23,9 @@ const NewSlide = memo(() => {
       return slideImageToUpload && Object.values(slideImageToUpload)
    }, [slideImageToUpload])
 
-   const successUpload = (imageName: string) => {
+   const successUpload = async (imageName: string) => {
       setSlideImageToUpload(null)
+      const toast = await import('react-toastify').then((mod) => mod.toast)
       toast.success(`تصویر ${imageName} با موفقیت آپلود شد.`)
       router.refresh()
       return fetch('/api/--admin--/revalidate?path=/')
@@ -54,6 +51,7 @@ const NewSlide = memo(() => {
 
          return res
       } catch (err) {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
          toast.error(`در آپلود تصویر ${imageName} خطایی رخ داد!`)
          console.error(err)
 
@@ -69,6 +67,8 @@ const NewSlide = memo(() => {
       },
       { resetForm }: { resetForm: () => void },
    ) => {
+      const toast = await import('react-toastify').then((mod) => mod.toast)
+
       if (!slideImageToUpload || !slideImageToUploadMemo) {
          return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
       }
@@ -84,6 +84,7 @@ const NewSlide = memo(() => {
          const imageName = image.name.replace(' ', '-')
 
          // presign
+         const createS3Presign = await import('@/lib/createS3Presign').then((mod) => mod.default)
          const s3SignedUrl = await createS3Presign(imageName, 'slides')
          if (!s3SignedUrl) return
 
@@ -95,10 +96,14 @@ const NewSlide = memo(() => {
          if (!createDataResult) return
 
          // put
+         const putInS3Bucket = await import('@/lib/PutInS3Bucket').then((mod) => mod.default)
          const fileUploadResult = await putInS3Bucket(uploadUrl, image)
 
          if (!fileUploadResult) {
             const dbData = await createDataResult.json()
+            const uploadErrorDeleteData = await import('./uploadErrorDeleteData').then(
+               (mod) => mod.default,
+            )
             return await uploadErrorDeleteData(dbData.newSlide._id)
          }
 
@@ -174,6 +179,7 @@ const NewSlide = memo(() => {
                         </div>
                      ) : (
                         <button
+                           type='submit'
                            disabled={isSubmitting}
                            className='rounded-lg border-2 border-slate-200 bg-slate-100 px-10 py-2'
                         >

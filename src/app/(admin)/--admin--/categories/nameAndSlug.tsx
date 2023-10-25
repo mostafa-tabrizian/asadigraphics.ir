@@ -1,6 +1,5 @@
 'use client'
 
-import { toast } from 'react-toastify'
 import { Formik, Form } from 'formik'
 import { NameSlugValidation } from '@/formik/schema/validation'
 
@@ -13,6 +12,8 @@ const NameAndSlug = ({
    const slug = params._doc.slug.charAt(0).toUpperCase() + params._doc.slug.slice(1)
 
    const handleSubmit = async ({ name }: { name: string }) => {
+      const toast = await import('react-toastify').then((mod) => mod.toast)
+
       toast.info('در حال ثبت تغییرات...')
 
       const payload = {

@@ -1,8 +1,6 @@
-import { toast } from 'react-toastify'
-
 const sizeCalculator = (size: number) => (size / 1024 / 1024) * 1000 // ex: 400 KB
 
-const filesSizeValidation = (files: File[]) => {
+const filesSizeValidation = async (files: File[]) => {
    let invalidFile: undefined | { name: string; size: number; valid: boolean }
 
    files.map((file) => {
@@ -15,6 +13,7 @@ const filesSizeValidation = (files: File[]) => {
    })
 
    if (invalidFile) {
+      const toast = await import('react-toastify').then(mod => mod.toast)
       toast.warning(
          `سایز فایل ${invalidFile.name} برابر با ${invalidFile.size} کیلوبایت می‌باشد. حداکثر هر فایل می‌بایست 1000 کیلوبایت معادل 1 مگابایت باشد`,
       )

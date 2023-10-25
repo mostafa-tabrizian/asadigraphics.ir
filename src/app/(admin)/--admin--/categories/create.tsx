@@ -1,6 +1,5 @@
 'use client'
 
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 
 import { Formik, Form } from 'formik'
@@ -17,6 +16,8 @@ const CategoryNewInput = () => {
       { name, slug }: { name: string; slug: string },
       { resetForm }: { resetForm: () => void },
    ) => {
+      const toast = await import('react-toastify').then((mod) => mod.toast)
+      
       toast.info('در حال ثبت دسته بندی جدید...')
 
       const payload = {

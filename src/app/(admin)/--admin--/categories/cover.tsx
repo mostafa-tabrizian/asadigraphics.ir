@@ -4,7 +4,6 @@ import { IDesign } from '@/models/design'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState, useRef } from 'react'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
@@ -51,6 +50,7 @@ const Cover = ({
 
    const handleSubmit = async () => {
       setLoading(true)
+      const toast = await import('react-toastify').then((mod) => mod.toast)
       toast.info('در حال ثبت تغییرات...')
 
       const payload = {
@@ -102,11 +102,11 @@ const Cover = ({
          >
             {cover ? (
                <Image
-                  className='h-10 w-40 rounded-md object-cover'
+                  className='h-10 w-28 rounded-md object-cover'
                   src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${cover}`}
                   alt={_id}
-                  height={50}
-                  width={50}
+                  height={40}
+                  width={107.44}
                />
             ) : (
                <svg
@@ -164,7 +164,7 @@ const Cover = ({
                                  </span>
                               </div>
                            </div>
-                           <div className='rounded-xl'>
+                           <div className='h-auto w-auto rounded-xl'>
                               <Image
                                  className='rounded-xl border border-gray-600 object-cover blur-[2px]'
                                  src={`https://tabrizian.storage.iran.liara.space/asadi_designs/designs/${preview}`}
@@ -203,12 +203,14 @@ const Cover = ({
 
                   <div className='flex justify-around space-x-5'>
                      <button
+                        type='button'
                         onClick={() => openSettingPanel(false)}
                         className='w-full rounded bg-slate-300 py-1'
                      >
                         لغو
                      </button>
                      <button
+                        type='button'
                         onClick={handleSubmit}
                         className='flex w-full items-center justify-center rounded bg-green-600 py-2 text-white'
                      >

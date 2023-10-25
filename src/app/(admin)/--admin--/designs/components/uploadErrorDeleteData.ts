@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify'
-
 const uploadErrorDeleteData = async (type: string, imageKey: string, _id: string) => {
    try {
       const res = await fetch('/api/--admin--/design/image/db', {
@@ -15,6 +13,7 @@ const uploadErrorDeleteData = async (type: string, imageKey: string, _id: string
 
       return res
    } catch (err) {
+      const toast = await import('react-toastify').then(mod => mod.toast)
       toast.error('در حذف عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
       return console.error(err)
    }

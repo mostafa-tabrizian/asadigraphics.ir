@@ -6,6 +6,7 @@ const Back = () => {
    const router = useRouter()
    return (
       <button
+         type='button'
          onClick={() => router.back()}
          className='absolute left-3 top-32 z-10 md:relative md:right-[90%] md:top-0 md:flex md:items-center'
          style={{ filter: 'drop-shadow(2px 3px 3px #00000045)' }}

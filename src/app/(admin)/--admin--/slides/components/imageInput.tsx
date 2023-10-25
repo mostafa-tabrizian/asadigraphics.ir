@@ -5,12 +5,8 @@ const Button = dynamic(() => import('@mui/material/Button'), {
    loading: () => <span className='px-4'>لطفا صبر کنید...</span>,
 })
 
-import filesSizeValidation from '@/lib/filesSizeValidation'
-import filesTypeValidation from '@/lib/filesTypeValidation'
 import { Dispatch, SetStateAction, memo } from 'react'
 import dynamic from 'next/dynamic'
-import dimentionCalculate from './dimentionCalculate'
-import { toast } from 'react-toastify'
 
 const ImageInput = memo(
    ({
@@ -27,14 +23,22 @@ const ImageInput = memo(
 
          const filesList: File[] = Object.values(files)
 
+         const filesTypeValidation = await import('@/lib/filesTypeValidation').then(
+            (mod) => mod.default,
+         )
          const typeCheckRes = filesTypeValidation(filesList)
          if (!typeCheckRes) return
 
+         const filesSizeValidation = await import('@/lib/filesSizeValidation').then(
+            (mod) => mod.default,
+         )
          const sizeCheckRes = filesSizeValidation(filesList)
          if (!sizeCheckRes) return
 
+         const dimentionCalculate = await import('./dimentionCalculate').then((mod) => mod.default)
          const dimentionCheckRes = await dimentionCalculate(filesList[0])
          if (!dimentionCheckRes) {
+            const toast = await import('react-toastify').then((mod) => mod.toast)
             return toast.error('ابعاد اسلاید می‌بایست 16:9 باشد')
          }
 

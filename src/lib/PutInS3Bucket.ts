@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify'
-
 const putInS3Bucket = async (uploadUrl: string, imageFile: File) => {
    try {
       const res = await fetch(uploadUrl, {
@@ -11,6 +9,7 @@ const putInS3Bucket = async (uploadUrl: string, imageFile: File) => {
 
       return res
    } catch (err) {
+      const toast = await import('react-toastify').then(mod => mod.toast)
       toast.error('در آپلود عکس خطایی رخ داد. لطفا مجدد تلاش کنید.')
       console.error(err)
       return false

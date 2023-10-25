@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
 import dbConnect from '@/lib/dbConnect'
 import Slide from '@/models/slide'
-
-import dynamic from 'next/dynamic'
-const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
 import NewSlide from './components/newSlide'
-import Delete from './components/delete'
-import ActiveStatus from './components/activeStatus'
+
+const Breadcrumbs = dynamic(() => import('@mui/material/Breadcrumbs'), { ssr: false })
+const Delete = dynamic(() => import('./components/delete'), { ssr: false })
+const ActiveStatus = dynamic(() => import('./components/activeStatus'), { ssr: false })
 
 export const revalidate = 0
 
@@ -25,7 +25,7 @@ const AdminSlides = async () => {
    const slides = (await getSlides()).reverse()
 
    return (
-      <div className='md:mx-auto mx-6 max-w-screen-lg space-y-10 my-16 relative'>
+      <div className='relative mx-6 my-16 max-w-screen-lg space-y-10 md:mx-auto'>
          <Breadcrumbs aria-label='breadcrumb'>
             <Link className='text-gray-400' href='/'>
                صفحه اصلی
@@ -40,7 +40,7 @@ const AdminSlides = async () => {
 
          <hr />
 
-         <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+         <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
             {slides.length ? (
                slides.map((slide) => {
                   return (
@@ -58,7 +58,7 @@ const AdminSlides = async () => {
                            href={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                         >
                            <Image
-                              className='rounded-xl aspect-video object-contain'
+                              className='aspect-video rounded-xl object-contain'
                               src={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                               alt={slide.alt}
                               width={690}
@@ -68,7 +68,7 @@ const AdminSlides = async () => {
                         </Link>
 
                         <Link href={`/${slide.link}`} target='_blank'>
-                           <div className='flex flex-col absolute bottom-4 right-2 bg-white/40 p-1 rounded'>
+                           <div className='absolute bottom-4 right-2 flex flex-col rounded bg-white/40 p-1'>
                               <span className='text-right'>
                                  <strong>{slide.alt}</strong>
                               </span>

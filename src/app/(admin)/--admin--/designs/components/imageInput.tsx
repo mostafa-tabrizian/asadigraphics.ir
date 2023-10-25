@@ -1,23 +1,17 @@
 'use client'
 
-import { useState, useMemo, memo } from 'react'
+import dynamic from 'next/dynamic'
 import NextImage from 'next/image'
-import { toast } from 'react-toastify'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { memo, useMemo, useState } from 'react'
 
-import dynamic from 'next/dynamic'
+import FrontImageInput from './frontImageInput'
+import GalleryInput from './galleryInput'
+
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 const Button = dynamic(() => import('@mui/material/Button'), { ssr: false })
-
-import ImageDelete from './imageDelete'
-import filesSizeValidation from '@/lib/filesSizeValidation'
-import filesTypeValidation from '@/lib/filesTypeValidation'
-import createS3Presign from '@/lib/createS3Presign'
-import putInS3Bucket from '@/lib/PutInS3Bucket'
-import uploadErrorDeleteData from './uploadErrorDeleteData'
-import GalleryInput from './galleryInput'
-import FrontImageInput from './frontImageInput'
+const ImageDelete = dynamic(() => import('./imageDelete'), { ssr: false })
 
 const ImageInput = memo(
    ({
@@ -76,6 +70,8 @@ const ImageInput = memo(
 
             return res
          } catch (err) {
+            const toast = await import('react-toastify').then((mod) => mod.toast)
+
             if (String(err).includes('please upload front design first')) {
                toast.warning('ابتدا تصویر جلو طرح را آپلود کنید')
                console.warn(err)
@@ -90,20 +86,23 @@ const ImageInput = memo(
          }
       }
 
-      const successUpload = (type: string, name: string) => {
+      const successUpload = async (type: string, name: string) => {
          if (type == 'front') setFrontPreview(null)
          else if (type == 'back') setBackPreview(null)
          else if (type == 'gallery') setGalleryPreview(null)
 
-         toast.success(`تصویر ${name} با موفقیت آپلود شد.`)
-
          fetch('/api/--admin--/revalidate?path=/')
          fetch('/api/--admin--/revalidate?path=/search/[query]')
+
+         const toast = await import('react-toastify').then((mod) => mod.toast)
+         toast.success(`تصویر ${name} با موفقیت آپلود شد.`)
 
          router.refresh()
       }
 
       const onSubmit = async () => {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
+
          if (!frontPrevMemo && !backPrevMemo && !galleryPrevMemo) {
             return toast.warning('هیچ تصویری برای آپلود انتخاب نشده است!')
          }
@@ -127,6 +126,9 @@ const ImageInput = memo(
                   const imageName = image.name.replace(' ', '-')
 
                   // presign
+                  const createS3Presign = await import('@/lib/createS3Presign').then(
+                     (mod) => mod.default,
+                  )
                   const s3SignedUrl = await createS3Presign(imageName, 'designs')
                   if (!s3SignedUrl) return
 
@@ -138,9 +140,15 @@ const ImageInput = memo(
                   if (!createDataResult) return
 
                   // put
+                  const putInS3Bucket = await import('@/lib/PutInS3Bucket').then(
+                     (mod) => mod.default,
+                  )
                   const fileUploadResult = await putInS3Bucket(uploadUrl, image)
-                  
+
                   if (!fileUploadResult) {
+                     const uploadErrorDeleteData = await import('./uploadErrorDeleteData').then(
+                        (mod) => mod.default,
+                     )
                      return await uploadErrorDeleteData(imageData.type, imageKey, designMemo._id)
                   }
 
@@ -175,14 +183,20 @@ const ImageInput = memo(
          reader.readAsDataURL(file)
       }
 
-      const onFileSelected = (files: FileList | null, type: string) => {
+      const onFileSelected = async (files: FileList | null, type: string) => {
          if (!files) return
 
          const filesList: File[] = Object.values(files)
 
+         const filesTypeValidation = await import('@/lib/filesTypeValidation').then(
+            (mod) => mod.default,
+         )
          const typeCheckRes = filesTypeValidation(filesList)
          if (!typeCheckRes) return
 
+         const filesSizeValidation = await import('@/lib/filesSizeValidation').then(
+            (mod) => mod.default,
+         )
          const sizeCheckRes = filesSizeValidation(filesList)
          if (!sizeCheckRes) return
 
@@ -197,15 +211,17 @@ const ImageInput = memo(
 
       const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => event.preventDefault()
 
-      const dropHandlerDesign = (event: React.DragEvent<HTMLDivElement>, type: string) => {
+      const dropHandlerDesign = async (event: React.DragEvent<HTMLDivElement>, type: string) => {
          event.preventDefault()
          const files = event.dataTransfer.files
+         const toast = await import('react-toastify').then((mod) => mod.toast)
 
          if (!files) return toast.warning('در دریافت فایل ها خطایی رخ داد')
-         else if (files.length !== 1 && type !== 'gallery')
+         else if (files.length !== 1 && type !== 'gallery') {
             return toast.warning(
                'تعداد تصاویر انتخاب شده بیشتر از یک عدد می‌باشد. تصویر طرح می‌بایست یک عدد باشد',
             )
+         }
 
          onFileSelected(files, type)
       }
@@ -289,8 +305,12 @@ const ImageInput = memo(
                         onDragOver={dragOverHandler}
                         className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 text-sm'
                      >
-                        {/* @ts-ignore */}
-                        <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                        <Button
+                           type='button'
+                           // @ts-ignore
+                           component='label'
+                           sx={{ width: '100%', padding: '.5rem' }}
+                        >
                            <span className='yekan text-sm'>انتخاب پشت طرح</span>
                            <input
                               hidden

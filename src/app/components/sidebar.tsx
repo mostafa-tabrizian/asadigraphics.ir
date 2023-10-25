@@ -31,7 +31,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
 
    return (
       <div className='xl:hidden'>
-         <button onClick={() => setSidebar(true)} aria-label='open sidebar'>
+         <button type='button' onClick={() => setSidebar(true)} aria-label='open sidebar'>
             <svg
                xmlns='http://www.w3.org/2000/svg'
                width='37'
@@ -52,7 +52,11 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
             <div className='h-full w-[16rem] bg-slate-100'>
                <div className='p-5'>
                   <div className='flex items-center justify-between gap-20'>
-                     <button onClick={() => setSidebar(false)} aria-label='close sidebar'>
+                     <button
+                        type='button'
+                        onClick={() => setSidebar(false)}
+                        aria-label='close sidebar'
+                     >
                         <svg
                            stroke='currentColor'
                            fill='none'
@@ -148,6 +152,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                      <li className='block'>
                         <div className='rounded-lg bg-gradient-to-l from-white to-transparent pr-1 text-gray-700 shadow-inner'>
                            <button
+                              type='button'
                               aria-label='categories'
                               onClick={() => setCategories((prev) => !prev)}
                               className='w-full'
@@ -221,6 +226,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                      <li className='block '>
                         <div className='rounded-lg bg-gradient-to-l from-white to-transparent pr-1 text-gray-700 shadow-inner'>
                            <button
+                              type='button'
                               aria-label='contact us'
                               onClick={() => setContactUsOptions((prev) => !prev)}
                               className='w-full'

@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 
 import { Formik, Form } from 'formik'
-import { toast } from 'react-toastify'
 
 import { IDesign } from '@/models/design'
 import { ICategory } from '@/models/category'
@@ -14,7 +13,6 @@ const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'),
 
 import ImageInput from './imageInput'
 import { DesignEditForm } from '@/formik/schema/validation'
-import hyphen from '@/lib/hyphen'
 import OnSubmittingPreventExit from '@/lib/onSubmittingPreventExit'
 
 import DesignNameInput from './designNameInput'
@@ -48,6 +46,8 @@ const DetailForm = memo(
          designedAt: string
          colorPalettes: string
       }) => {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
+
          try {
             toast.info('در حال ثبت اطلاعات طرح...')
 
@@ -75,6 +75,7 @@ const DetailForm = memo(
             fetch('/api/--admin--/revalidate?path=/search/[query]')
 
             if (addingNewDesign) {
+               const hyphen = await import('@/lib/hyphen').then(mod => mod.default)
                router.push(`/--admin--/designs/${hyphen(values.name)}`)
             }
          } catch (err) {
@@ -84,6 +85,8 @@ const DetailForm = memo(
       }
 
       const handleDeleteDesign = async () => {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
+
          try {
             if (designMemo.frontSrc || designMemo.backSrc) {
                return toast.warning('برای حذف طرح ابتدا می‌بایست تصاویر مربوطه حذف گردد')

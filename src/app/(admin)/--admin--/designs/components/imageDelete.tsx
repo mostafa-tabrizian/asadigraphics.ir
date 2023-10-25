@@ -1,10 +1,7 @@
 'use client'
 
 import { useState, memo } from 'react'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
-
-import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
 
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
@@ -19,6 +16,7 @@ const ImageDelete = memo(
 
       const handleDelete = async () => {
          setConfirmation(false)
+         const toast = await import('react-toastify').then((mod) => mod.toast)
 
          if (!imageKey) {
             return toast.warning('در حذف تصویر خطایی رخ داده است!')
@@ -31,6 +29,9 @@ const ImageDelete = memo(
          setLoading(true)
 
          try {
+            const deleteFromS3Bucket = await import('@/lib/deleteFromS3Bucket').then(
+               (mod) => mod.default,
+            )
             const fileUploadResult = await deleteFromS3Bucket(imageKey, 'designs')
 
             if (!fileUploadResult) throw new Error('file upload to s3')
@@ -52,6 +53,8 @@ const ImageDelete = memo(
             imageKey,
             _id: design,
          }
+
+         const toast = await import('react-toastify').then((mod) => mod.toast)
 
          try {
             const res = await fetch('/api/--admin--/design/image/db', {
@@ -124,12 +127,14 @@ const ImageDelete = memo(
                   </span>
                   <div className='flex justify-around space-x-5'>
                      <button
+                        type='button'
                         onClick={() => setConfirmation(false)}
                         className='w-full rounded bg-slate-300 py-1'
                      >
                         لغو
                      </button>
                      <button
+                        type='button'
                         onClick={handleDelete}
                         className='w-full rounded bg-rose-500 py-1 text-white'
                      >

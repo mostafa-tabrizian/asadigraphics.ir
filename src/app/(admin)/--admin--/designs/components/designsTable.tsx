@@ -212,6 +212,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
 
          <div className='mt-5 flex items-center gap-5'>
             <button
+               type='button'
                className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                disabled={!table.getCanNextPage()}
@@ -219,6 +220,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                رفتن به صفحه آخر
             </button>
             <button
+               type='button'
                className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.nextPage()}
                disabled={!table.getCanNextPage()}
@@ -226,6 +228,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                صفحه بعد
             </button>
             <button
+               type='button'
                className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.previousPage()}
                disabled={!table.getCanPreviousPage()}
@@ -233,6 +236,7 @@ const DesignsTable = ({ designs }: { designs: IDesign[] }) => {
                صفحه قبل
             </button>
             <button
+               type='button'
                className='rounded-lg border bg-white p-1 px-2'
                onClick={() => table.setPageIndex(0)}
                disabled={!table.getCanPreviousPage()}

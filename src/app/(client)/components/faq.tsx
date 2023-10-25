@@ -66,6 +66,7 @@ const FAQ = () => {
          <div className='mx-5 space-y-2'>
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ1)}
@@ -101,6 +102,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ2)}
@@ -144,6 +146,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ3)}
@@ -185,6 +188,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ8)}
@@ -222,6 +226,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ4)}
@@ -281,6 +286,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ5)}
@@ -331,6 +337,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ6)}
@@ -372,6 +379,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ7)}
@@ -414,6 +422,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ9)}
@@ -456,6 +465,7 @@ const FAQ = () => {
 
             <div className='border-r-2 border-orange-300'>
                <button
+                  type='button'
                   className='flex w-full items-center justify-between'
                   aria-label='categories'
                   onClick={() => collapseStatus(setQ10)}

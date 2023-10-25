@@ -1,6 +1,4 @@
-import { toast } from 'react-toastify'
-
-const filesTypeValidation = (files: File[]) => {
+const filesTypeValidation = async (files: File[]) => {
    let invalidFile: undefined | { name: string; valid: boolean }
 
    files.map((file) => {
@@ -10,6 +8,7 @@ const filesTypeValidation = (files: File[]) => {
    })
 
    if (invalidFile) {
+      const toast = await import('react-toastify').then(mod => mod.toast)
       toast.warning(`تایپ فایل ${invalidFile.name} می‌بایست jpeg webp یا avif باشد`)
       return false
    } else return true

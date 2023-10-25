@@ -82,8 +82,12 @@ const FrontImageInput = memo(
                      onDragOver={dragOverHandler}
                      className='w-full rounded-lg border-2 border-slate-200 bg-slate-100 text-sm'
                   >
-                     {/* @ts-ignore */}
-                     <Button component='label' sx={{ width: '100%', padding: '.5rem' }}>
+                     <Button
+                        type='button'
+                        // @ts-ignore
+                        component='label'
+                        sx={{ width: '100%', padding: '.5rem' }}
+                     >
                         <span className='yekan text-sm'>انتخاب جلو طرح</span>
                         <input
                            hidden

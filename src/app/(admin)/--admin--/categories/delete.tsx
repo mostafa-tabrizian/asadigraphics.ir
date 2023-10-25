@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
@@ -19,6 +18,8 @@ const DeleteButton = ({
       setLoading(true)
 
       const payload = { _id }
+
+      const toast = await import('react-toastify').then(mod => mod.toast)
 
       try {
          const res = await fetch('/api/--admin--/category', {
@@ -50,7 +51,7 @@ const DeleteButton = ({
                      <CircularProgress color='error' size={20} />
                   </div>
                ) : (
-                  <button className='flex justify-end' onClick={() => deleteHandler()}>
+                  <button type='button' className='flex justify-end' onClick={() => deleteHandler()}>
                      <svg
                         className='h-4 w-4 text-rose-500'
                         width='24'

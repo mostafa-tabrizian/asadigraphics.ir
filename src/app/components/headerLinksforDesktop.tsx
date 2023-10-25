@@ -90,7 +90,11 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
 
          <li className='block'>
             <div className='text-gray-700'>
-               <button onClick={(e) => setCategories(e.currentTarget)} className='w-full'>
+               <button
+                  type='button'
+                  onClick={(e) => setCategories(e.currentTarget)}
+                  className='w-full'
+               >
                   <span className='flex cursor-pointer items-center gap-x-2 py-1 font-bold hover:text-orange-600 '>
                      <svg
                         className='h-5 w-5'
@@ -165,7 +169,11 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
 
          <li className='block '>
             <div className='text-gray-700'>
-               <button onClick={(e) => setContactUsOptions(e.currentTarget)} className='w-full'>
+               <button
+                  type='button'
+                  onClick={(e) => setContactUsOptions(e.currentTarget)}
+                  className='w-full'
+               >
                   <span className='flex cursor-pointer items-center gap-x-2 py-1 font-bold hover:text-orange-600'>
                      <svg
                         className='h-5 w-5'

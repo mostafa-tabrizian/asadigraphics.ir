@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { toast } from 'react-toastify'
 
 import dynamic from 'next/dynamic'
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
@@ -15,6 +14,8 @@ const ActiveStatus = ({
    const [status, setStatus] = useState(active)
 
    const handleClick = async () => {
+      const toast = await import('react-toastify').then((mod) => mod.toast)
+
       if (!_id) {
          return toast.warning('در خواندن اسلاید خطایی رخ داد!')
       }
@@ -47,7 +48,7 @@ const ActiveStatus = ({
    }
 
    return (
-      <div className='flex items-center justify-end drop-shadow space-x-3 absolute left-10 top-0 z-10'>
+      <div className='absolute left-10 top-0 z-10 flex items-center justify-end space-x-3 drop-shadow'>
          {loading ? (
             <div className='py-2'>
                <CircularProgress color='primary' size={20} />

@@ -20,7 +20,7 @@ const LogoutButton = () => {
                <CircularProgress className='text-rose-600' color='inherit' size={24} />
             </div>
          ) : (
-            <button disabled={loading} onClick={handleLogout}>
+            <button type='button' disabled={loading} onClick={handleLogout}>
                <div className='flex items-center justify-end space-x-3'>
                   <span className='yekan text-base'>خروج</span>
                   <svg

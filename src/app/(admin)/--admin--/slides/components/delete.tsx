@@ -1,12 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { toast } from 'react-toastify'
 import { useRouter } from 'next/navigation'
-
-import deleteFromS3Bucket from '@/lib/deleteFromS3Bucket'
-
 import dynamic from 'next/dynamic'
+
 const CircularProgress = dynamic(() => import('@mui/material/CircularProgress'), { ssr: false })
 const Dialog = dynamic(() => import('@mui/material/Dialog'), { ssr: false })
 
@@ -20,18 +17,23 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
       setConfirmation(false)
 
       if (!_id) {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
          return toast.warning('در حذف اسلاید خطایی رخ داده است!')
       }
 
       setLoading(true)
 
       try {
+         const deleteFromS3Bucket = await import('@/lib/deleteFromS3Bucket').then(
+            (mod) => mod.default,
+         )
          const fileUploadResult = await deleteFromS3Bucket(src, 'slides')
 
          if (!fileUploadResult) throw new Error('file upload to s3')
 
          return await removeFromDb()
       } catch (error) {
+         const toast = await import('react-toastify').then((mod) => mod.toast)
          toast.error(
             'در حذف اسلاید خطایی رخ داد. (اگر از VPN استفاده می‌کنید لطفا ابتدا آن را خاموش کنید)',
          )
@@ -45,6 +47,8 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
       const payload = {
          _id,
       }
+
+      const toast = await import('react-toastify').then((mod) => mod.toast)
 
       try {
          const res = await fetch('/api/--admin--/slide', {
@@ -67,7 +71,7 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
 
    return (
       <>
-         <div className='flex items-center justify-end drop-shadow space-x-3 absolute left-0 top-0 z-10'>
+         <div className='absolute left-0 top-0 z-10 flex items-center justify-end space-x-3 drop-shadow'>
             {loading ? (
                <div className='py-2'>
                   <CircularProgress color='error' size={20} />
@@ -92,9 +96,9 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
          </div>
 
          <Dialog onClose={() => setConfirmation(false)} open={confirmation}>
-            <div className='p-5 text-center space-y-5'>
+            <div className='space-y-5 p-5 text-center'>
                <svg
-                  className='h-16 w-16 mx-auto text-rose-500'
+                  className='mx-auto h-16 w-16 text-rose-500'
                   viewBox='0 0 24 24'
                   fill='none'
                   stroke='currentColor'
@@ -110,16 +114,18 @@ const SlideDelete = ({ params: { _id, src } }: { params: { _id: string; src: str
                <span className='font-semibold'>
                   .پس از حذف هیچ راه بازگرداندی وجود ندارد <br /> آیا از حذف کردن خود مطمئن هستید؟
                </span>
-               <div className='flex space-x-5 justify-around'>
+               <div className='flex justify-around space-x-5'>
                   <button
+                     type='button'
                      onClick={() => setConfirmation(false)}
-                     className='w-full py-1 rounded bg-slate-300'
+                     className='w-full rounded bg-slate-300 py-1'
                   >
                      لغو
                   </button>
                   <button
+                     type='submit'
                      onClick={handleDelete}
-                     className='w-full py-1 rounded bg-rose-500 text-white'
+                     className='w-full rounded bg-rose-500 py-1 text-white'
                   >
                      حذف
                   </button>
