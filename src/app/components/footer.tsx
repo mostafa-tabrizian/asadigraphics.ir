@@ -172,9 +172,9 @@ const Footer = () => {
                <p className='mb-2 text-center text-xs text-orange-600'>
                   © تمامی حقوق این وب سایت برای اسدی گرافیک محفوظ است
                </p>
-               <a href='https://t.me/Tabrizian_dev' target='_blank' rel='noreferrer'>
+               <a href='https://mostafatabrizian.ir' target='_blank' rel='noreferrer'>
                   <p className='text-center text-xs text-purple-400'>
-                     ساخته شده با 💜 توسط Tabrizian Dev
+                     ساخته شده با 💜 توسط Tabrizian_Dev
                   </p>
                </a>
             </div>
