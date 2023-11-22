@@ -122,7 +122,7 @@ const NewSlide = memo(() => {
          <Formik
             initialValues={{
                alt: '',
-               link: '/#',
+               link: '',
                active: false,
             }}
             validationSchema={SlideValidation}
@@ -152,7 +152,8 @@ const NewSlide = memo(() => {
                               {' '}
                               لینک صفحه{' '}
                               <span className='text-yellow-500'>
-                                 (می‌بایست بدون &apos;asadigraphics.ir&apos; باشد)
+                                 برای داخل سایت بدون دامنه: (design/X/) اما برای خارج از وب سایت
+                                 لینک کامل: (eitaa.com/X)
                               </span>
                            </span>
                         </label>
@@ -167,7 +168,6 @@ const NewSlide = memo(() => {
                            value={values.link}
                            className='ltr mr-3 w-full rounded-lg border-2 border-slate-200 bg-slate-100 p-2 text-sm placeholder:text-slate-400'
                            type='text'
-                           placeholder='/design/طرح-شماره-یک'
                         />
                      </div>
 

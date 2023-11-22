@@ -81,6 +81,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                         id='slide'
                         key={slide._id}
                         href={slide.link}
+                        target='_blank'
                         style={{ opacity: opacities[idx] }}
                      >
                         <span className='hidden'>{slide.alt}</span>
