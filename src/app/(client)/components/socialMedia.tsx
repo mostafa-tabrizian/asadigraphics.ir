@@ -34,7 +34,7 @@ const SocialMedia = () => {
                id='telegram'
                rel='noreferrer'
                className='flex items-center'
-               href='https://t.me/aliasadi_graphics'
+               href='https://t.me/asadigraphics'
                target='_blank'
             >
                <div className='rounded-xl bg-gradient-to-t from-black to-black/40 p-2'>
@@ -60,7 +60,7 @@ const SocialMedia = () => {
                id='eitaa'
                rel='noreferrer'
                className='flex items-center'
-               href='https://eitaa.com/aliasadi_graphics'
+               href='https://eitaa.com/asadigraphics'
                target='_blank'
             >
                <div className='rounded-xl bg-gradient-to-t from-black to-black/40 p-2'>

@@ -274,7 +274,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        id='eitaa'
                                        rel='noreferrer'
                                        className=' flex items-center'
-                                       href='https://eitaa.com/aliasadi_graphics'
+                                       href='https://eitaa.com/asadigraphics'
                                        target='_blank'
                                     >
                                        {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}
@@ -338,7 +338,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                                        id='telegram'
                                        rel='noreferrer'
                                        className=' flex items-center'
-                                       href='https://t.me/aliasadi_graphics'
+                                       href='https://t.me/asadigraphics'
                                        target='_blank'
                                     >
                                        {/* <span className='bg-orange-500 rounded-md'> */}

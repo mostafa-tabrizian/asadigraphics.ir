@@ -29,7 +29,7 @@ const Footer = () => {
                               aria-label='ایتا'
                               id='eitaa'
                               rel='noreferrer'
-                              href='https://eitaa.com/aliasadi_graphics'
+                              href='https://eitaa.com/asadigraphics'
                               target='_blank'
                            >
                               <svg
@@ -74,7 +74,7 @@ const Footer = () => {
                               aria-label='تلگرام'
                               id='telegram'
                               rel='noreferrer'
-                              href='https://t.me/aliasadi_graphics'
+                              href='https://t.me/asadigraphics'
                               target='_blank'
                            >
                               <svg

@@ -44,7 +44,7 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
          <a
             aria-label='ایتا'
             id='eitaa'
-            href='https://eitaa.com/aliasadi_graphics'
+            href='https://eitaa.com/asadigraphics'
             className='fixed bottom-16 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-orange-400 to-orange-200 py-1 pl-9 pr-1 shadow-lg shadow-orange-300 xl:bottom-[4.3rem] xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
             title='ایتا با پشتیبانی'
             target='_blank'
@@ -68,7 +68,7 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
          <a
             aria-label='تلگرام'
             id='telegram'
-            href='https://t.me/aliasadi_graphics'
+            href='https://t.me/asadigraphics'
             className='fixed bottom-5 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-sky-500 to-sky-200 py-1 pl-9 pr-1 shadow-lg shadow-sky-300 xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
             title='تلگرام با پشتیبانی'
             target='_blank'

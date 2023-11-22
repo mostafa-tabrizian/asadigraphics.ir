@@ -58,8 +58,8 @@ const corporationJsonLd = {
    email: '',
    sameAs: [
       'https://www.instagram.com/aliasadi_graphics',
-      'https://t.me/aliasadi_graphics',
-      'https://eitaa.com/aliasadi_graphics',
+      'https://t.me/asadigraphics',
+      'https://eitaa.com/asadigraphics',
    ],
    contactPoint: [
       {
@@ -78,8 +78,8 @@ const corporationJsonLd = {
          name: 'Ali Asadi',
          sameAs: [
             'https://www.instagram.com/aliasadi_graphics',
-            'https://t.me/aliasadi_graphics',
-            'https://eitaa.com/aliasadi_graphics',
+            'https://t.me/asadigraphics',
+            'https://eitaa.com/asadigraphics',
          ],
       },
       {
@@ -90,8 +90,8 @@ const corporationJsonLd = {
          name: 'Ali Asadi',
          sameAs: [
             'https://www.instagram.com/aliasadi_graphics',
-            'https://t.me/aliasadi_graphics',
-            'https://eitaa.com/aliasadi_graphics',
+            'https://t.me/asadigraphics',
+            'https://eitaa.com/asadigraphics',
          ],
       },
    ],
