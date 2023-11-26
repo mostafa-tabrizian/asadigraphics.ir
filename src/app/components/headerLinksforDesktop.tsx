@@ -254,7 +254,7 @@ const HeaderLinksforDesktop = memo(({ categoriesList }: { categoriesList: ICateg
                            id='instagram'
                            rel='noreferrer'
                            className='flex items-center'
-                           href='https://www.instagram.com/aliasadi_graphics'
+                           href='https://www.instagram.com/asadigraphics.ir'
                            target='_blank'
                         >
                            {/* <span className='bg-gradient-to-br from-orange-500 via-rose-500 to-yellow-500 rounded-md'> */}

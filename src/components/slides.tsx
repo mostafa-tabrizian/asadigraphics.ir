@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,10 +12,10 @@ import { ISlide } from '@/models/slide'
 const Slides = ({ slides }: { slides: ISlide[] }) => {
    const [opacities, setOpacities] = useState<number[]>([])
 
-   // const [currentSlide, setCurrentSlide] = useState(0)
-   // const [loaded, setLoaded] = useState(false)
+   const [currentSlide, setCurrentSlide] = useState(0)
+   const [loaded, setLoaded] = useState(false)
 
-   const [sliderRef] = useKeenSlider<HTMLDivElement>( // instanceRef
+   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
       {
          initial: 0,
          slides: slides.length,
@@ -25,12 +25,12 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
             const newOpacities = s.track.details.slides.map((slide) => slide.portion)
             setOpacities(newOpacities)
          },
-         // slideChanged(slider) {
-         //    setCurrentSlide(slider.track.details.rel)
-         // },
-         // created() {
-         //    setLoaded(true)
-         // },
+         slideChanged(slider) {
+            setCurrentSlide(slider.track.details.rel)
+         },
+         created() {
+            setLoaded(true)
+         },
       },
       [
          (slider) => {
@@ -66,6 +66,14 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
       ],
    )
 
+   useEffect(() => {
+      return () => {
+         setOpacities([])
+         setCurrentSlide(0)
+         instanceRef.current = null
+      }
+   }, [])
+
    return (
       <div className='rtl relative mx-auto w-full space-y-3 px-3 md:w-5/6'>
          <div ref={sliderRef} className='relative aspect-video h-full'>
@@ -98,7 +106,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                )
             })}
          </div>
-         {/* {loaded && instanceRef.current && (
+         {loaded && instanceRef.current && (
             <div className='dots rtl'>
                {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => {
                   return (
@@ -113,7 +121,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                   )
                })}
             </div>
-         )} */}
+         )}
       </div>
    )
 }

@@ -50,7 +50,7 @@ const Footer = () => {
                               aria-label='اینستاگرام'
                               id='instagram'
                               rel='noreferrer'
-                              href='https://www.instagram.com/aliasadi_graphics'
+                              href='https://www.instagram.com/asadigraphics.ir'
                               target='_blank'
                            >
                               <svg

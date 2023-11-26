@@ -284,3 +284,27 @@ table {
       border-radius: 5px;
    }
 }
+
+.dots {
+   display: flex;
+   justify-content: center;
+}
+
+.dot {
+   border: none;
+   width: 15px;
+   height: 5px;
+   background: #c5c5c5;
+   border-radius: 20%;
+   margin: 0 5px;
+   padding: 0;
+   cursor: pointer;
+
+   &:focus {
+      outline: none;
+   }
+
+   &.active {
+      background: rgb(219, 113, 47);
+   }
+}

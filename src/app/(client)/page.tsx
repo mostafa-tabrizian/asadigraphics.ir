@@ -57,7 +57,7 @@ const corporationJsonLd = {
    logo: 'https://asadigraphics.ir/android-chrome-192x192.png',
    email: '',
    sameAs: [
-      'https://www.instagram.com/aliasadi_graphics',
+      'https://www.instagram.com/asadigraphics.ir',
       'https://t.me/asadigraphics',
       'https://eitaa.com/asadigraphics',
    ],
@@ -77,7 +77,7 @@ const corporationJsonLd = {
          jobTitle: 'Chief executive officer',
          name: 'Ali Asadi',
          sameAs: [
-            'https://www.instagram.com/aliasadi_graphics',
+            'https://www.instagram.com/asadigraphics.ir',
             'https://t.me/asadigraphics',
             'https://eitaa.com/asadigraphics',
          ],
@@ -89,7 +89,7 @@ const corporationJsonLd = {
          jobTitle: 'Chairman',
          name: 'Ali Asadi',
          sameAs: [
-            'https://www.instagram.com/aliasadi_graphics',
+            'https://www.instagram.com/asadigraphics.ir',
             'https://t.me/asadigraphics',
             'https://eitaa.com/asadigraphics',
          ],

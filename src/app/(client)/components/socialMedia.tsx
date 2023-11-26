@@ -9,7 +9,7 @@ const SocialMedia = () => {
                id='instagram'
                rel='noreferrer'
                className='flex items-center'
-               href='https://www.instagram.com/aliasadi_graphics'
+               href='https://www.instagram.com/asadigraphics.ir'
                target='_blank'
             >
                <div className='rounded-xl bg-gradient-to-t from-black to-black/40 p-2'>
