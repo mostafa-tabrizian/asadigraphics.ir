@@ -1,4 +1,6 @@
-import { memo } from 'react'
+'use client'
+
+import { memo, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ICategory } from '@/models/category'
@@ -9,6 +11,12 @@ const Sidebar = dynamic(() => import('./sidebar'), { ssr: false })
 const LinksForDesktop = dynamic(() => import('./headerLinksforDesktop'), { ssr: false })
 
 const Header = memo(({ params: { categories } }: { params: { categories: ICategory[] } }) => {
+   const [enterEffect, setEnterEffect] = useState(0)
+
+   useEffect(() => {
+      setEnterEffect(1)
+   }, [])
+
    return (
       <header className='z-20 w-screen rounded-b-xl border border-black/25 bg-white px-5 py-3 xl:fixed xl:left-0 xl:top-0'>
          <div className='mx-auto flex items-center justify-between xl:grid xl:max-w-screen-2xl xl:grid-cols-8'>
@@ -25,7 +33,7 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
             >
                <Image
                   className='object-contain'
-                  src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'}
+                  src={'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo_2.jpg'}
                   alt='لوگو اسدی گرافیک'
                   width={77}
                   height={52}
@@ -42,16 +50,21 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
          </div>
 
          <a
+            style={{
+               transitionDuration: '2s',
+               transform: enterEffect ? 'translateX(0px)' : 'translateX(-70px)',
+               opacity: enterEffect,
+            }}
             aria-label='ایتا'
             id='eitaa'
             href='https://eitaa.com/asadigraphics'
-            className='fixed bottom-16 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-orange-400 to-orange-200 py-1 pl-9 pr-1 shadow-lg shadow-orange-300 xl:bottom-[4.3rem] xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
+            className='fixed bottom-16 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-orange-400 bg-gradient-to-b from-white to-slate-200 py-1 pl-9 pr-1 shadow-md shadow-orange-300 xl:bottom-[4.3rem] xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
             title='ایتا با پشتیبانی'
             target='_blank'
             rel='noreferrer'
          >
             <svg
-               className='top-.5 absolute left-1 h-6 w-6 text-black xl:h-8 xl:w-8'
+               className='top-.5 delay-[3s] absolute left-1 h-6 w-6 text-orange-400 xl:h-7 xl:w-7'
                viewBox='0 0 24 24'
                fill='none'
                stroke='currentColor'
@@ -66,21 +79,28 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
          </a>
 
          <a
+            style={{
+               transitionDuration: '2s',
+               transform: enterEffect ? 'translateX(0px)' : 'translateX(-70px)',
+               opacity: enterEffect,
+            }}
             aria-label='تلگرام'
             id='telegram'
             href='https://t.me/asadigraphics'
-            className='fixed bottom-5 left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-black bg-gradient-to-t from-sky-500 to-sky-200 py-1 pl-9 pr-1 shadow-lg shadow-sky-300 xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
+            className='fixed bottom-5 delay-[1s] left-5 z-20 flex items-center gap-2 rounded-lg border-2 border-sky-500 bg-gradient-to-b from-white to-slate-200 py-1 pl-9 pr-1 shadow-md shadow-sky-300 xl:rounded-xl xl:py-2 xl:pl-12 xl:pr-2'
             title='تلگرام با پشتیبانی'
             target='_blank'
             rel='noreferrer'
          >
             <svg
-               className='absolute -top-1 left-0 h-8 w-8 xl:h-10 xl:w-10'
-               viewBox='0 0 45 45'
-               fill='none'
                xmlns='http://www.w3.org/2000/svg'
+               width='32'
+               height='32'
+               className='absolute left-0 top-0 h-8 w-8 xl:h-9 xl:w-9'
+               viewBox='0 0 32 32'
+               fill='none'
             >
-               <rect width='45' height='45' fill='url(#pattern0)' />
+               <rect width='32' height='32' fill='url(#pattern0)' />
                <defs>
                   <pattern
                      id='pattern0'
@@ -88,13 +108,13 @@ const Header = memo(({ params: { categories } }: { params: { categories: ICatego
                      width='1'
                      height='1'
                   >
-                     <use xlinkHref='#image0_134_2' transform='scale(0.01)' />
+                     <use xlinkHref='#image0_252_64' transform='scale(0.01)' />
                   </pattern>
                   <image
-                     id='image0_134_2'
+                     id='image0_252_64'
                      width='100'
                      height='100'
-                     xlinkHref='data:image/png;base64,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'
+                     xlinkHref='data:image/png;base64,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'
                   />
                </defs>
             </svg>

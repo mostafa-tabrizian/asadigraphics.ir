@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { withSentryConfig } = require('@sentry/nextjs')
+// const { withSentryConfig } = require('@sentry/nextjs')
 
 /** @type {import('next').NextConfig} */
 
@@ -37,22 +37,22 @@ const nextConfig = {
       ],
    },
    output: 'standalone',
-   sentry: {
+   // sentry: {
       // For all available options, see:
       // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
       // Upload a larger set of source maps for prettier stack traces (increases build time)
-      widenClientFileUpload: true,
+      // widenClientFileUpload: true,
 
       // Routes browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers (increases server load)
-      tunnelRoute: '/monitoring',
+      // tunnelRoute: '/monitoring',
 
       // Hides source maps from generated client bundles
-      hideSourceMaps: true,
+      // hideSourceMaps: true,
 
       // Automatically tree-shake Sentry logger statements to reduce bundle size
-      disableLogger: true,
-   },
+      // disableLogger: true,
+   // },
    webpack: (config) => {
       config.externals.push({
          '@aws-sdk/signature-v4-multi-region': 'commonjs @aws-sdk/signature-v4-multi-region',
@@ -62,19 +62,19 @@ const nextConfig = {
    },
 }
 
-const sentryWebpackPluginOptions = {
+// const sentryWebpackPluginOptions = {
    // For all available options, see:
    // https://github.com/getsentry/sentry-webpack-plugin#options
 
    // Suppresses source map uploading logs during build
-   silent: true,
-   org: 'tabriziancodes',
-   project: 'asadigraphics',
-}
+   // silent: true,
+   // org: 'tabriziancodes',
+   // project: 'asadigraphics',
+// }
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
    enabled: process.env.ANALYZE === 'true',
 })
 
-module.exports = withSentryConfig(withBundleAnalyzer(nextConfig), sentryWebpackPluginOptions)
+module.exports = withBundleAnalyzer(nextConfig)

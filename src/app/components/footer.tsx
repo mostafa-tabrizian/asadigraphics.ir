@@ -12,7 +12,7 @@ const Footer = () => {
                         <Image
                            className='mix-blend-multiply'
                            src={
-                              'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
+                              'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo_2.jpg'
                            }
                            alt='لوگو اسدی گرافیک'
                            width={154}
@@ -172,9 +172,9 @@ const Footer = () => {
                <p className='mb-2 text-center text-xs text-orange-600'>
                   © تمامی حقوق این وب سایت برای اسدی گرافیک محفوظ است
                </p>
-               <a href='https://mostafatabrizian.ir' target='_blank' rel='noreferrer'>
+               <a href='https://mostafatabrizian.ir/fa' target='_blank' rel='noreferrer'>
                   <p className='text-center text-xs text-purple-400'>
-                     ساخته شده با 💜 توسط Tabrizian_Dev
+                      ساخته شده با 💜 توسط mostafatabrizian.ir
                   </p>
                </a>
             </div>

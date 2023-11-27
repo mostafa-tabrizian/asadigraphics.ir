@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
    return (
       <>
-         <Header params={{ categories }} />
+         <Header params={JSON.parse(JSON.stringify({ categories }))} />
 
          <main className='mx-auto mb-24 max-w-screen-lg overflow-x-hidden md:mt-24'>
             {children}

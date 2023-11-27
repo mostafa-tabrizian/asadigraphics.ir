@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react'
+import Image from 'next/image'
 
 const Collapse = dynamic(() => import('@mui/material/Collapse'), { ssr: false })
 
@@ -46,21 +47,16 @@ const FAQ = () => {
    return (
       <div className='text-center'>
          <div className='relative mx-auto max-w-screen-sm'>
-            <svg
-               className='absolute right-14 top-2 h-14 w-14 text-black/10 md:right-36 md:top-2'
-               xmlns='http://www.w3.org/2000/svg'
-               viewBox='0 0 1024 1024'
-               version='1.1'
-            >
-               <path
-                  d='M870.4 448a64 64 0 0 0 0-128h-114.56l26.88-148.48a64 64 0 0 0-126.08-23.04l-32 171.52h-156.8l26.88-148.48a64 64 0 0 0-126.08-23.04l-32 171.52H198.4a64 64 0 1 0 0 128h116.16l-23.36 128H153.6a64 64 0 0 0 0 128h114.56l-26.88 148.48a64 64 0 1 0 126.08 23.04l32-171.52h157.76l-26.88 148.48a64 64 0 1 0 126.08 23.04l32-171.52h137.28a64 64 0 1 0 0-128h-116.16l23.36-128z m-291.2 128h-157.76l23.36-128h157.76z'
-                  fill='currentColor'
-               />
-            </svg>
-            <div className='mx-5 my-10 rounded-2xl border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 py-5 text-center shadow-[0_6px_10px_0_#00000040]'>
+            <div className='relative z-10 mx-5 my-10 py-5 text-center'>
                <h2 className='mt-3'>سوالات متداول</h2>
                <span className='yekanBold'>سوالاتی که شاید برای شما هم پیش آمده باشد</span>
             </div>
+            <Image
+               className='h-auto w-auto max-w-full rounded-xl object-cover shadow-lg shadow-orange-200'
+               src='https://tabrizian.storage.iran.liara.space/asadi_designs/titleRectangle2.jpg'
+               alt='پس زمینه عنوان'
+               fill
+            />
          </div>
 
          <div className='mx-5 space-y-2'>

@@ -94,7 +94,7 @@ const Slides = ({ slides }: { slides: ISlide[] }) => {
                      >
                         <span className='hidden'>{slide.alt}</span>
                         <Image
-                           className='rounded-xl'
+                           className='rounded-xl shadow-lg'
                            src={`https://tabrizian.storage.iran.liara.space/asadi_designs/slides/${slide.src}`}
                            alt={slide.alt}
                            width={816}

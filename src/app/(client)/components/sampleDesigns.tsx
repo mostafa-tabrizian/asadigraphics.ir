@@ -1,26 +1,22 @@
 import Gallery from '@/app/components/gallery'
 import { IDesign } from '@/models/design'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const SampleDesigns = ({ designs }: { designs: IDesign[] }) => {
    return (
       // border-t-2 border-black/25 rounded-2xl bg-gradient-to-b from-orange-200 to-transparent
       <div>
          <div className='relative mx-auto max-w-screen-sm'>
-            <svg
-               xmlns='http://www.w3.org/2000/svg'
-               className='absolute right-16 top-1 h-14 w-14 text-black/10 md:right-40'
-               viewBox='0 0 1024 1024'
-               version='1.1'
-            >
-               <path
-                  d='M870.4 448a64 64 0 0 0 0-128h-114.56l26.88-148.48a64 64 0 0 0-126.08-23.04l-32 171.52h-156.8l26.88-148.48a64 64 0 0 0-126.08-23.04l-32 171.52H198.4a64 64 0 1 0 0 128h116.16l-23.36 128H153.6a64 64 0 0 0 0 128h114.56l-26.88 148.48a64 64 0 1 0 126.08 23.04l32-171.52h157.76l-26.88 148.48a64 64 0 1 0 126.08 23.04l32-171.52h137.28a64 64 0 1 0 0-128h-116.16l23.36-128z m-291.2 128h-157.76l23.36-128h157.76z'
-                  fill='currentColor'
-               />
-            </svg>
-            <h2 className='mx-5 my-10 rounded-2xl border-black/25 bg-gradient-to-br from-[#FF7A0094] to-orange-100 py-5 text-center shadow-[0_6px_10px_0_#00000040]'>
+            <h2 className='mx-5 relative z-10 my-10 py-5 text-center'>
                نمونه طراحی ها
             </h2>
+            <Image
+               className='h-auto shadow-lg shadow-orange-200 w-auto max-w-full rounded-xl object-cover'
+               src='https://tabrizian.storage.iran.liara.space/asadi_designs/titleRectangle2.jpg'
+               alt='پس زمینه عنوان'
+               fill
+            />
          </div>
          <div className='relative mx-5 min-h-[50vh]'>
             <Gallery designs={JSON.parse(JSON.stringify(designs))} />

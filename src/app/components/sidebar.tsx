@@ -80,7 +80,7 @@ const Sidebar = memo(({ categoriesList }: { categoriesList: ICategory[] }) => {
                            <Image
                               className='aspect-auto object-contain mix-blend-multiply'
                               src={
-                                 'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo.jpg'
+                                 'https://tabrizian.storage.iran.liara.space/asadi_designs/logo/logo_2.jpg'
                               }
                               alt='لوگو اسدی گرافیک'
                               width={77}
