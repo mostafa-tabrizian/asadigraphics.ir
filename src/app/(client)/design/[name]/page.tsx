@@ -17,7 +17,7 @@ const getDesignDetailDate = async (name: string) => {
 
    await dbConnect()
    return await Design.findOne({
-      name,
+      name: new RegExp('^' + name + '$', 'i'),
       active: true,
    }).exec()
 }
