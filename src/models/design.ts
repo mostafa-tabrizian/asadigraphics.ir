@@ -45,6 +45,4 @@ const DesignSchema = new mongoose.Schema({
 
 DesignSchema.set('timestamps', true)
 
-DesignSchema.index({ name: 'text' }, { unique: true })
-
 export default mongoose.models.Design || mongoose.model('Design', DesignSchema)

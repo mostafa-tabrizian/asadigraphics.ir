@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
-import Category, { ICategory } from '@/models/category'
+import Category from '@/models/category'
 import Design, { IDesign } from '@/models/design'
 
 import dbConnect from '@/lib/dbConnect'
@@ -47,20 +47,27 @@ const getDesigns = async ({ query }: { query: string }) => {
 
    if (query == 'all') return await Design.find({ active: true }).sort({ createdAt: -1 })
 
-   const designsByName =
-      (await Design.find({ $text: { $search: query }, active: true })
-         .sort({ createdAt: -1 })
-         .exec()) || []
+   const queryRegex = { $regex: new RegExp('^' + query + '$', 'i') }
 
-   const categoryId: string | null = await Category.findOne({ slug: query })
-      .exec()
-      .then((res: ICategory) => res?._id || null)
+   const categoryId: string | null = await Category.findOne({
+      $or: [{ slug: queryRegex }, { name: queryRegex }],
+   }).then((res) => res?._id)
 
-   const designsByCategory =
-      (await Design.find({ category: categoryId, active: true }).sort({ createdAt: -1 }).exec()) ||
-      []
+   const regexPatterns = query.split(' ').map((word) => new RegExp(word, 'i'))
 
-   const mergedDesigns: IDesign[] = [...designsByName, ...designsByCategory]
+   const designsByRegex = await Design.aggregate([
+      {
+         $match: {
+            $or: [{ name: { $in: regexPatterns } }, { description: { $in: regexPatterns } }],
+         },
+      },
+   ]).sort({ createdAt: -1 })
+
+   const designsByCategory = await Design.find({ category: categoryId, active: true })
+      .sort({ createdAt: -1 })
+      .lean()
+
+   const mergedDesigns: IDesign[] = [...designsByRegex, ...designsByCategory]
 
    const uniqueMergedDesigns: IDesign[] = mergedDesigns.reduce((accumulator: IDesign[], design) => {
       const existingDesign = accumulator.find((p) => p._id.toString() === design._id.toString())
@@ -78,7 +85,7 @@ const getDesigns = async ({ query }: { query: string }) => {
 const Search = async ({ params: { query } }: { params: { query: string } }) => {
    query = dehyphen(decodeURI(query))
 
-   const remaining = await limiter.removeTokens(5)
+   const remaining = await limiter.removeTokens(2)
 
    if (remaining < 0) {
       return (
